@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => Restaurant\User::class,
+    'model' => Restaurant\Models\User::class,
 
     /*
     |--------------------------------------------------------------------------

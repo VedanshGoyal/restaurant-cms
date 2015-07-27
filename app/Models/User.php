@@ -1,6 +1,6 @@
 <?php
 
-namespace Restaurant;
+namespace Restaurant\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
