@@ -14,7 +14,7 @@ class SiteConfig extends Migration
     public function up()
     {
         Schema::create('site_config', function (Blueprint $table) {
-            $table->integer('allow_reg')->default(0);
+            $table->integer('allowReg')->default(0);
             $table->timestamps();
         });
     }

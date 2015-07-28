@@ -15,8 +15,8 @@ class MenuSections extends Migration
     {
         Schema::create('menu_sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sort_id');
-            $table->integer('item_prices')->default(1);
+            $table->integer('sortId');
+            $table->integer('itemPrices')->default(1);
             $table->string('name');
             $table->timestamps();
         });

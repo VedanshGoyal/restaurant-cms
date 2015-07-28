@@ -15,12 +15,14 @@ class MenuItems extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sort_id');
-            $table->integer('price_one');
-            $table->integer('price_two')->nullable();
+            $table->integer('section_id');
+            $table->integer('sortId');
+            $table->float('priceOne');
+            $table->float('priceTwo')->nullable();
             $table->string('name');
             $table->text('tags')->nullable();
             $table->text('description')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
+        $this->call(AboutSeeds::class);
+        $this->call(InfoSeeds::class);
+        $this->call(HourSeeds::class);
+        $this->call(MenuSectionSeeds::class);
+        $this->call(MenuItemSeeds::class);
+        $this->call(PhotoSeeds::class);
 
         Model::reguard();
     }
