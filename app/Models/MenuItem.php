@@ -17,8 +17,8 @@ class MenuItem extends Model
      *
      * @return belongsToOne
      */
-    public function menuSection()
+    public function section()
     {
-            return $this->belongsToOne('MenuSection');
+            return $this->belongsToOne('Restaurant\Models\MenuSection');
     }
 }
