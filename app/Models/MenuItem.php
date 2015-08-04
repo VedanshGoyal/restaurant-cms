@@ -10,8 +10,13 @@ class MenuItem extends Model
     protected $table = 'menu_items';
 
     // Mass-assignable properties
-    protected $fillable = ['name', 'price_one', 'price_two', 'sort_id', 'tags', 'description'];
+    protected $fillable = ['name', 'priceOne', 'priceTwo', 'sortId', 'tags', 'description', 'section_id'];
 
+    /**
+     * Belongs to one menu section
+     *
+     * @return belongsToOne
+     */
     public function menuSection()
     {
             return $this->belongsToOne('MenuSection');
