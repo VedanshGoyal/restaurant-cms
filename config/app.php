@@ -143,7 +143,7 @@ return [
         Restaurant\Providers\AppServiceProvider::class,
         Restaurant\Providers\EventServiceProvider::class,
         Restaurant\Providers\RouteServiceProvider::class,
-        
+        Restaurant\Providers\RepositoryServiceProvider::class,
 
         /**
          * Vendor providers
