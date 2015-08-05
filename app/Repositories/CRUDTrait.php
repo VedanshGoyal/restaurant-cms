@@ -1,12 +1,12 @@
 <?php
 
-namespace Restaurant\Services;
+namespace Restaurant\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Restaurant\Exceptions\RepositoryException;
 
-class CRUDRepository
+trait CRUDTrait
 {
     // @var Model
     private $model;

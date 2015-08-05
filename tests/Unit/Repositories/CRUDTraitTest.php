@@ -1,9 +1,8 @@
 <?php
 
-namespace Tests\Unit\Services;
+namespace Tests\Unit\Repositories;
 
 use Mockery as m;
-use Restaurant\Services\CRUDRepository;
 
 class CRUDRepositoryTest extends \TestCase
 {
@@ -23,7 +22,7 @@ class CRUDRepositoryTest extends \TestCase
         $this->mockModel = $this->getMockModel();
         $this->mockCollection = $this->getMockCollection();
 
-        $this->repo = new CRUDRepository($this->repoModel);
+        $this->repo = new TestRepository($this->repoModel);
     }
 
     public function tearDown()
