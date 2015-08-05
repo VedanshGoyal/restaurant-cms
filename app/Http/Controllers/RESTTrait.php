@@ -3,9 +3,11 @@
 namespace Restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Restaurant\Http\Requests;
 
-Trait CRUDTrait
+use Restaurant\Http\Requests;
+use Restaurant\Http\Controllers\Controller;
+
+trait RESTTrait
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +15,6 @@ Trait CRUDTrait
      * @return Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
     {
         //
     }
@@ -45,17 +37,6 @@ Trait CRUDTrait
      * @return Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
     {
         //
     }
