@@ -1,21 +1,35 @@
 <?php
 
-namespace Restaurant\Repositories;
+namespace Restaurant\Services;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Restaurant\Exceptions\RepositoryException;
 
-trait CRUDTrait
+class CRUDRepository
 {
+    // @var Model
+    private $model;
+
+    /**
+     * Initialize a new instance
+     *
+     * @param Model $model
+     */
+    public function __construct(Model $model)
+    {
+        $this->model = $model;
+    }
+
     /**
      * Get a collection of models
      *
+     * @param array $with - relations to eager load
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public function readAll()
+    public function readAll(array $with = [])
     {
-        $collection = $this->model->orderBy('id', 'desc')->get();
+        $collection = $this->model->with($with)->orderBy('id', 'desc')->get();
 
         if (!$this->isValidCollection($collection)) {
             $logData = [
@@ -36,7 +50,7 @@ trait CRUDTrait
      * @param array $with - relations to eager load
      * @return Illuminate\Database\Eloquent\Model
      */
-    public function readSingle($modelId, $with = [])
+    public function readSingle($modelId, array $with = [])
     {
         $model = $this->model->where('id', $modelId)->with($with)->first();
 
@@ -78,7 +92,7 @@ trait CRUDTrait
      * @param array $input
      * @return Illuminate\Database\Eloquent\Model
      */
-    public function update($modelId, $input = [])
+    public function update($modelId, array $input = [])
     {
         $model = $this->model->find($modelId);
 
