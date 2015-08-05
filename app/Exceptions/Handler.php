@@ -27,10 +27,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
-        if ($e->logExtra === true) {
-            // do extra logging
-        }
-
         return parent::report($e);
     }
 
