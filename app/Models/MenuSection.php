@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class MenuSection extends Model
 {
-    // Database table name
+    // @var string - DB Table name
     protected $table = 'menu_sections';
 
-    // Mass-assignable properties
-    protected $fillable = ['name', 'item_prices', 'sort_id'];
+    // @var array - mass-assignable properties
+    protected $fillable = ['name', 'itemPrices', 'sortId'];
 
     /**
      * Has many menu item models

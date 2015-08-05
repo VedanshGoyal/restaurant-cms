@@ -4,11 +4,11 @@ namespace Restaurant\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Info extends Model
+class SiteConfig extends Model
 {
     // @var string - DB Table name
-    protected $table = 'info';
+    protected $table = 'site_config';
 
     // @var array - mass-assignable properties
-    protected $fillable = ['name', 'street', 'city', 'state', 'phoneOne', 'phoneTwo'];
+    protected $fillable = ['allowReg'];
 }

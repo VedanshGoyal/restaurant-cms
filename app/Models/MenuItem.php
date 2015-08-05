@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class MenuItem extends Model
 {
-    // Database table name
+    // @var string - DB Table name
     protected $table = 'menu_items';
 
-    // Mass-assignable properties
+    // @var array - mass-assignable properties
     protected $fillable = ['name', 'priceOne', 'priceTwo', 'sortId', 'tags', 'description', 'section_id'];
 
     /**

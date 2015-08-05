@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
-    // Database table name
+    // @var string - DB Table name
     protected $table = 'photos';
 
-    // Mass-assignable properties
+    // @var array - mass-assignable properties
     protected $fillable = ['path', 'name'];
 }

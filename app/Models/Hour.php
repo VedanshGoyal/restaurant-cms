@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hour extends Model
 {
-    // Database table name
+    // @var string - DB Table name
     protected $table = 'hours';
 
-    // Mass-assignable properties
+    // @var array - mass-assignable properties
     protected $fillable = ['day', 'open', 'close'];
 }

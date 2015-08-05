@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class About extends Model
 {
-    // Database table name
+    // @var string - DB Table name
     protected $table = 'about';
 
-    // Mass-assignable properties
+    // @var array - mass-assignable properties
     protected $fillable = ['title', 'content'];
 }
