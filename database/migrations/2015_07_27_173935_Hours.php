@@ -18,6 +18,7 @@ class Hours extends Migration
             $table->string('day');
             $table->string('open');
             $table->string('close');
+            $table->boolean('isClosed')->default(0);
             $table->timestamps();
         });
     }
