@@ -6,21 +6,6 @@ use Restaurant\Http\Controllers\Controller;
 
 trait RESTTrait
 {
-    // @var Restaurant\Repositories\Repository
-    protected $repository;
-
-    // @var Restaurant\Http\Request
-    protected $request;
-
-    // @var Illuminate\Http\JsonResponse;
-    protected $reponse;
-
-    // @var array - relations to query when fetching model data
-    protected $with;
-
-    // @var array - white-listed input vcalues
-    protected $whiteList;
-
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +39,7 @@ trait RESTTrait
      */
     public function show($id)
     {
-        $model = $this->repository->readSingle($id);
+        $model = $this->repository->readSingle($id, $this->with);
 
         return $this->response->create($model);
     }

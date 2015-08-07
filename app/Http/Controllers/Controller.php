@@ -8,5 +8,17 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 
 abstract class Controller extends BaseController
 {
-    use DispatchesJobs, ValidatesRequests;
+    use DispatchesJobs;
+
+    // @var Restaurant\Http\Requests\Request
+    protected $request;
+
+    // @var Illuminate\Http\JsonResponse;
+    protected $reponse;
+
+    // @var array - relations to query when fetching model data
+    protected $with = [];
+
+    // @var array - white-listed input vcalues
+    protected $whiteList = [];
 }

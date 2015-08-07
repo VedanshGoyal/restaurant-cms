@@ -13,7 +13,7 @@ class RESTTraitTest extends \TestCase
     {
         $this->mockModel = $this->getMockModel();
         $this->mockCollection = $this->getMockCollection();
-        $this->mockRepo = m::mock('Tests\Unit\Repositories\TestRepository')->makePartial();
+        $this->mockRepo = m::mock('Tests\Unit\Repositories\TestRepository', [$this->mockModel])->makePartial();
         $this->mockRequest = m::mock('Illuminate\Http\Request')->makePartial();
         $this->mockResponse = m::mock('Illuminate\Http\JsonResponse')->makePartial();
 
@@ -50,7 +50,8 @@ class RESTTraitTest extends \TestCase
 
     public function testShowReturnsJSONModel()
     {
-        $this->mockRepo->shouldReceive('readSingle')->once()->with($this->modelId)->andReturn($this->mockModel);
+        $this->mockRepo->shouldReceive('readSingle')->once()
+            ->with($this->modelId, ['values'])->andReturn($this->mockModel);
         $this->mockResponse->shouldReceive('create')->once()->with($this->mockModel)->andReturn($this->mockResponse);
 
         $response = $this->controller->show($this->modelId);
