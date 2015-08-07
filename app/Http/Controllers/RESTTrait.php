@@ -2,13 +2,25 @@
 
 namespace Restaurant\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use Restaurant\Http\Requests;
 use Restaurant\Http\Controllers\Controller;
 
 trait RESTTrait
 {
+    // @var Restaurant\Repositories\Repository
+    protected $repository;
+
+    // @var Restaurant\Http\Request
+    protected $request;
+
+    // @var Illuminate\Http\JsonResponse;
+    protected $reponse;
+
+    // @var array - relations to query when fetching model data
+    protected $with;
+
+    // @var array - white-listed input vcalues
+    protected $whiteList;
+
     /**
      * Display a listing of the resource.
      *
@@ -16,18 +28,22 @@ trait RESTTrait
      */
     public function index()
     {
-        //
+        $collection = $this->repository->readAll($this->with);
+
+        return $this->response->create($collection);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $input = $this->request->only($this->whiteList);
+        $model = $this->repository->create($input);
+
+        return $this->response->create($model);
     }
 
     /**
@@ -38,19 +54,23 @@ trait RESTTrait
      */
     public function show($id)
     {
-        //
+        $model = $this->repository->readSingle($id);
+
+        return $this->response->create($model);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $input = $this->request->only($this->whiteList);
+        $model = $this->repository->update($id, $input);
+
+        return $this->response->create($model);
     }
 
     /**
@@ -61,6 +81,8 @@ trait RESTTrait
      */
     public function destroy($id)
     {
-        //
+        $isDeleted = $this->repository->delete($id);
+
+        return $this->response->create(['ok' => $isDeleted]);
     }
 }
