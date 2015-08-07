@@ -13,6 +13,39 @@ abstract class Request extends FormRequest
     // @var array - default rule set
     protected $rules = [];
 
+    // @var array - methods that don't require validation
+    protected $safeMethods = ['GET', 'DELETE'];
+
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Validate the class instance.
+     *
+     * @return void
+     */
+    public function validate()
+    {
+        $instance = $this->getValidatorInstance();
+
+        if (in_array($this->method(), $this->safeMethods)) {
+            return;
+        }
+
+        if (!$this->passesAuthorization()) {
+            $this->failedAuthorization();
+        } elseif (!$instance->passes()) {
+            $this->failedValidation($instance);
+        }
+    }
+
     /**
      * Return the array of rules to validate against
      *
@@ -20,6 +53,7 @@ abstract class Request extends FormRequest
      */
     public function rules()
     {
+
         $method = Str::lower($this->method());
 
         if ($this->isMethodAllowed($method) && $this->hasAltRules($method)) {

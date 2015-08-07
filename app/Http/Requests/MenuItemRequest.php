@@ -2,8 +2,6 @@
 
 namespace Restaurant\Http\Requests;
 
-use Restaurant\Http\Requests\Request;
-
 class MenuItemRequest extends Request
 {
     // @var rules
@@ -15,14 +13,4 @@ class MenuItemRequest extends Request
         'tags' => 'required|tags',
         'description' => 'basicText|between:3,500',
     ];
-
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
 }

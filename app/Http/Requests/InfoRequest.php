@@ -15,14 +15,4 @@ class InfoRequest extends Request
         'phoneOne' => 'required|betweewn:7,50|basicText',
         'phoneTwo' => 'betweewn:7,50|basicText',
     ];
-
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
 }

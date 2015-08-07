@@ -13,13 +13,4 @@ class HourRequest extends Request
         'close' => 'required|size:8|basicText',
         'isClosed' => 'required|boolean',
     ];
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
 }
