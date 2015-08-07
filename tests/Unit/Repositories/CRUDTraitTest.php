@@ -132,14 +132,4 @@ class CRUDRepositoryTest extends \TestCase
 
         $this->repo->delete($this->modelId);
     }
-
-    protected function getMockCollection()
-    {
-        return m::mock('Illuminate\Database\Eloquent\Collection')->makePartial();
-    }
-
-    protected function getMockModel()
-    {
-        return m::mock('Illuminate\Database\Eloquent\Model')->makePartial();
-    }
 }
