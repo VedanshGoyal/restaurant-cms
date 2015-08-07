@@ -2,29 +2,29 @@
 
 namespace Restaurant\Http\Controllers;
 
-use Restaurant\Http\Requests\InfoRequest;
-use Restaurant\Repositories\InfoRepo;
+use Restaurant\Repositories\SiteConfigRepo;
+use Restaurant\Http\Requests\SiteCongiRequest;
 use Illuminate\Http\JsonResponse;
 
-class InfoController extends Controller
+class SiteConfigController extends Controller
 {
     use RESTTrait;
 
-    // @var Restaurant\Repositories\InfoRepo
+    // @var Restaurant\Repositories\SiteConfigRepo
     protected $repository;
 
-    // @var Restaurant\Http\InfoRequest
+    // @var Restaurant\Http\SiteConfigRequest
     protected $request;
 
     // @var Illuminate\Http\JsonResponse;
     protected $reponse;
 
     // @var array - white-listed input values
-    protected $whiteList = ['title', 'content'];
+    protected $whiteList = ['allowReg'];
 
     public function __construct(
-        InfoRepo $repository,
-        InfoRequest $request,
+        SiteConfigRepo $repository,
+        SiteConfigRequest $request,
         JsonResponse $response
     ) {
         $this->repository = $repository;

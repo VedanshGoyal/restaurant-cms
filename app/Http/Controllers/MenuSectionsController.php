@@ -22,7 +22,7 @@ class MenuSectionsController extends Controller
     // @var array - relations to query when fetching model data
     protected $with = ['items'];
 
-    // @var array - white-listed input vcalues
+    // @var array - white-listed input values
     protected $whiteList = ['name', 'sortId', 'itemPrices'];
 
     public function __construct(

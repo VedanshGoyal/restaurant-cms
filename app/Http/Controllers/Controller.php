@@ -19,6 +19,6 @@ abstract class Controller extends BaseController
     // @var array - relations to query when fetching model data
     protected $with = [];
 
-    // @var array - white-listed input vcalues
+    // @var array - white-listed input values
     protected $whiteList = [];
 }

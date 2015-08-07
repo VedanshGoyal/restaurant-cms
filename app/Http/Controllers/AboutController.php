@@ -19,7 +19,7 @@ class AboutController extends Controller
     // @var Illuminate\Http\JsonResponse;
     protected $reponse;
 
-    // @var array - white-listed input vcalues
+    // @var array - white-listed input values
     protected $whiteList = ['title', 'content'];
 
     public function __construct(
