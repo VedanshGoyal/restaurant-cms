@@ -1,6 +1,8 @@
 <?php
+// @codingStandardsIgnoreFile
 
 use Illuminate\Database\Seeder;
+use Restaurant\Models\SiteConfig;
 
 class SiteConfigSeeds extends Seeder
 {
@@ -11,6 +13,8 @@ class SiteConfigSeeds extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('site_config')->delete();
+
+        SiteConfig::create(['allowReg' => 0]);
     }
 }
