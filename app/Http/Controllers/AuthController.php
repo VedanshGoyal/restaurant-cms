@@ -3,11 +3,15 @@
 namespace Restaurant\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Restaurant\Repositories\AuthRepo;
 
 class AuthController extends Controller
 {
-    public function __construct(JsonResponse $response)
-    {
+    public function __construct(
+        AuthRepo $repository,
+        JsonResponse $response
+    ) {
+        $this->repository = $repository;
         $this->response = $response;
     }
 

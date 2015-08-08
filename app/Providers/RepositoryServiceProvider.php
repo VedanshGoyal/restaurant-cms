@@ -9,6 +9,8 @@ use Restaurant\Models\About;
 use Restaurant\Models\Info;
 use Restaurant\Models\Hour;
 use Restaurant\Models\SiteConfig;
+use Restaurant\Models\User;
+use Bican\Roles\Models\Role;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -36,7 +38,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->registerInfoRepo();
         $this->registerPhotoRepo();
         $this->registerSiteConfigRepo();
-        
+        $this->registerAuthRepo();
     }
 
     private function registerMenuSectionRepo()
@@ -85,6 +87,16 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind('Restaurant\Repositories\SiteConfigRepo', function ($app) {
             return new \Restaurant\Repositories\SiteConfigRepo(new SiteConfig());
+        });
+    }
+
+    public function registerAuthRepo()
+    {
+        $this->app->bind('Restaurant\Repositories\AuthRepo', function ($app) {
+            $user = new User();
+            $role = new Role();
+
+            return new \Restaurant\Repositories\AuthRepo($user, $role);
         });
     }
 }
