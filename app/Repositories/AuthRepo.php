@@ -3,6 +3,8 @@
 namespace Restaurant\Repositories;
 
 use Restaurant\Models\User;
+use Bican\Roles\Models\Role;
+use Restaurant\Exceptions\RepositoryException;
 
 class AuthRepo
 {
@@ -20,7 +22,7 @@ class AuthRepo
     }
 
     /**
-     * Add role to user
+     * Add a role relation to user model
      *
      * @param integer $userId
      * @param string $roleName
@@ -28,41 +30,51 @@ class AuthRepo
      */
     public function addRole($userId, $roleName)
     {
-        $user = $this->readSingle($userId);
+        $user = $this->model->findOrFail($userId);
         $role = $this->role->where('slug', $roleName)->first();
 
-        if (!$role || !$role instanceof Role) {
-            $logData = [];
+        if (!$this->isValidRole($role) || !$user->attachRole($role)) {
+            $logData =[
+                'userId' => sprintf('%d', $userId),
+                'roleName' => sprintf('%s', $roleName),
+            ];
 
-            throw new RepositoryException('Failed to find role.', $logData);
-        }
-
-        if (!$user->attachRole($role)) {
-            $logData = [];
-
-            throw new RepositoryException('Failed to attach role from  user', $logData);
+            throw new RepositoryException('Failed to find or attach role', $logData);
         }
 
         return $user;
     }
 
+    /**
+     * Remove a role relation from user model
+     *
+     * @param integer $userId
+     * @param string $roleName
+     * @return User
+     */
     public function removeRole($userId, $roleName)
     {
-        $user = $this->readSingle($userId);
+        $user = $this->model->findOrFail($userId);
         $role = $this->role->where('slug', $roleName)->first();
 
-        if (!$role || !$role instanceof Role) {
-            $logData = [];
+        if (!$this->isValidRole($role) || !$user->detachRole($role)) {
+            $logData = [
+                'userId' => sprintf('%d', $userId),
+                'roleName' => sprintf('%s', $roleName),
+            ];
 
-            throw new RepositoryException('Failed to find role.', $logData);
-        }
-
-        if (!$user->detachRole($role)) {
-            $logData = [];
-
-            throw new RepositoryException('Failed to detach role from  user', $logData);
+            throw new RepositoryException('Failed to find or detach role', $logData);
         }
 
         return $user;
+    }
+
+    protected function isValidRole($role)
+    {
+        if ($role && $role instanceof Role) {
+            return true;
+        }
+
+        return false;
     }
 }
