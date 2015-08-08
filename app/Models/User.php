@@ -2,12 +2,13 @@
 
 namespace Restaurant\Models;
 
+use Bican\Roles\Traits\HasRoleAndPermission;
+use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 use Illuminate\Database\Eloquent\Model;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
 
-class User extends Model
+class User extends Model implements HasRoleAndPermissionContract
 {
-    use EntrustUserTrait;
+    use HasRoleAndPermission;
 
     /**
      * The database table used by the model.

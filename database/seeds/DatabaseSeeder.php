@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MenuItemSeeds::class);
         $this->call(PhotoSeeds::class);
         $this->call(SiteConfigSeeds::class);
+        $this->call(RoleSeeds::class);
 
         Model::reguard();
     }
