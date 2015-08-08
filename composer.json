@@ -9,9 +9,9 @@
         "laravel/framework": "5.1.*",
         "intervention/image": "^2.3",
         "tymon/jwt-auth": "0.5.*",
-        "zizaco/entrust": "dev-laravel-5",
         "graham-campbell/throttle": "~4.1",
-        "guzzlehttp/guzzle": "^6.0"
+        "guzzlehttp/guzzle": "^6.0",
+        "bican/roles": "2.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

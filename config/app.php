@@ -151,8 +151,8 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        Zizaco\Entrust\EntrustServiceProvider::class,
         GrahamCampbell\Throttle\ThrottleServiceProvider::class,
+        Bican\Roles\RolesServiceProvider::class,
 
     ],
 
@@ -204,7 +204,6 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
         'JWTAauth'  => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Throttle'  => GrahamCampbell\Throttle\Facades\Throttle::class,
     ],
 
