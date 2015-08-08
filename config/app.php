@@ -144,6 +144,7 @@ return [
         Restaurant\Providers\EventServiceProvider::class,
         Restaurant\Providers\RouteServiceProvider::class,
         Restaurant\Providers\RepositoryServiceProvider::class,
+        Restaurant\Providers\ValidationServiceProvider::class,
 
         /**
          * Vendor providers
