@@ -2,6 +2,16 @@
 
 Route::get('/', 'HomeController@index');
 
+// Auth Routes
+
+Route::post('/login', 'AuthController@login');
+Route::post('/register', 'AuthController@register');
+Route::post('/reset-password', 'AuthController@resetPassword');
+Route::get('/verify-new/?token', 'AuthController@verifyNew');
+Route::get('/verify-reset/?token', 'AuthController@verifyReset');
+
+// API Routes
+
 Route::resource(
     'menu-section',
     'MenuSectionsController',
