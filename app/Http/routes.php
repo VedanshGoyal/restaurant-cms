@@ -37,3 +37,9 @@ Route::resource(
     'PhotosController',
     ['only' => ['index', 'show', 'store', 'destroy']]
 );
+
+Route::resource(
+    'site-config',
+    'SiteConfigController',
+    ['only' => ['show', 'update']]
+);

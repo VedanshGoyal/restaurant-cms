@@ -3,7 +3,7 @@
 namespace Restaurant\Http\Controllers;
 
 use Restaurant\Repositories\SiteConfigRepo;
-use Restaurant\Http\Requests\SiteCongiRequest;
+use Restaurant\Http\Requests\SiteConfigRequest;
 use Illuminate\Http\JsonResponse;
 
 class SiteConfigController extends Controller
