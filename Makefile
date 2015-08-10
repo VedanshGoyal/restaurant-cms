@@ -1,11 +1,10 @@
+refresh: refreshAutoloader refreshDB
 
 refreshDB:
-	php artisan migrate:reset
-	php artisan migrate --seed
+	php artisan migrate:reset && php artisan migrate --seed
 
 refreshAutoloader:
-	composer dumpautoload
-	php artisan optimize
+	composer dumpautoload && php artisan optimize
 
 test:
 	phpunit
