@@ -2,13 +2,15 @@
 
 namespace Restaurant\Models;
 
-use Bican\Roles\Traits\HasRoleAndPermission;
 use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Bican\Roles\Traits\HasRoleAndPermission;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable;
 
-class User extends Model implements HasRoleAndPermissionContract
+class User extends Model implements HasRoleAndPermissionContract, AuthenticatableContract
 {
-    use HasRoleAndPermission;
+    use Authenticatable, HasRoleAndPermission;
 
     /**
      * The database table used by the model.
@@ -22,12 +24,12 @@ class User extends Model implements HasRoleAndPermissionContract
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['email', 'password'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password'];
 }
