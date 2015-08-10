@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PhotoSeeds::class);
         $this->call(SiteConfigSeeds::class);
         $this->call(RoleSeeds::class);
+        $this->call(UserSeeds::class);
 
         Model::reguard();
     }
