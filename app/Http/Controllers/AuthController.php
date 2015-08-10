@@ -2,17 +2,24 @@
 
 namespace Restaurant\Http\Controllers;
 
+use Tymon\JWTAuth\JWTAuth;
 use Illuminate\Http\JsonResponse;
 use Restaurant\Repositories\AuthRepo;
+use Restaurant\Http\Requests\LoginRequest;
+use Restaurant\Http\Requests\RegisterRequest;
+use Restaurant\Http\Requests\ForgotPasswordRequest;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
 {
     public function __construct(
         AuthRepo $repository,
-        JsonResponse $response
+        JsonResponse $response,
+        JWTAuth $auth
     ) {
         $this->repository = $repository;
         $this->response = $response;
+        $this->auth = $auth;
     }
 
     /**
@@ -20,9 +27,25 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
-    public function login()
+    public function login(LoginRequest $request)
     {
+        $whiteList = ['email', 'password'];
+        $input = $request->only($whiteList);
+        $response;
 
+        try {
+            $token = $this->auth->attempt($input);
+
+            if (!$token || empty($token)) {
+                return $this->response->create([
+                    'error' => 'The username or password provided was not correct.',
+                ]);
+            }
+            
+            return $this->response->create(['token' => $token]);
+        } catch (JWTException $e) {
+            return $this->response->create(['error' => 'Failed to generate token.']);
+        }
     }
 
     /**
@@ -30,9 +53,8 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
-    public function register()
+    public function register(RegisterRequest $request)
     {
-
     }
 
     /**
@@ -41,9 +63,8 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
-    public function resetPassword()
+    public function resetPassword(ForgotPasswordRequest $request)
     {
-
     }
 
     /**
@@ -54,7 +75,6 @@ class AuthController extends Controller
      */
     public function verifyNew($token)
     {
-
     }
 
     /**
@@ -65,6 +85,5 @@ class AuthController extends Controller
      */
     public function verifyReset($token)
     {
-
     }
 }
