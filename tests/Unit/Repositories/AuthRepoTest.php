@@ -119,4 +119,28 @@ class AuthRepoTest extends \TestCase
 
         $user = $this->repo->removeRole($userId, $roleName);
     }
+
+    public function testFindByCreateTokenFindsAndReturnsUserModel()
+    {
+        $token = 'test-token';
+
+        $this->repoModel->shouldReceive('where')->once()->with('createToken', $token)->andReturn($this->mockCollection);
+        $this->mockCollection->shouldReceive('first')->once()->andReturn($this->mockUser);
+
+        $user = $this->repo->findByCreateToken($token);
+        $this->assertInstanceOf('Restaurant\Models\User', $user);
+    }
+
+    /**
+     * @expectedException Restaurant\Exceptions\RepositoryException
+     */
+    public function testFindByCreateTokenThrowsExceptionWhenNoValidModelFound()
+    {
+        $token = 'test-token';
+
+        $this->repoModel->shouldReceive('where')->once()->with('createToken', $token)->andReturn($this->mockCollection);
+        $this->mockCollection->shouldReceive('first')->once()->andReturn(null);
+
+        $user = $this->repo->findByCreateToken($token);
+    }
 }

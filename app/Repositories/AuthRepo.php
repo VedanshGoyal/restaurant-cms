@@ -69,6 +69,27 @@ class AuthRepo
         return $user;
     }
 
+    /**
+     * Find a user model given the create user verification token
+     *
+     * @param string $token
+     * @return User
+     */
+    public function findByCreateToken($token)
+    {
+        $user = $this->model->where('createToken', $token)->first();
+
+        if (!$this->isValidModel($user)) {
+            $logData = [
+                'token' => sprintf('%s', $token),
+            ];
+
+            throw new RepositoryException('Failed to find user by create token.', $logData);
+        }
+
+        return $user;
+    }
+
     protected function isValidRole($role)
     {
         if ($role && $role instanceof Role) {
