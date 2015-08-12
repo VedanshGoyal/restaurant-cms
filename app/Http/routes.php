@@ -7,8 +7,20 @@ Route::get('/', 'HomeController@index');
 Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
 Route::post('/reset-password', 'AuthController@resetPassword');
-Route::get('/verify-new/?token', 'AuthController@verifyNew');
-Route::get('/verify-reset/?token', 'AuthController@verifyReset');
+Route::get(
+    '/verify-new/{token}',
+    [
+        'uses' => 'AuthController@verifyNew',
+        'as' => 'verify-new',
+    ]
+);
+Route::get(
+    '/verify-reset/{token}',
+    [
+        'uses' => 'AuthController@verifyReset',
+        'as' => 'verify-reset',
+    ]
+);
 
 // API Routes
 
