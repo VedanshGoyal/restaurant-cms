@@ -2,24 +2,29 @@
 
 namespace Restaurant\Http\Controllers;
 
-use Tymon\JWTAuth\JWTAuth;
-use Illuminate\Http\JsonResponse;
-use Restaurant\Repositories\AuthRepo;
-use Restaurant\Http\Requests\LoginRequest;
-use Restaurant\Http\Requests\RegisterRequest;
 use Restaurant\Http\Requests\ForgotPasswordRequest;
+use Restaurant\Http\Requests\RegisterRequest;
+use Restaurant\Http\Requests\LoginRequest;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Restaurant\Events\UserCreateEvent;
+use Restaurant\Events\UserResetEvent;
+use Restaurant\Repositories\AuthRepo;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Events\Dispatcher;
+use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
 {
     public function __construct(
         AuthRepo $repository,
         JsonResponse $response,
-        JWTAuth $auth
+        JWTAuth $auth,
+        Dispatcher $events
     ) {
         $this->repository = $repository;
         $this->response = $response;
         $this->auth = $auth;
+        $this->events = $events;
     }
 
     /**
@@ -31,21 +36,15 @@ class AuthController extends Controller
     {
         $whiteList = ['email', 'password'];
         $input = $request->only($whiteList);
-        $response;
+        $token = $this->auth->attempt($input);
 
-        try {
-            $token = $this->auth->attempt($input);
-
-            if (!$token || empty($token)) {
-                return $this->response->create([
-                    'error' => 'The username or password provided was not correct.',
-                ]);
-            }
-            
-            return $this->response->create(['token' => $token]);
-        } catch (JWTException $e) {
-            return $this->response->create(['error' => 'Failed to generate token.']);
+        if (!$token || empty($token)) {
+            return $this->response->create([
+                'error' => 'The username or password provided was not correct.',
+            ]);
         }
+        
+        return $this->response->create(['token' => $token]);
     }
 
     /**
@@ -55,6 +54,14 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
+        $whiteList = ['email', 'password'];
+        $input = $request->only($whiteList);
+        $user = $this->repository->create($input);
+
+        $user->generateToken('create');
+        $this->events->fire(new UserCreateEvent($user));
+
+        return $this->response->create(['ok' => true]);
     }
 
     /**
@@ -75,6 +82,11 @@ class AuthController extends Controller
      */
     public function verifyNew($token)
     {
+        $user = $this->repository->findByCreateToken($token);
+
+        $user->setActive();
+
+        return $this->response->create(['ok' => true]);
     }
 
     /**
