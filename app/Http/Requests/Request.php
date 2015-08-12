@@ -3,6 +3,7 @@
 namespace Restaurant\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 
 abstract class Request extends FormRequest
@@ -27,26 +28,6 @@ abstract class Request extends FormRequest
     }
 
     /**
-     * Validate the class instance.
-     *
-     * @return void
-     */
-    public function validate()
-    {
-        $instance = $this->getValidatorInstance();
-
-        if (in_array($this->method(), $this->safeMethods)) {
-            return;
-        }
-
-        if (!$this->passesAuthorization()) {
-            $this->failedAuthorization();
-        } elseif (!$instance->passes()) {
-            $this->failedValidation($instance);
-        }
-    }
-
-    /**
      * Return the array of rules to validate against
      *
      * @return array
@@ -61,6 +42,17 @@ abstract class Request extends FormRequest
         }
 
         return $this->rules;
+    }
+
+    /**
+     * Get the proper failed validation response for the request.
+     *
+     * @param  array  $errors
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function response(array $errors)
+    {
+        return new JsonResponse($errors, 422);
     }
 
     /**
