@@ -13,8 +13,14 @@ class AuthControllerTest extends \TestCase
         $this->mockRepo = m::mock('Restaurant\Repositories\AuthRepo')->makePartial();
         $this->mockResponse = m::mock('Illuminate\Http\JsonResponse')->makePartial();
         $this->mockAuth = m::mock('Tymon\JWTAuth\JWTAuth')->makePartial();
+        $this->mockEvents = m::mock('Illuminate\Events\Dispatcher')->makePartial();
 
-        $this->controller = new AuthController($this->mockRepo, $this->mockResponse, $this->mockAuth);
+        $this->controller = new AuthController(
+            $this->mockRepo,
+            $this->mockResponse,
+            $this->mockAuth,
+            $this->mockEvents
+        );
     }
 
     public function tearDown()
@@ -27,6 +33,7 @@ class AuthControllerTest extends \TestCase
         $mockInput = ['test' => 'input'];
         $mockToken = 'mockToken';
         $mockRequest = $this->getMockRequest('LoginRequest');
+
         $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
         $this->mockAuth->shouldReceive('attempt')->once()->with($mockInput)->andReturn($mockToken);
         $this->mockResponse->shouldReceive('create')->once()
@@ -36,32 +43,20 @@ class AuthControllerTest extends \TestCase
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
     }
 
-    public function testLoginReturnsErrorWithInvalidInput()
+    public function testRegisterReturnsSuccessMessage()
     {
         $mockInput = ['test' => 'input'];
-        $mockToken = 'mockToken';
-        $mockRequest = $this->getMockRequest('LoginRequest');
+        $mockUser = m::mock('Restaurant\Models\User')->makePartial();
+        $mockRequest = $this->getMockRequest('RegisterRequest');
+        $mockCreateEvent = m::mock('Restaurant\Events\UserCreateEvent', [$mockUser])->makePartial();
+
         $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
-        $this->mockAuth->shouldReceive('attempt')->once()->with($mockInput)->andReturn(false);
-        $this->mockResponse->shouldReceive('create')->once()
-            ->with(['error' => 'The username or password provided was not correct.'])->andReturn($this->mockResponse);
+        $this->mockRepo->shouldReceive('create')->once()->with($mockInput)->andReturn($mockUser);
+        $mockUser->shouldReceive('generateToken')->once()->with('create')->andReturn(true);
+        //$this->mockEvents->shouldReceive('fire')->once()->with($mockCreateEvent)->andReturn(true);
+        $this->mockResponse->shouldReceive('create')->once()->with(['ok' => true])->andReturn($this->mockResponse);
 
-        $response = $this->controller->login($mockRequest);
-        $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
-    }
-
-    public function testLoginReturnsErrorWhenJWTAuthFails()
-    {
-        $mockInput = ['test' => 'input'];
-        $mockToken = 'mockToken';
-        $mockRequest = $this->getMockRequest('LoginRequest');
-        $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
-        $this->mockAuth->shouldReceive('attempt')->once()
-            ->with($mockInput)->andThrow('Tymon\JWTAuth\Exceptions\JWTException');
-        $this->mockResponse->shouldReceive('create')->once()
-            ->with(['error' => 'Failed to generate token.'])->andReturn($this->mockResponse);
-
-        $response = $this->controller->login($mockRequest);
+        $response = $this->controller->register($mockRequest);
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
     }
 
