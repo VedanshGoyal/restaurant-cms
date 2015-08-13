@@ -43,8 +43,8 @@ class User extends Model implements HasRoleAndPermissionContract, Authenticatabl
     public function generateToken($field)
     {
         $fieldName = $field . 'Token';
-
         $this->attributes[$fieldName] = Str::random(64);
+
         return $this->save();
     }
 
@@ -58,7 +58,7 @@ class User extends Model implements HasRoleAndPermissionContract, Authenticatabl
         $this->attributes['createToken'] = null;
         $this->attributes['verified'] = 1;
 
-        $this->save();
+        return $this->save();
     }
 
     /**
