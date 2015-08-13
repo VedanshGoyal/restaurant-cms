@@ -3,20 +3,19 @@
 namespace Tests\Unit\Repositories;
 
 use Mockery as m;
-use Restaurant\Repositories\AuthRepo;
+use Restaurant\Repositories\UsersRepo;
 
-class AuthRepoTest extends \TestCase
+class UsersRepoTest extends \TestCase
 {
     public function setUp()
     {
         $this->repoModel = m::mock('Restaurant\Models\User')->makePartial();
-        $this->repoRole = m::mock('Bican\Roles\Models\Role')->makePartial();
 
         $this->mockUser = m::mock('Restaurant\Models\User')->makePartial();
         $this->mockRole = m::mock('Bican\Roles\Models\Role')->makePartial();
         $this->mockCollection = $this->getMockCollection();
 
-        $this->repo = new AuthRepo($this->repoModel, $this->repoRole);
+        $this->repo = new UsersRepo($this->repoModel);
     }
 
     public function tearDown()
@@ -30,77 +29,34 @@ class AuthRepoTest extends \TestCase
         $roleName = 'role';
 
         $this->repoModel->shouldReceive('findOrFail')->once()->with($userId)->andReturn($this->mockUser);
-        $this->repoRole->shouldReceive('where')->once()
-            ->with('slug', $roleName)->andReturn($this->mockCollection);
-        $this->mockCollection->shouldReceive('first')->once()->andReturn($this->mockRole);
         $this->mockUser->shouldReceive('attachRole')->once()->with($this->mockRole)->andReturn(true);
 
-        $user = $this->repo->addRole($userId, $roleName);
+        $user = $this->repo->addRole($userId, $this->mockRole);
         $this->assertInstanceOf('Restaurant\Models\User', $user);
     }
     
-    /**
-     * @expectedException Restaurant\Exceptions\RepositoryException
-     */
-    public function testAttachRoleThrowsExceptionIfNoValidRole()
-    {
-        $userId = 1;
-        $roleName = 'role';
-
-        $this->repoModel->shouldReceive('findOrFail')->once()->with($userId)->andReturn($this->mockUser);
-        $this->repoRole->shouldReceive('where')->once()
-            ->with('slug', $roleName)->andReturn($this->mockCollection);
-        $this->mockCollection->shouldReceive('first')->once()->andReturn(false);
-
-        $user = $this->repo->addRole($userId, $roleName);
-    }
-
     /**
      * @expectedException Restaurant\Exceptions\RepositoryException
      */
     public function testAttachRoleThrowsExceptionIfAttachFails()
     {
         $userId = 1;
-        $roleName = 'role';
 
         $this->repoModel->shouldReceive('findOrFail')->once()->with($userId)->andReturn($this->mockUser);
-        $this->repoRole->shouldReceive('where')->once()
-            ->with('slug', $roleName)->andReturn($this->mockCollection);
-        $this->mockCollection->shouldReceive('first')->once()->andReturn($this->mockRole);
         $this->mockUser->shouldReceive('attachRole')->once()->with($this->mockRole)->andReturn(false);
 
-        $user = $this->repo->addRole($userId, $roleName);
+        $user = $this->repo->addRole($userId, $this->mockRole);
     }
 
     public function testDetachRoleAddsRoleToAndReturnsUserModel()
     {
         $userId = 1;
-        $roleName = 'role';
 
         $this->repoModel->shouldReceive('findOrFail')->once()->with($userId)->andReturn($this->mockUser);
-        $this->repoRole->shouldReceive('where')->once()
-            ->with('slug', $roleName)->andReturn($this->mockCollection);
-        $this->mockCollection->shouldReceive('first')->once()->andReturn($this->mockRole);
         $this->mockUser->shouldReceive('detachRole')->once()->with($this->mockRole)->andReturn(true);
 
-        $user = $this->repo->removeRole($userId, $roleName);
+        $user = $this->repo->removeRole($userId, $this->mockRole);
         $this->assertInstanceOf('Restaurant\Models\User', $user);
-    }
-    
-    /**
-     * @expectedException Restaurant\Exceptions\RepositoryException
-     */
-    public function testDetachRoleThrowsExceptionIfNoValidRole()
-    {
-        $userId = 1;
-        $roleName = 'role';
-
-        $this->repoModel->shouldReceive('findOrFail')->once()->with($userId)->andReturn($this->mockUser);
-        $this->repoRole->shouldReceive('where')->once()
-            ->with('slug', $roleName)->andReturn($this->mockCollection);
-        $this->mockCollection->shouldReceive('first')->once()->andReturn(null);
-
-        $user = $this->repo->removeRole($userId, $roleName);
     }
 
     /**
@@ -109,15 +65,11 @@ class AuthRepoTest extends \TestCase
     public function testDetachRoleThrowsExceptionIfDetachFails()
     {
         $userId = 1;
-        $roleName = 'role';
 
         $this->repoModel->shouldReceive('findOrFail')->once()->with($userId)->andReturn($this->mockUser);
-        $this->repoRole->shouldReceive('where')->once()
-            ->with('slug', $roleName)->andReturn($this->mockCollection);
-        $this->mockCollection->shouldReceive('first')->once()->andReturn($this->mockRole);
         $this->mockUser->shouldReceive('detachRole')->once()->with($this->mockRole)->andReturn(false);
 
-        $user = $this->repo->removeRole($userId, $roleName);
+        $user = $this->repo->removeRole($userId, $this->mockRole);
     }
 
     public function testFindByTokenFindsAndReturnsUserModel()

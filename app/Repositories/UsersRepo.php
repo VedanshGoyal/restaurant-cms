@@ -6,7 +6,7 @@ use Restaurant\Models\User;
 use Bican\Roles\Models\Role;
 use Restaurant\Exceptions\RepositoryException;
 
-class AuthRepo
+class UsersRepo
 {
     use CRUDTrait;
 
@@ -15,31 +15,29 @@ class AuthRepo
      *
      * @param User $model
      */
-    public function __construct(User $model, Role $role)
+    public function __construct(User $model)
     {
         $this->model = $model;
-        $this->role = $role;
     }
 
     /**
      * Add a role relation to user model
      *
      * @param integer $userId
-     * @param string $roleName
+     * @param Role $role
      * @return User
      */
-    public function addRole($userId, $roleName)
+    public function addRole($userId, Role $role)
     {
         $user = $this->model->findOrFail($userId);
-        $role = $this->role->where('slug', $roleName)->first();
 
-        if (!$this->isValidRole($role) || !$user->attachRole($role)) {
+        if (!$user->attachRole($role)) {
             $logData =[
-                'userId' => sprintf('%d', $userId),
-                'roleName' => sprintf('%s', $roleName),
+                'user-id' => sprintf('%d', $userId),
+                'role-name' => sprintf('%s', $role->name),
             ];
 
-            throw new RepositoryException('Failed to find or attach role', $logData);
+            throw new RepositoryException('Failed to attach role to user.', $logData);
         }
 
         return $user;
@@ -49,21 +47,20 @@ class AuthRepo
      * Remove a role relation from user model
      *
      * @param integer $userId
-     * @param string $roleName
+     * @param Role $role
      * @return User
      */
-    public function removeRole($userId, $roleName)
+    public function removeRole($userId, $role)
     {
         $user = $this->model->findOrFail($userId);
-        $role = $this->role->where('slug', $roleName)->first();
 
-        if (!$this->isValidRole($role) || !$user->detachRole($role)) {
+        if (!$user->detachRole($role)) {
             $logData = [
-                'userId' => sprintf('%d', $userId),
-                'roleName' => sprintf('%s', $roleName),
+                'user-id' => sprintf('%d', $userId),
+                'role-name' => sprintf('%s', $role->name),
             ];
 
-            throw new RepositoryException('Failed to find or detach role', $logData);
+            throw new RepositoryException('Failed to remove role from user.', $logData);
         }
 
         return $user;
@@ -82,10 +79,12 @@ class AuthRepo
         $user = $this->model->where($tokenType, $token)->first();
 
         if (!$this->isValidModel($user)) {
-            $logData = ['token' => sprintf('%s', $token)];
-            $message = sprintf("Failed to find user by token type: %s.", $type);
+            $logData = [
+                'token' => sprintf('%s', $token),
+                'type' => sprintf('%s', $type),
+            ];
 
-            throw new RepositoryException($message, $logData);
+            throw new RepositoryException('Failed to find user by token.', $logData);
         }
 
         return $user;
@@ -108,20 +107,5 @@ class AuthRepo
         }
 
         return $user;
-    }
-
-    /**
-     * Check if the role model is valid
-     *
-     * @param Role $role
-     * @return bool
-     */
-    protected function isValidRole($role)
-    {
-        if ($role && $role instanceof Role) {
-            return true;
-        }
-
-        return false;
     }
 }

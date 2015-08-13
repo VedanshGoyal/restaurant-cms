@@ -4,13 +4,13 @@ namespace Restaurant\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Restaurant\Models\MenuSection;
+use Restaurant\Models\SiteConfig;
 use Restaurant\Models\MenuItem;
+use Bican\Roles\Models\Role;
 use Restaurant\Models\About;
 use Restaurant\Models\Info;
 use Restaurant\Models\Hour;
-use Restaurant\Models\SiteConfig;
 use Restaurant\Models\User;
-use Bican\Roles\Models\Role;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -22,14 +22,14 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerMenuSectionRepo();
-        $this->registerMenuItemRepo();
-        $this->registerHourRepo();
-        $this->registerAboutRepo();
-        $this->registerInfoRepo();
-        $this->registerPhotoRepo();
         $this->registerSiteConfigRepo();
-        $this->registerAuthRepo();
+        $this->registerMenuItemRepo();
+        $this->registerPhotoRepo();
+        $this->registerUsersRepo();
         $this->registerRolesRepo();
+        $this->registerAboutRepo();
+        $this->registerHourRepo();
+        $this->registerInfoRepo();
     }
 
     private function registerMenuSectionRepo()
@@ -81,22 +81,17 @@ class RepositoryServiceProvider extends ServiceProvider
         });
     }
 
-    public function registerAuthRepo()
+    public function registerUsersRepo()
     {
-        $this->app->bind('Restaurant\Repositories\AuthRepo', function ($app) {
-            $user = new User();
-            $role = new Role();
-
-            return new \Restaurant\Repositories\AuthRepo($user, $role);
+        $this->app->bind('Restaurant\Repositories\UsersRepo', function ($app) {
+            return new \Restaurant\Repositories\UsersRepo(new User());
         });
     }
 
     public function registerRolesRepo()
     {
         $this->app->bind('Restaurant\Repositories\RolesRepo', function ($app) {
-            $role = new Role();
-
-            return new \Restaurant\Repositories\RolesRepo($role);
+            return new \Restaurant\Repositories\RolesRepo(new Role());
         });
     }
 }
