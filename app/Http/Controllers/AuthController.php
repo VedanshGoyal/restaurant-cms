@@ -5,7 +5,6 @@ namespace Restaurant\Http\Controllers;
 use Restaurant\Http\Requests\ForgotPasswordRequest;
 use Restaurant\Http\Requests\RegisterRequest;
 use Restaurant\Http\Requests\LoginRequest;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use Restaurant\Events\UserCreateEvent;
 use Restaurant\Events\PasswordResetEvent;
 use Restaurant\Repositories\UsersRepo;
