@@ -7,7 +7,7 @@ use Restaurant\Http\Requests\RegisterRequest;
 use Restaurant\Http\Requests\LoginRequest;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Restaurant\Events\UserCreateEvent;
-use Restaurant\Events\UserResetEvent;
+use Restaurant\Events\PasswordResetEvent;
 use Restaurant\Repositories\AuthRepo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Events\Dispatcher;
@@ -72,6 +72,13 @@ class AuthController extends Controller
      */
     public function resetPassword(ForgotPasswordRequest $request)
     {
+        $email = $request->get('email');
+        $user = $this->repository->findByEmail($email);
+
+        $user->generateToken('reset');
+        $this->events->fire(new PasswordResetEvent($user));
+
+        return $this->response->create(['ok' => true]);
     }
 
     /**
@@ -82,7 +89,7 @@ class AuthController extends Controller
      */
     public function verifyNew($token)
     {
-        $user = $this->repository->findByCreateToken($token);
+        $user = $this->repository->findByToken($token, 'create');
 
         $user->setActive();
 
@@ -97,5 +104,8 @@ class AuthController extends Controller
      */
     public function verifyReset($token)
     {
+        $user = $this->repository->findByToken($token, 'reset');
+
+        return $this->response->create(['ok' => true]);
     }
 }
