@@ -9,6 +9,11 @@ use Log;
 
 class UserEventListener
 {
+    /**
+     * Intialize a new instance
+     *
+     * @param Illuminate\Mail\Mailer $mailer
+     */
     public function __construct(Mailer $mailer)
     {
         $this->mailer = $mailer;
@@ -28,8 +33,8 @@ class UserEventListener
         );
 
         $events->listen(
-            'Restaurant\Events\UserResteEvent',
-            'Restaurant\Listeners\UserEventListener@onUserReset'
+            'Restaurant\Events\PasswordResetEvent',
+            'Restaurant\Listeners\UserEventListener@onPasswordReset'
         );
     }
 
@@ -38,15 +43,22 @@ class UserEventListener
         $user = $event->user;
         $url = url(route('verify-new', ['token' => $user->createToken]));
 
-        $this->mailer->send('emails.verify-create', ['verifyUrl' => $url], function ($mailer) use ($user) {
-            $mailer->to('me@nickc.io', 'Test User')
+        $this->mailer->send('emails.verify-new', ['verifyUrl' => $url], function ($mailer) use ($user) {
+            $mailer->subject('Verify New Account')
                 ->from('me@nickc.io', 'Nick C')
-                ->subject('Verify Account');
+                ->to('me@nickc.io', 'Nick C');
         });
     }
 
-    public function onUserReset(UserResetEvent $event)
+    public function onPasswordReset(UserResetEvent $event)
     {
-        Log::info('user reset event');
+        $user = $event->user;
+        $url = url(route('verify-reset', ['token' => $user->resetToken]));
+
+        $this->mailer->send('emails.verify-reset', ['verifyUrl' => $url], function ($mailer) use ($userS) {
+            $mailer->subject('Password Reset')
+                ->from('me@nickc.io', 'Nick C')
+                ->to('me@nickc.io', 'Nick C');
+        });
     }
 }
