@@ -120,27 +120,54 @@ class AuthRepoTest extends \TestCase
         $user = $this->repo->removeRole($userId, $roleName);
     }
 
-    public function testFindByCreateTokenFindsAndReturnsUserModel()
+    public function testFindByTokenFindsAndReturnsUserModel()
     {
+        $type = 'create';
         $token = 'test-token';
 
         $this->repoModel->shouldReceive('where')->once()->with('createToken', $token)->andReturn($this->mockCollection);
         $this->mockCollection->shouldReceive('first')->once()->andReturn($this->mockUser);
 
-        $user = $this->repo->findByCreateToken($token);
+        $user = $this->repo->findByToken($token, $type);
         $this->assertInstanceOf('Restaurant\Models\User', $user);
     }
 
     /**
      * @expectedException Restaurant\Exceptions\RepositoryException
      */
-    public function testFindByCreateTokenThrowsExceptionWhenNoValidModelFound()
+    public function testFindByTokenThrowsExceptionWhenNoValidModelFound()
     {
+        $type = 'reset';
         $token = 'test-token';
 
-        $this->repoModel->shouldReceive('where')->once()->with('createToken', $token)->andReturn($this->mockCollection);
+        $this->repoModel->shouldReceive('where')->once()->with('resetToken', $token)->andReturn($this->mockCollection);
         $this->mockCollection->shouldReceive('first')->once()->andReturn(null);
 
-        $user = $this->repo->findByCreateToken($token);
+        $user = $this->repo->findByToken($token, $type);
+    }
+
+    public function testFindByEmailFindsAndReturnsUserModel()
+    {
+        $mockEmail = 'user@example.com';
+
+        $this->repoModel->shouldReceive('where')->once()->with('email', $mockEmail)->andReturn($this->mockCollection);
+        $this->mockCollection->shouldReceive('first')->once()->andReturn($this->mockUser);
+
+        $user = $this->repo->findByEmail($mockEmail);
+        $this->assertInstanceOf('Restaurant\Models\User', $user);
+
+    }
+
+    /**
+     * @expectedException Restaurant\Exceptions\RepositoryException
+     */
+    public function testFindAndReturnsThrowsExceptionWhenInvalidModel()
+    {
+        $mockEmail = 'user@example.com';
+
+        $this->repoModel->shouldReceive('where')->once()->with('email', $mockEmail)->andReturn($this->mockCollection);
+        $this->mockCollection->shouldReceive('first')->once()->andReturn(null);
+
+        $user = $this->repo->findByEmail($mockEmail);
     }
 }

@@ -70,26 +70,52 @@ class AuthRepo
     }
 
     /**
-     * Find a user model given the create user verification token
+     * Find user model by the token type specified
      *
      * @param string $token
+     * @param string $type - create|reset
      * @return User
      */
-    public function findByCreateToken($token)
+    public function findByToken($token, $type)
     {
-        $user = $this->model->where('createToken', $token)->first();
+        $tokenType = "{$type}Token";
+        $user = $this->model->where($tokenType, $token)->first();
 
         if (!$this->isValidModel($user)) {
-            $logData = [
-                'token' => sprintf('%s', $token),
-            ];
+            $logData = ['token' => sprintf('%s', $token)];
+            $message = sprintf("Failed to find user by token type: %s.", $type);
 
-            throw new RepositoryException('Failed to find user by create token.', $logData);
+            throw new RepositoryException($message, $logData);
         }
 
         return $user;
     }
 
+    /**
+     * Find a user model by email address
+     *
+     * @param string $email
+     * @return User $user
+     */
+    public function findByEmail($email)
+    {
+        $user = $this->model->where('email', $email)->first();
+
+        if (!$this->isValidModel($user)) {
+            $logData = ['email' => sprintf('%s', $email)];
+
+            throw new RepositoryException('Failed to find user by email.', $logData);
+        }
+
+        return $user;
+    }
+
+    /**
+     * Check if the role model is valid
+     *
+     * @param Role $role
+     * @return bool
+     */
     protected function isValidRole($role)
     {
         if ($role && $role instanceof Role) {
