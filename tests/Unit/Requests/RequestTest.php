@@ -15,51 +15,16 @@ class RequestTest extends \TestCase
     {
         m::close();
     }
-
-    public function testRulesReturnsMergedRulesWithAllowedMethod()
+    
+    public function testShouldValidateChecksForValueInValidateMethodsArray()
     {
-        $reflection = new \ReflectionClass($this->request);
-        $property = $reflection->getProperty('method');
-        $property->setAccessible(true);
-        $property->setValue($this->request, 'GET');
+        $method = $this->getProtectedMethod('shouldValidate');
 
-        $expected = ['test' => 'rules', 'get' => 'rules'];
-        $rules = $this->request->rules();
-
-        $this->assertEquals($expected, $rules);
-    }
-
-    public function testRulesReturnsDefaultRulesWithNotAllowedMethod()
-    {
-        $reflection = new \ReflectionClass($this->request);
-        $property = $reflection->getProperty('method');
-        $property->setAccessible(true);
-        $property->setValue($this->request, 'PATCH');
-
-        $expected = ['test' => 'rules'];
-        $rules = $this->request->rules();
-
-        $this->assertEquals($expected, $rules);
-    }
-
-    public function testIsMethodAllowedReturnsTrueInArray()
-    {
-        $method = $this->getProtectedMethod('isMethodAllowed');
-
-        $this->assertTrue($method->invokeArgs($this->request, ['get']));
+        $this->assertFalse($method->invokeArgs($this->request, ['get']));
         $this->assertTrue($method->invokeArgs($this->request, ['post']));
+        $this->assertFalse($method->invokeArgs($this->request, ['delete']));
         $this->assertTrue($method->invokeArgs($this->request, ['put']));
-        $this->assertTrue($method->invokeArgs($this->request, ['delete']));
-    }
-
-    public function testIsMethodAllowedReturnsFalseNotInArray()
-    {
-        $method = $this->getProtectedMethod('isMethodAllowed');
-
-        $this->assertFalse($method->invokeArgs($this->request, ['patch']));
-        $this->assertFalse($method->invokeArgs($this->request, ['options']));
-        $this->assertFalse($method->invokeArgs($this->request, ['something']));
-        $this->assertFalse($method->invokeArgs($this->request, ['pewpew']));
+        $this->assertFalse($method->invokeArgs($this->request, ['pew']));
     }
 
     public function testHasAltRulesReturnsTrueWhenHasRules()

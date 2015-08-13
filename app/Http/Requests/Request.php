@@ -8,14 +8,11 @@ use Illuminate\Support\Str;
 
 abstract class Request extends FormRequest
 {
-    // @var array - allowed request method types
-    protected $allowedMethods = ['get', 'put', 'post', 'delete'];
-
     // @var array - default rule set
     protected $rules = [];
 
-    // @var array - methods that don't require validation
-    protected $safeMethods = ['GET', 'DELETE'];
+    // @var array - methods that require input validation
+    protected $validateMethods = ['post', 'put'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -34,14 +31,13 @@ abstract class Request extends FormRequest
      */
     public function rules()
     {
-
         $method = Str::lower($this->method());
 
-        if ($this->isMethodAllowed($method) && $this->hasAltRules($method)) {
-            return $this->getAltRules($method);
+        if ($this->shouldValidate($method)) {
+            return ($this->hasAltRules($method)) ? $this->getAltRuels($method) : $this->rules;
         }
 
-        return $this->rules;
+        return [];
     }
 
     /**
@@ -56,14 +52,14 @@ abstract class Request extends FormRequest
     }
 
     /**
-     * Check if request type string is valid
+     * Check if method is one that does not require validation
      *
      * @param string $method
      * @return bool
      */
-    protected function isMethodAllowed($method)
+    protected function shouldValidate($method)
     {
-        return in_array($method, $this->allowedMethods);
+        return in_array($method, $this->validateMethods);
     }
 
     /**
