@@ -8,7 +8,8 @@ use Restaurant\Http\Requests\LoginRequest;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Restaurant\Events\UserCreateEvent;
 use Restaurant\Events\PasswordResetEvent;
-use Restaurant\Repositories\AuthRepo;
+use Restaurant\Repositories\UsersRepo;
+use Restaurant\Repositories\RolesRepo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Events\Dispatcher;
 use Tymon\JWTAuth\JWTAuth;
@@ -16,12 +17,14 @@ use Tymon\JWTAuth\JWTAuth;
 class AuthController extends Controller
 {
     public function __construct(
-        AuthRepo $repository,
+        UsersRepo $usersRepo,
+        RolesRepo $rolesRepo,
         JsonResponse $response,
         JWTAuth $auth,
         Dispatcher $events
     ) {
-        $this->repository = $repository;
+        $this->usersRepo = $usersRepo;
+        $this->rolesRepo = $rolesRepo;
         $this->response = $response;
         $this->auth = $auth;
         $this->events = $events;
@@ -38,7 +41,7 @@ class AuthController extends Controller
         $input = $request->only($whiteList);
         $token = $this->auth->attempt($input);
 
-        if (!$token || empty($token)) {
+        if (!$token || !is_string($token)) {
             return $this->response->create([
                 'error' => 'The username or password provided was not correct.',
             ]);
@@ -56,7 +59,7 @@ class AuthController extends Controller
     {
         $whiteList = ['email', 'password'];
         $input = $request->only($whiteList);
-        $user = $this->repository->create($input);
+        $user = $this->usersRepo->create($input);
 
         $user->generateToken('create');
         $this->events->fire(new UserCreateEvent($user));
@@ -73,7 +76,7 @@ class AuthController extends Controller
     public function resetPassword(ForgotPasswordRequest $request)
     {
         $email = $request->get('email');
-        $user = $this->repository->findByEmail($email);
+        $user = $this->usersRepo->findByEmail($email);
 
         $user->generateToken('reset');
         $this->events->fire(new PasswordResetEvent($user));
@@ -89,7 +92,7 @@ class AuthController extends Controller
      */
     public function verifyNew($token)
     {
-        $user = $this->repository->findByToken($token, 'create');
+        $user = $this->usersRepo->findByToken($token, 'create');
 
         $user->setActive();
 
@@ -104,7 +107,7 @@ class AuthController extends Controller
      */
     public function verifyReset($token)
     {
-        $user = $this->repository->findByToken($token, 'reset');
+        $user = $this->usersRepo->findByToken($token, 'reset');
 
         return $this->response->create(['ok' => true]);
     }

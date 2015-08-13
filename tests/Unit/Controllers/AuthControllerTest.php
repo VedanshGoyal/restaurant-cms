@@ -10,13 +10,15 @@ class AuthControllerTest extends \TestCase
 {
     public function setUp()
     {
-        $this->mockRepo = m::mock('Restaurant\Repositories\AuthRepo')->makePartial();
+        $this->mockUsersRepo = m::mock('Restaurant\Repositories\UsersRepo')->makePartial();
+        $this->mockRolesRepo = m::mock('Restaurant\Repositories\RolesRepo')->makePartial();
         $this->mockResponse = m::mock('Illuminate\Http\JsonResponse')->makePartial();
         $this->mockAuth = m::mock('Tymon\JWTAuth\JWTAuth')->makePartial();
         $this->mockEvents = m::mock('Illuminate\Events\Dispatcher')->makePartial();
 
         $this->controller = new AuthController(
-            $this->mockRepo,
+            $this->mockUsersRepo,
+            $this->mockRolesRepo,
             $this->mockResponse,
             $this->mockAuth,
             $this->mockEvents
@@ -51,7 +53,7 @@ class AuthControllerTest extends \TestCase
         $mockCreateEvent = m::mock('Restaurant\Events\UserCreateEvent', [$mockUser])->makePartial();
 
         $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
-        $this->mockRepo->shouldReceive('create')->once()->with($mockInput)->andReturn($mockUser);
+        $this->mockUsersRepo->shouldReceive('create')->once()->with($mockInput)->andReturn($mockUser);
         $mockUser->shouldReceive('generateToken')->once()->with('create');
         //$this->mockEvents->shouldReceive('fire')->once()->with($mockCreateEvent);
         $this->mockResponse->shouldReceive('create')->once()->with(['ok' => true])->andReturn($this->mockResponse);
@@ -68,7 +70,7 @@ class AuthControllerTest extends \TestCase
         $mockResetEvent = m::mock('Restaurant\Events\UserResetEvent')->makePartial();
 
         $mockRequest->shouldReceive('get')->once()->with('email')->andReturn($mockEmail);
-        $this->mockRepo->shouldReceive('findByEmail')->once()->with($mockEmail)->andReturn($mockUser);
+        $this->mockUsersRepo->shouldReceive('findByEmail')->once()->with($mockEmail)->andReturn($mockUser);
         $mockUser->shouldReceive('generateToken')->once()->with('reset');
         //$this->mockEvents->shouldReceive('fire')->once()->with($mockResetEvent);
         $this->mockResponse->shouldReceive('create')->once()->with(['ok' => true])->andReturn($this->mockResponse);
@@ -82,7 +84,7 @@ class AuthControllerTest extends \TestCase
         $mockToken = 'test-token';
         $mockUser = m::mock('Restaurant\Models\User')->makePartial();
 
-        $this->mockRepo->shouldReceive('findByToken')->once()->with($mockToken, 'create')->andReturn($mockUser);
+        $this->mockUsersRepo->shouldReceive('findByToken')->once()->with($mockToken, 'create')->andReturn($mockUser);
         $mockUser->shouldReceive('setActive')->once();
         $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'))->andReturn($this->mockResponse);
 
@@ -95,7 +97,7 @@ class AuthControllerTest extends \TestCase
         $mockToken = 'test-token';
         $mockUser = m::mock('Restaurant\Models\User')->makePartial();
 
-        $this->mockRepo->shouldReceive('findByToken')->once()->with($mockToken, 'reset')->andReturn($mockUser);
+        $this->mockUsersRepo->shouldReceive('findByToken')->once()->with($mockToken, 'reset')->andReturn($mockUser);
         $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'))->andReturn($this->mockResponse);
 
         $response = $this->controller->verifyReset($mockToken);
