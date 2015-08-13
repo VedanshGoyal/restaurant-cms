@@ -5,7 +5,7 @@ namespace Restaurant\Events;
 use Restaurant\Events\Event;
 use Restaurant\Models\User;
 
-class UserResetEvent extends Event
+class PasswordResetEvent extends Event
 {
     /**
      * Create a new event instance.
