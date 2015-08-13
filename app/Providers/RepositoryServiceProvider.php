@@ -29,6 +29,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->registerPhotoRepo();
         $this->registerSiteConfigRepo();
         $this->registerAuthRepo();
+        $this->registerRolesRepo();
     }
 
     private function registerMenuSectionRepo()
@@ -87,6 +88,15 @@ class RepositoryServiceProvider extends ServiceProvider
             $role = new Role();
 
             return new \Restaurant\Repositories\AuthRepo($user, $role);
+        });
+    }
+
+    public function registerRolesRepo()
+    {
+        $this->app->bind('Restaurant\Repositories\RolesRepo', function ($app) {
+            $role = new Role();
+
+            return new \Restaurant\Repositories\RolesRepo($role);
         });
     }
 }
