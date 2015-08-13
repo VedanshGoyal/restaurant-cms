@@ -3,6 +3,7 @@
 
 use Illuminate\Database\Seeder;
 use Restaurant\Models\User;
+use Bican\Roles\Models\Role;
 
 class UserSeeds extends Seeder
 {
@@ -15,9 +16,15 @@ class UserSeeds extends Seeder
     {
         \DB::table('users')->delete();
 
-        User::create([
+        $admin = Role::find(1);
+        $owner = Role::find(2);
+
+        $user = User::create([
             'email' => 'me@nickc.io',
             'password' => 'password',
         ]);
+
+        $user->attachRole($admin);
+        $user->attachRole($owner);
     }
 }
