@@ -65,3 +65,9 @@ Route::resource(
     'SiteConfigController',
     ['only' => ['show', 'update']]
 );
+
+Route::resource(
+    'role',
+    'RolesController',
+    ['only' => ['index']]
+);
