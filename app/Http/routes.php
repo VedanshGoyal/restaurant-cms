@@ -71,3 +71,9 @@ Route::resource(
     'RolesController',
     ['only' => ['index']]
 );
+
+Route::resource(
+    'user',
+    'UsersController',
+    ['only' => ['index']]
+);
