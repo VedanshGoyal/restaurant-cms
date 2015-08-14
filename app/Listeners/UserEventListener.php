@@ -5,7 +5,6 @@ namespace Restaurant\Listeners;
 use Illuminate\Mail\Mailer;
 use Restaurant\Events\UserCreateEvent;
 use Restaurant\Events\UserResetEvent;
-use Log;
 
 class UserEventListener
 {
@@ -38,27 +37,35 @@ class UserEventListener
         );
     }
 
+    /**
+     * On user create event send a verification url to the provided email
+     *
+     * @param UserCreateEvent $event
+     * @return void
+     */
     public function onUserCreate(UserCreateEvent $event)
     {
         $user = $event->user;
         $url = url(route('verify-new', ['token' => $user->createToken]));
 
         $this->mailer->send('emails.verify-new', ['verifyUrl' => $url], function ($mailer) use ($user) {
-            $mailer->subject('Verify New Account')
-                ->from('me@nickc.io', 'Nick C')
-                ->to('me@nickc.io', 'Nick C');
+            $mailer->subject('Verify New Account')->to($user->email);
         });
     }
 
-    public function onPasswordReset(UserResetEvent $event)
+    /**
+     * On password reset event send a reset url to the provided email
+     *
+     * @param PasswordResetEvent
+     * @return void
+     */
+    public function onPasswordReset(PasswordResetEvent $event)
     {
         $user = $event->user;
         $url = url(route('verify-reset', ['token' => $user->resetToken]));
 
-        $this->mailer->send('emails.verify-reset', ['verifyUrl' => $url], function ($mailer) use ($userS) {
-            $mailer->subject('Password Reset')
-                ->from('me@nickc.io', 'Nick C')
-                ->to('me@nickc.io', 'Nick C');
+        $this->mailer->send('emails.verify-reset', ['verifyUrl' => $url], function ($mailer) use ($user) {
+            $mailer->subject('Password Reset')->to($user->email);
         });
     }
 }
