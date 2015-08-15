@@ -33,11 +33,12 @@ trait CRUDTrait
 
         if (!$this->isValidCollection($collection)) {
             $logData = [
-                'modelName' => get_class($this->model),
-                'collectionData' => print_r($collection, true),
+                'repository_model' => print_r($this->model, true),
+                'query_collection' => print_r($model, true),
+                'query_with' => print_r($with, true),
             ];
 
-            throw new RepositoryException('Failed to fetch collection', $logData);
+            throw new RepositoryException('Failed to fetch collection.', $logData);
         }
 
         return $collection;
@@ -55,9 +56,13 @@ trait CRUDTrait
         $model = $this->model->where('id', $modelId)->with($with)->first();
 
         if (!$this->isValidModel($model)) {
-            $logData = [];
+            $logData = [
+                'repository_model' => print_r($this->model, true),
+                'query_model' => print_r($model, true),
+                'query_with' => print_r($with, true),
+            ];
 
-            throw new RepositoryException('Failed to fetch model', $logData);
+            throw new RepositoryException('Failed to fetch model.', $logData);
         }
 
         return $model;
@@ -75,10 +80,12 @@ trait CRUDTrait
 
         if (!$this->isValidModel($model)) {
             $logData = [
-                'input' => print_r($input, true),
+                'repository_model' => print_r($this->model, true),
+                'query_model' => print_r($model, true),
+                'query_input' => print_r($input, true),
             ];
 
-            throw new RepositoryException('Failed to create new model', $logData);
+            throw new RepositoryException('Failed to create new model.', $logData);
         }
 
         return $model;
@@ -97,9 +104,14 @@ trait CRUDTrait
         $model = $this->model->find($modelId);
 
         if (!$this->isValidModel($model) || !$model->update($input)) {
-            $logData = [];
+            $logData = [
+                'repository_model' => print_r($this->model, true),
+                'query_model' => print_r($model, true),
+                'query_id' => sprintf('%d', $modelId),
+                'query_input' => print_r($input, true),
+            ];
 
-            throw new RepositoryException('Failed to update model', $logData);
+            throw new RepositoryException('Failed to update model.', $logData);
         }
 
         return $model;
@@ -117,7 +129,9 @@ trait CRUDTrait
 
         if (!$this->isValidModel($model) || !$model->delete()) {
             $logData = [
-                'modelId' => print_r($modelId, true),
+                'repository_model' => print_r($this->model, true),
+                'query_model' => print_r($model, true),
+                'query_id' => sprintf('%d', $modelId),
             ];
 
             throw new RepositoryException('Failed to delete model', $logData);
@@ -134,11 +148,7 @@ trait CRUDTrait
      */
     protected function isValidModel($model)
     {
-        if ($model && $model instanceof Model) {
-            return true;
-        }
-
-        return false;
+        return (bool) $model && $model instanceof Model;
     }
 
     /**
@@ -149,10 +159,6 @@ trait CRUDTrait
      */
     protected function isValidCollection($collection)
     {
-        if ($collection && $collection instanceof Collection) {
-            return true;
-        }
-
-        return false;
+        return (bool) $collection && $collection instanceof Collection;
     }
 }

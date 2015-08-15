@@ -33,8 +33,10 @@ class UsersRepo
 
         if (!$user->attachRole($role)) {
             $logData =[
-                'user-id' => sprintf('%d', $userId),
-                'role-name' => sprintf('%s', $role->name),
+                'repository_model' => print_r($this->model, true),
+                'query_model' => print_r($model, true),
+                'query_id' => sprintf('%d', $userId),
+                'role' => print_r($role, true),
             ];
 
             throw new RepositoryException('Failed to attach role to user.', $logData);
@@ -55,9 +57,11 @@ class UsersRepo
         $user = $this->model->findOrFail($userId);
 
         if (!$user->detachRole($role)) {
-            $logData = [
-                'user-id' => sprintf('%d', $userId),
-                'role-name' => sprintf('%s', $role->name),
+            $logData =[
+                'repository_model' => print_r($this->model, true),
+                'query_model' => print_r($model, true),
+                'query_id' => sprintf('%d', $userId),
+                'role' => print_r($role, true),
             ];
 
             throw new RepositoryException('Failed to remove role from user.', $logData);
@@ -79,9 +83,11 @@ class UsersRepo
         $user = $this->model->where($tokenType, $token)->first();
 
         if (!$this->isValidModel($user)) {
-            $logData = [
-                'token' => sprintf('%s', $token),
-                'type' => sprintf('%s', $type),
+            $logData =[
+                'repository_model' => print_r($this->model, true),
+                'query_model' => print_r($model, true),
+                'query_token' => sprintf('%s', $token),
+                'query_token_type' => sprintf('%s', $type),
             ];
 
             throw new RepositoryException('Failed to find user by token.', $logData);
@@ -101,7 +107,11 @@ class UsersRepo
         $user = $this->model->where('email', $email)->first();
 
         if (!$this->isValidModel($user)) {
-            $logData = ['email' => sprintf('%s', $email)];
+            $logData =[
+                'repository_model' => print_r($this->model, true),
+                'query_model' => print_r($model, true),
+                'query_email' => sprintf('%s', $email),
+            ];
 
             throw new RepositoryException('Failed to find user by email.', $logData);
         }
