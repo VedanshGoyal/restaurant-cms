@@ -14,6 +14,13 @@ use Restaurant\Models\User;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
+   /**
+    * Indicates if loading of the provider is deferred.
+    *
+    * @var bool
+    */
+    protected $defer = true;
+
     /**
      * Register the application services.
      *
@@ -34,63 +41,63 @@ class RepositoryServiceProvider extends ServiceProvider
 
     private function registerMenuSectionRepo()
     {
-        $this->app->bind('Restaurant\Repositories\MenuSectionRepo', function ($app) {
+        $this->app->singleton('Restaurant\Repositories\MenuSectionRepo', function ($app) {
             return new \Restaurant\Repositories\MenuSectionRepo(new MenuSection());
         });
     }
 
     private function registerMenuItemRepo()
     {
-        $this->app->bind('Restaurant\Repositories\MenuItemRepo', function ($app) {
+        $this->app->singleton('Restaurant\Repositories\MenuItemRepo', function ($app) {
             return new \Restaurant\Repositories\MenuItemRepo(new MenuItem());
         });
     }
 
     private function registerHourRepo()
     {
-        $this->app->bind('Restaurant\Repositories\HourRepo', function ($app) {
+        $this->app->singleton('Restaurant\Repositories\HourRepo', function ($app) {
             return new \Restaurant\Repositories\HourRepo(new Hour());
         });
     }
 
     private function registerAboutRepo()
     {
-        $this->app->bind('Restaurant\Repositories\AboutRepo', function ($app) {
+        $this->app->singleton('Restaurant\Repositories\AboutRepo', function ($app) {
             return new \Restaurant\Repositories\AboutRepo(new About());
         });
     }
 
     private function registerInfoRepo()
     {
-        $this->app->bind('Restaurant\Repositories\InfoRepo', function ($app) {
+        $this->app->singleton('Restaurant\Repositories\InfoRepo', function ($app) {
             return new \Restaurant\Repositories\InfoRepo(new Info());
         });
     }
 
     private function registerPhotoRepo()
     {
-        $this->app->bind('Restaurant\Repositories\PhotoRepo', function ($app) {
+        $this->app->singleton('Restaurant\Repositories\PhotoRepo', function ($app) {
             return new \Restaurant\Repositories\PhotoRepo(new Photo());
         });
     }
 
     private function registerSiteConfigRepo()
     {
-        $this->app->bind('Restaurant\Repositories\SiteConfigRepo', function ($app) {
+        $this->app->singleton('Restaurant\Repositories\SiteConfigRepo', function ($app) {
             return new \Restaurant\Repositories\SiteConfigRepo(new SiteConfig());
         });
     }
 
     public function registerUsersRepo()
     {
-        $this->app->bind('Restaurant\Repositories\UsersRepo', function ($app) {
+        $this->app->singleton('Restaurant\Repositories\UsersRepo', function ($app) {
             return new \Restaurant\Repositories\UsersRepo(new User());
         });
     }
 
     public function registerRolesRepo()
     {
-        $this->app->bind('Restaurant\Repositories\RolesRepo', function ($app) {
+        $this->app->singleton('Restaurant\Repositories\RolesRepo', function ($app) {
             return new \Restaurant\Repositories\RolesRepo(new Role());
         });
     }
