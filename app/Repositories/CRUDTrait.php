@@ -34,7 +34,7 @@ trait CRUDTrait
         if (!$this->isValidCollection($collection)) {
             $logData = [
                 'repository_model' => print_r($this->model, true),
-                'query_collection' => print_r($model, true),
+                'query_collection' => print_r($collection, true),
                 'query_with' => print_r($with, true),
             ];
 
