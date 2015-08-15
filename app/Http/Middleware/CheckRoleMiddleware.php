@@ -2,8 +2,9 @@
 
 namespace Restaurant\Http\Middleware;
 
-use Closure;
 use Illuminate\Contracts\Validation\UnauthorizedException;
+use Illuminate\Http\JsonResponse;
+use Closure;
 
 class CheckRoleMiddleware
 {
@@ -17,10 +18,10 @@ class CheckRoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        if (!$request->user || !$request->user->hasRole($role)) {
-            throw new UnauthorizedException('You are not authorized to access this content.');
+        if ($request->user || $request->user->hasRole($role)) {
+            return $next($request);
         }
 
-        return $next($request);
+        return new JsonResponse('Not Authorized', 403);
     }
 }
