@@ -3,7 +3,7 @@
 namespace Restaurant\Http\Middleware;
 
 use Closure;
-use \Restaurant\Exceptions\NotAuthorizedException;
+use Illuminate\Contracts\Validation\UnauthorizedException;
 
 class CheckRoleMiddleware
 {
@@ -18,10 +18,7 @@ class CheckRoleMiddleware
     public function handle($request, Closure $next, $role)
     {
         if (!$request->user || !$request->user->hasRole($role)) {
-            $logData = ['role' => sprintf('%s', $role)];
-            $message = 'You are not authorized to access this content.';
-
-            throw new NotAuthorizedException($message, $logData);
+            throw new UnauthorizedException('You are not authorized to access this content.');
         }
 
         return $next($request);
