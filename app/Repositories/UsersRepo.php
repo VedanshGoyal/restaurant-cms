@@ -34,7 +34,7 @@ class UsersRepo
         if (!$user->attachRole($role)) {
             $logData =[
                 'repository_model' => print_r($this->model, true),
-                'query_model' => print_r($model, true),
+                'query_model' => print_r($user, true),
                 'query_id' => sprintf('%d', $userId),
                 'role' => print_r($role, true),
             ];
@@ -59,7 +59,7 @@ class UsersRepo
         if (!$user->detachRole($role)) {
             $logData =[
                 'repository_model' => print_r($this->model, true),
-                'query_model' => print_r($model, true),
+                'query_model' => print_r($user, true),
                 'query_id' => sprintf('%d', $userId),
                 'role' => print_r($role, true),
             ];
@@ -85,7 +85,7 @@ class UsersRepo
         if (!$this->isValidModel($user)) {
             $logData =[
                 'repository_model' => print_r($this->model, true),
-                'query_model' => print_r($model, true),
+                'query_model' => print_r($user, true),
                 'query_token' => sprintf('%s', $token),
                 'query_token_type' => sprintf('%s', $type),
             ];
@@ -109,7 +109,7 @@ class UsersRepo
         if (!$this->isValidModel($user)) {
             $logData =[
                 'repository_model' => print_r($this->model, true),
-                'query_model' => print_r($model, true),
+                'query_model' => print_r($user, true),
                 'query_email' => sprintf('%s', $email),
             ];
 
