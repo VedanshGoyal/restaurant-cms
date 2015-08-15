@@ -6,6 +6,7 @@ use Exception;
 use Restuarant\Exceptions\RepositoryException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +45,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+            return new JsonResponse('Token Expired', 401);
+        } elseif ($e instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+            return new JsonResponse('Token Invalid', 401);
+        }
+
         return parent::render($request, $e);
     }
 }
