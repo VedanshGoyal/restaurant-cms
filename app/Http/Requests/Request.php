@@ -52,6 +52,16 @@ abstract class Request extends FormRequest
     }
 
     /**
+     * Get the proper response for a unauthorized request
+     *
+     * @return JsonResponse
+     */
+    public function forbiddenResponse()
+    {
+        return new JsonResponse('Unauthorized Access', 403);
+    }
+
+    /**
      * Check if method is one that does not require validation
      *
      * @param string $method
