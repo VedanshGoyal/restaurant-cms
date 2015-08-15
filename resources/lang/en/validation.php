@@ -74,6 +74,8 @@ return [
     'timezone'             => 'The :attribute must be a valid zone.',
     'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid.',
+    'basicText'            => 'The :attribute field may only be letters, numbers, spaces, and punctuation.',
+    'tags'                 => 'Tags should only be letters, numbers, spaces, and punctuation.',
 
     /*
     |--------------------------------------------------------------------------

@@ -8,6 +8,6 @@ class ForgotPasswordRequest extends Request
 {
     // @var array
     protected $rules = [
-        'email' => 'required|email',
+        'email' => 'required|email|max:500',
     ];
 }
