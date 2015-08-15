@@ -3,6 +3,7 @@
 namespace Restaurant\Http\Middleware;
 
 use Closure;
+use \Restaurant\Exceptions\NotAuthorizedException;
 
 class CheckRoleMiddleware
 {
@@ -18,10 +19,9 @@ class CheckRoleMiddleware
     {
         if (!$request->user || !$request->user->hasRole($role)) {
             $logData = ['role' => sprintf('%s', $role)];
-            $message = 'The user account provided does not have the ' .
-                'correct privileges to access the requested content.';
+            $message = 'You are not authorized to access this content.';
 
-            throw new \Restaurant\Exceptions\NotAuthorizedException($message, $logData);
+            throw new NotAuthorizedException($message, $logData);
         }
 
         return $next($request);

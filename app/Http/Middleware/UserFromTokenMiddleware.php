@@ -7,6 +7,11 @@ use Tymon\JWTAuth\JWTAuth;
 
 class UserFromTokenMiddleware
 {
+    /**
+     * Initialize a new instance
+     *
+     * @param JWTAuth $jwtAuth
+     */
     public function __construct(JWTAuth $jwtAuth)
     {
         $this->jwt = $jwtAuth;
