@@ -3,6 +3,7 @@
 namespace Restaurant\Exceptions;
 
 use Exception;
+use Restuarant\Exceptions\RepositoryException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -27,6 +28,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+        if ($e instanceof RepositoryException) {
+            return $this->log->error($e, $e->logData);
+        }
+
         return parent::report($e);
     }
 
