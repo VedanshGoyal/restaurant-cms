@@ -45,12 +45,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof Tymon\JWTAuth\Exceptions\TokenExpiredException) {
-            return new JsonResponse('Token Expired', 401);
-        } elseif ($e instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException) {
-            return new JsonResponse('Token Invalid', 401);
+        if (app()->environment() === 'local') {
+            return parent::render($request, $e);
         }
 
-        return parent::render($request, $e);
+        return new JsonResponse($e->getMessage(), $e->getCode());
     }
 }

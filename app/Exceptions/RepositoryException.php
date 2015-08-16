@@ -8,7 +8,7 @@ class RepositoryException extends \Exception
     public $logExtra = true;
 
     // @var integer
-    protected $code;
+    protected $code = 500;
 
     // @var array
     protected $logData = [];
