@@ -6,8 +6,8 @@ class VerifyNewRequest extends Request
 {
     // @var array
     protected $rules = [
-        'token' => 'required|basicText',
+        'token' => 'required|alpha_num',
         'email' => 'required|email|max:500',
-        'password' => 'required|basicText|max:64',
+        'password' => 'required|password',
     ];
 }

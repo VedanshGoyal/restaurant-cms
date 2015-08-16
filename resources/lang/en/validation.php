@@ -76,6 +76,7 @@ return [
     'url'                  => 'The :attribute format is invalid.',
     'basicText'            => 'The :attribute field may only be letters, numbers, spaces, and punctuation.',
     'tags'                 => 'Tags should only be letters, numbers, spaces, and punctuation.',
+    'password'             => 'Password can be 8-64 characters in length, and may only contain letters, numbers and !@#$%.',
 
     /*
     |--------------------------------------------------------------------------

@@ -30,6 +30,10 @@ class ValidationServiceProvider extends ServiceProvider
         \Validator::extend('basicText', function ($attribute, $value, $parameters) {
             return preg_match('/^[\p{L}\p{P}\p{N}\s]+$/u', $value);
         });
+
+        \Validator::extend('password', function ($attribute, $value, $parameters) {
+            return preg_match('^(?=[^\d_].*?\d)\w(\w|[!@#$%]){6,64}', $value);
+        });
     }
 
     /**

@@ -10,7 +10,7 @@ class RegisterRequest extends Request
     // @var array
     protected $rules = [
         'email' => 'required|email|max:250',
-        'password' => 'required|basicText|between:6,64|confirmed',
+        'password' => 'required|password|confirmed',
     ];
 
     /**
