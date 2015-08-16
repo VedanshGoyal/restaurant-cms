@@ -32,7 +32,7 @@ class ValidationServiceProvider extends ServiceProvider
         });
 
         \Validator::extend('password', function ($attribute, $value, $parameters) {
-            return preg_match('^(?=[^\d_].*?\d)\w(\w|[!@#$%]){6,64}', $value);
+            return preg_match('/^(?=[^\d_].*?\d)\w(\w|[!@#$%]){6,64}/', $value);
         });
     }
 
