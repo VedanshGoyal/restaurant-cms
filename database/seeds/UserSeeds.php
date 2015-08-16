@@ -4,6 +4,8 @@
 use Illuminate\Database\Seeder;
 use Restaurant\Models\User;
 use Bican\Roles\Models\Role;
+use Illuminate\Support\Str;
+use Restaurant\Events\PasswordResetEvent;
 
 class UserSeeds extends Seeder
 {
@@ -21,10 +23,13 @@ class UserSeeds extends Seeder
 
         $user = User::create([
             'email' => 'me@nickc.io',
-            'password' => 'password',
+            'password' => Str::random(64),
         ]);
 
         $user->attachRole($admin);
         $user->attachRole($owner);
+        $user->setActive();
+        $user->generateToken('reset');
+        event(new PasswordResetEvent($user));
     }
 }
