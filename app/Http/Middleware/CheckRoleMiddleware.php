@@ -18,7 +18,7 @@ class CheckRoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        if ($request->user || $request->user->hasRole($role)) {
+        if ($request->user && $request->user->hasRole($role)) {
             return $next($request);
         }
 
