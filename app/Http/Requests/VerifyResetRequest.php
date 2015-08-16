@@ -2,8 +2,6 @@
 
 namespace Restaurant\Http\Requests;
 
-use Restaurant\Http\Requests\Request;
-
 class VerifyResetRequest extends Request
 {
     // @var array
