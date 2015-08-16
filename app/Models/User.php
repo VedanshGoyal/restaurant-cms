@@ -62,6 +62,18 @@ class User extends Model implements HasRoleAndPermissionContract, Authenticatabl
     }
 
     /**
+     * Clear the reset token field and when imlemented clear timestamp
+     *
+     * @return void
+     */
+    public function clearReset()
+    {
+        $this->attributes['resetToken'] = null;
+
+        return $this->save();
+    }
+
+    /**
      * Mutator to hash password
      *
      * @param string $value
