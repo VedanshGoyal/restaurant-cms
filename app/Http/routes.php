@@ -10,20 +10,8 @@ Route::group(['prefix' => 'api-V1'], function () {
     Route::post('/login', 'AuthController@login');
     Route::post('/register', 'AuthController@register');
     Route::post('/reset-password', 'AuthController@resetPassword');
-    Route::get(
-        '/verify-new/{token}',
-        [
-            'uses' => 'AuthController@verifyNew',
-            'as' => 'verify-new',
-        ]
-    );
-    Route::get(
-        '/verify-reset/{token}',
-        [
-            'uses' => 'AuthController@verifyReset',
-            'as' => 'verify-reset',
-        ]
-    );
+    Route::post('/verify-new', 'AuthController@verifyNew');
+    Route::post('/verify-reset', 'AuthController@verifyReset');
 
     // Admin only routes
     Route::group(['middleware' => 'checkRole:admin'], function () {

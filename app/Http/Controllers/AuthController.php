@@ -5,6 +5,8 @@ namespace Restaurant\Http\Controllers;
 use Restaurant\Http\Requests\ForgotPasswordRequest;
 use Restaurant\Http\Requests\RegisterRequest;
 use Restaurant\Http\Requests\LoginRequest;
+use Restaurant\Http\Requests\VerifyNewRequest;
+use Restaurant\Http\Requests\VerifyResetRequest;
 use Restaurant\Events\UserCreateEvent;
 use Restaurant\Events\PasswordResetEvent;
 use Restaurant\Repositories\UsersRepo;
@@ -36,14 +38,14 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        $whiteList = ['email', 'password'];
-        $input = $request->only($whiteList);
+        $whitelist = ['email', 'password'];
+        $input = $request->only($whitelist);
         $token = $this->auth->attempt($input);
 
         if (!$token || !is_string($token)) {
             return $this->response->create([
                 'error' => 'The username or password provided was not correct.',
-            ]);
+            ], 401);
         }
         
         return $this->response->create(['token' => $token]);
@@ -56,8 +58,8 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $whiteList = ['email', 'password'];
-        $input = $request->only($whiteList);
+        $whitelist = ['email', 'password'];
+        $input = $request->only($whitelist);
         $user = $this->usersRepo->create($input);
 
         $user->generateToken('create');
@@ -82,31 +84,44 @@ class AuthController extends Controller
 
         return $this->response->create(['ok' => true]);
     }
-
+    
     /**
-     * Verify a new account token
+     * Verify a new user account
      *
-     * @param string $token
+     * @param VerifyNewRequest $request
      * @return JsonResponse
      */
-    public function verifyNew($token)
+    public function verifyNew(VerifyNewRequest $request)
     {
-        $user = $this->usersRepo->findByToken($token, 'create');
+        $whitelist = ['token', 'email', 'password'];
+        $input = $request->only($whitelist);
+        $token = $this->auth->attempt($input);
 
-        $user->setActive();
+        if (!$token || !is_string($token)) {
+            return $this->response->create([
+                'error' => 'The email or password provided was not correct.',
+            ], 401);
+        }
 
-        return $this->response->create(['ok' => true]);
+        $this->auth->user()->setActive();
+
+        return $this->response->create('Account activated successfully.');
     }
 
     /**
-     * Verify a reset password token
+     * Verify a password reset request
      *
-     * @param string $token
-     * @return JsonResponse
+     * @param VerifyResetRequest $request
+     * @param JsonResponse
      */
-    public function verifyReset($token)
+    public function verifyReset(VerifyResetRequest $request)
     {
-        $user = $this->usersRepo->findByToken($token, 'reset');
+        $whitelist = ['token', 'password'];
+        $input = $request->only($whitelist);
+        $user = $this->usersRepo->findByToken($input['token'], 'reset');
+
+        $this->usersRepo->update($user->id, $input);
+        $user->clearReset();
 
         return $this->response->create(['ok' => true]);
     }
