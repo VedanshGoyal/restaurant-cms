@@ -11,6 +11,7 @@ use Restaurant\Models\About;
 use Restaurant\Models\Info;
 use Restaurant\Models\Hour;
 use Restaurant\Models\User;
+use Restaurant\Models\Photo;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
