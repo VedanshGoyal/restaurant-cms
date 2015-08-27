@@ -1,7 +1,9 @@
 <?php
 
 // HTML routes
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HTMLController@home');
+Route::get('/dash', 'HTMLController@dash');
+Route::get('/menu', 'HTMLController@menu');
 
 // API routes
 Route::group(['prefix' => 'api-V1'], function () {
@@ -33,10 +35,12 @@ Route::group(['prefix' => 'api-V1'], function () {
             'UsersController',
             ['only' => ['index']]
         );
+
     });
 
     // Owner only routes
     Route::group(['middleware' => 'checkRole:owner'], function () {
+
         Route::resource(
             'menu-section',
             'MenuSectionsController',
@@ -70,7 +74,7 @@ Route::group(['prefix' => 'api-V1'], function () {
         Route::resource(
             'photo',
             'PhotosController',
-            ['only' => ['index', 'show', 'store', 'destroy']]
+            ['only' => ['index', 'show', 'destroy']]
         );
 
     });
