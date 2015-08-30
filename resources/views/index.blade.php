@@ -10,9 +10,7 @@
         <title>Restaurant Name</title>
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="stylesheet" type="text/css" href="/assets/main.css">
-        <script type="text/javascript" src="/assets/vendor.js"></script>
-        <script type="text/javascript" src="/assets/app.js"></script>
+        <script type="text/javascript" src="/assets/frontpage.js"></script>
 
     </head>
     <body>
