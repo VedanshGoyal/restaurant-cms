@@ -10,7 +10,9 @@
         <title>Restaurant Name</title>
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+        <link rel="stylesheet" type="text/css" href="/assets/main.css">
+        <script type="text/javascript" src="/assets/vendor.js"></script>
+        <script type="text/javascript" src="/assets/app.js"></script>
 
     </head>
     <body>
