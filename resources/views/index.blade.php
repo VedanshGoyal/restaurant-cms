@@ -10,9 +10,9 @@
         <title>Restaurant Name</title>
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/build/frontpage.css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="/build/frontpage.css" />
         <script type="text/javascript" src="/build/frontpage-vendor.js"></script>
         <script type="text/javascript" src="/build/frontpage.js"></script>
 
@@ -44,8 +44,8 @@
             </div>
             <main class="mdl-layout__content">
 
-                <section class="section--center mdl-grid info-section">
-                    <div class="mdl-cell mdl-cell--12-col">
+                <section class="section--center mdl-grid mdl-grid--no-spacing info-section text-center">
+                    <div class="mdl-cell mdl-cell__info mdl-cell--12-col">
                         555-555-5555 | 55 Jewett St, Providence RI 02908
                     </div>
                 </section><!-- .info-section -->
@@ -56,8 +56,8 @@
                     </div>
                 </section><!-- .title-section -->
 
-                <section class="section--center mdl-grid mdl-shadow--4dp about-section">
-                    <div class="mdl-card mdl-cell--12-col text-center">
+                <section class="section--center mdl-grid mdl-grid--no-spacing about-section">
+                    <div class="mdl-card mdl-cell mdl-cell--12-col text-center mdl-shadow--4dp">
                         <div class="mdl-card__title mdl-card--border">
                             <h2 class="mdl-card__title-text">Welcome</h2>
                         </div>
@@ -68,8 +68,8 @@
                     </div>
                 </section><!-- .about-section -->
 
-                <section class="section--center mdl-grid mdl-shadow--4dp menu-section">
-                    <div class="mdl-card mdl-cell--12-col text-center">
+                <section class="section--center mdl-grid mdl-grid--no-spacing">
+                    <div class="mdl-card mdl-cell mdl-cell--12-col text-center mdl-shadow--4dp menu-section">
                         <div class="mdl-card__title mdl-card--border">
                             <h2 class="mdl-card__title-text">Menu</h2>
                         </div>
@@ -131,25 +131,25 @@
 
                 </section><!-- .menu-section -->
 
-                <section class="section--center mdl-grid mdl-shadow--4dp">
-                    <div class="mdl-card mdl-cell--12-col text-center">
+                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--4dp">
+                    <div class="mdl-card mdl-cell mdl-cell--12-col text-center">
                         <div class="mdl-card__title mdl-card--border">
                             <h2 class="mdl-card__title-text">Photos</h2>
                         </div>
                         <div class="mdl-card__supporting-text mdl-grid">
-                            <div class="mdl-card image-card mdl-shadow--4dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone" style="background: url('/imgs/cityscape1.jpg') center / cover;">
+                            <div class="mdl-card mdl-card__image mdl-shadow--4dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone" style="background: url('/imgs/cityscape1.jpg') center / cover;">
                                 <div class="mdl-card__title mdl-card--expand"></div>
                                 <div class="mdl-card__actions">
                                     <span class="demo-card-image__filename">Image.jpg</span>
                                 </div>
                             </div>
-                            <div class="mdl-card image-card mdl-shadow--4dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--hide-phone" style="background: url('/imgs/cityscape1.jpg') center / cover;">
+                            <div class="mdl-card mdl-card__image mdl-shadow--4dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--hide-phone" style="background: url('/imgs/cityscape1.jpg') center / cover;">
                                 <div class="mdl-card__title mdl-card--expand"></div>
                                 <div class="mdl-card__actions">
                                     <span class="demo-card-image__filename">Image.jpg</span>
                                 </div>
                             </div>
-                            <div class="mdl-card image-card mdl-shadow--4dp mdl-cell--4-col-desktop mdl-cell--hide-phone mdl-cell--hide-tablet" style="background: url('/imgs/cityscape1.jpg') center / cover;">
+                            <div class="mdl-card mdl-card__image mdl-shadow--4dp mdl-cell--4-col-desktop mdl-cell--hide-phone mdl-cell--hide-tablet" style="background: url('/imgs/cityscape1.jpg') center / cover;">
                                 <div class="mdl-card__title mdl-card--expand"></div>
                                 <div class="mdl-card__actions">
                                     <span class="demo-card-image__filename">Image.jpg</span>

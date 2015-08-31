@@ -1,0 +1,32 @@
+@import '../vendor/material-design-lite/src/material-design-lite.scss';
+@import '../vendor/material-design-lite/src/material-design-lite-grid.scss';
+
+.mdl-card__supporting-text {
+    width: 90%;
+    padding: 10px 5%;
+}
+.mdl-card__title {
+    background: unquote("rgb(#{$color-primary})");
+    color: #fff;
+}
+.mdl-card__image {
+    margin: 0 auto;
+    color: #fff;
+}
+.mdl-card__image .mdl-card__title {
+    background-color: transparent;
+}
+.mdl-card__image .mdl-card__actions {
+    background: unquote("rgb(#{$color-primary})");
+    color: #fff;
+}
+.mdl-cell__info {
+    padding :10px 0;
+}
+.mdl-mega-footer__heading {
+    font-size: 18px;
+    padding: 0;
+}
+.section--center {
+    max-width: 860px;
+}

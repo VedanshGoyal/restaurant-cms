@@ -1,0 +1,11 @@
+main {
+    background: #f3f3f3;
+}
+.title-section {
+    background-color: unquote("rgb(#{$color-accent})");
+    padding: 20px 0;
+}
+.title-section ~ section {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

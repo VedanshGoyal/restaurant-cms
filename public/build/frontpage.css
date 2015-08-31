@@ -9847,21 +9847,42 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
     .mdl-grid--no-spacing > .mdl-cell--12-col-desktop.mdl-cell--12-col-desktop {
       width: 100%; } }
 
-.title-section {
-  background-color: rgb(255,215,64);
-  padding: 20px 0; }
+.mdl-card__supporting-text {
+  width: 90%;
+  padding: 10px 5%; }
 
-section.section--center {
-  max-width: 860px; }
+.mdl-card__title {
+  background: rgb(66,66,66);
+  color: #fff; }
 
-.title-section ~ section {
-  margin-top: 50px;
-  margin-bottom: 50px; }
+.mdl-card__image {
+  margin: 0 auto;
+  color: #fff; }
+
+.mdl-card__image .mdl-card__title {
+  background-color: transparent; }
+
+.mdl-card__image .mdl-card__actions {
+  background: rgb(66,66,66);
+  color: #fff; }
+
+.mdl-cell__info {
+  padding: 10px 0; }
 
 .mdl-mega-footer__heading {
   font-size: 18px;
   padding: 0; }
 
-.image-card {
-  margin: 0 auto;
-  color: #fff; }
+.section--center {
+  max-width: 860px; }
+
+main {
+  background: #f3f3f3; }
+
+.title-section {
+  background-color: rgb(255,215,64);
+  padding: 20px 0; }
+
+.title-section ~ section {
+  margin-top: 50px;
+  margin-bottom: 50px; }
