@@ -1,0 +1,27 @@
+@import './variables';
+@import './helpers';
+
+// vendor libs
+@import '../vendor/material-design-lite/src/material-design-lite.scss';
+@import '../vendor/material-design-lite/src/material-design-lite-grid.scss';
+
+
+.title-section {
+    background-color: unquote("rgb(#{$color-accent})");
+    padding: 20px 0;
+}
+section.section--center {
+    max-width: 860px;
+}
+.title-section ~ section {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.mdl-mega-footer__heading {
+    font-size: 18px;
+    padding: 0;
+}
+.image-card {
+    margin: 0 auto;
+    color: #fff;
+}
