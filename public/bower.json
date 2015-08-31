@@ -1,0 +1,30 @@
+{
+  "name": "ES6-frontend-boilerplate",
+  "version": "0.0.1",
+  "homepage": "https://github.com/hownowbrowncow/ES6-frontend-boilerplate",
+  "authors": [
+    "Nick C <me@nickc.io>"
+  ],
+  "description": "Babel+Browserify",
+  "main": "index.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.2",
+    "backbone-ui-modal": "backbone.modal#*",
+    "backbone.marionette": "~2.4.2",
+    "backbone.tango": "~0.2.1",
+    "jquery": "~2.1.4",
+    "material-design-lite": "~1.0.4",
+    "slick-carousel": "slick.js#~1.5.8",
+    "snabbt.js": "~0.5.7",
+    "underscore": "~1.8.3"
+  }
+}
