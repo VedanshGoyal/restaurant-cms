@@ -1,5 +1,5 @@
 /vendor
 /public/node_modules
 /public/vendor
-/pubic/build
+/public/build
 .env

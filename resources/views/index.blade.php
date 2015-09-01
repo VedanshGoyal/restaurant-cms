@@ -1,6 +1,6 @@
 <!doctype html>
 {{-- // @codingStandardsIgnoreFile --}}
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -18,10 +18,6 @@
 
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
@@ -162,7 +158,6 @@
                         </div>
                     </div>
                 </section><!-- .photo-section -->
-
                 <footer class="mdl-mega-footer">
                     <div class="mdl-mega-footer__top-section mlg-grid text-center">
 
@@ -188,7 +183,6 @@
 
                     </div>
                 </footer>
-
             </main>
         </div>
     </body>

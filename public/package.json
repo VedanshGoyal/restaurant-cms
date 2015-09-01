@@ -14,16 +14,8 @@
       "browserify-shim"
     ]
   },
-  "browser": {
-    "Materialize": "./vendor/materialize/dist/js/materialize.min.js"
-  },
   "browserify-shim": {
-    "materialize": "materialize"
-  },
-  "aliasify": {
-    "aliases": {
-      "Materialize": "./vendor/materialize/dist/js/materialize.js"
-    }
+    "underscore": "lodash"
   },
   "devDependencies": {
     "aliasify": "^1.7.2",

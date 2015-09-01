@@ -3,10 +3,10 @@
 var gulp = require('gulp');
 var tasks = require('./gulptasks');
 
-gulp.task('build', ['vendor', 'app', 'test', 'sass']);
-gulp.task('build-frontpage', ['frontpage', 'frontpage-vendor']);
+gulp.task('build:frontpage', ['app:frontpage', 'vendor:frontpage', 'sass:frontpage']);
+gulp.task('build:dash', ['app:dash', 'vendor:dash', 'sass:dash']);
 
-gulp.task('frontpage-vendor', function () {
+gulp.task('vendor:frontpage', function () {
     var opts = {
         debug: true,
         buildFile: 'frontpage-vendor.js',
@@ -17,7 +17,7 @@ gulp.task('frontpage-vendor', function () {
     tasks.packageVendor(opts);
 });
 
-gulp.task('frontpage', function() {
+gulp.task('app:frontpage', function() {
     var opts = {
         debug: true,
         source: './js/frontpage.js',
@@ -28,7 +28,7 @@ gulp.task('frontpage', function() {
     tasks.packageApp(opts);
 });
 
-gulp.task('frontpage-sass', function() {
+gulp.task('sass:frontpage', function() {
     var opts = {
         source: './sass/frontpage.scss',
         buildFile: 'frontpage.css',
@@ -38,22 +38,43 @@ gulp.task('frontpage-sass', function() {
     tasks.packageSass(opts);
 });
 
-
-gulp.task('test', function() {
+gulp.task('vendor:dash', function () {
     var opts = {
         debug: true,
-        source: './test/tests.js',
-        buildFile: 'tests.js',
+        buildFile: 'dash-vendor.js',
         buildPath: './build',
-        runnerFile: './test/runner.html',
-        reporter: 'dot',
     };
 
-    tasks.packageTests(opts)
-    .on('end', function() { tasks.runTests(opts); });
+    tasks.packageVendor(opts);
 });
 
-gulp.task('watch', function () {
-    tasks.setWatcher({watchPath: './js/frontpage.js', task: 'frontpage'});
-    tasks.setWatcher({watchPath: './sass/**/*.scss', task: 'frontpage-sass'});
+gulp.task('app:dash', function() {
+    var opts = {
+        debug: true,
+        source: './js/dash.js',
+        buildFile: 'dash.js',
+        buildPath: './build',
+    };
+
+    tasks.packageApp(opts);
+});
+
+gulp.task('sass:dash', function() {
+    var opts = {
+        source: './sass/dash.scss',
+        buildFile: 'dash.css',
+        buildPath: './build',
+    };
+
+    tasks.packageSass(opts);
+});
+
+gulp.task('watch:frontpage', function () {
+    tasks.setWatcher({watchPath: './js/frontpage.js', task: 'app:frontpage'});
+    tasks.setWatcher({watchPath: './sass/**/*.scss', task: 'sass:frontpage'});
+});
+
+gulp.task('watch:dash', function () {
+    tasks.setWatcher({watchPath: './js/**/*.js', task: 'app:dash'});
+    tasks.setWatcher({watchPath: './sass/**/*.scss', task: 'sass:dash'});
 });
