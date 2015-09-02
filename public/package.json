@@ -11,11 +11,12 @@
   "browserify": {
     "transform": [
       "babelify",
-      "browserify-shim"
+      "browserify-shim",
+      "stringify"
     ]
   },
   "browserify-shim": {
-    "underscore": "lodash"
+    "lodash": "underscore"
   },
   "devDependencies": {
     "aliasify": "^1.7.2",
@@ -38,5 +39,8 @@
     "underscore": "^1.8.3",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.3.1"
+  },
+  "dependencies": {
+    "stringify": "^3.1.0"
   }
 }

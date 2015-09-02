@@ -27,7 +27,7 @@ module.exports = _.extend(tasks, {
             bundle.require(npmResolve.sync(id), {expose: id});
         });
 
-        var stream = bundle.bundle().pipe(source(opts.buildFile));
+        var stream = bundle.bundle().on('error', gutil.log).pipe(source(opts.buildFile));
         return stream.pipe(gulp.dest(opts.buildPath));
     },
 
@@ -42,7 +42,7 @@ module.exports = _.extend(tasks, {
             bundle.external(lib);
         });
 
-        var stream = bundle.bundle().pipe(source(opts.buildFile));
+        var stream = bundle.bundle().on('error', gutil.log).pipe(source(opts.buildFile));
         return stream.pipe(gulp.dest(opts.buildPath));
     },
 
@@ -57,7 +57,7 @@ module.exports = _.extend(tasks, {
             bundle.external(lib);
         });
 
-        var stream = bundle.bundle().pipe(source(opts.buildFile));
+        var stream = bundle.bundle().on('error', gutil.log).pipe(source(opts.buildFile));
         return stream.pipe(gulp.dest(opts.buildPath));
     },
 
