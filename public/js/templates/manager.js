@@ -2,7 +2,7 @@ import _ from 'lodash';
 import Marionette from 'backbone.marionette';
 
 // templates
-import dash from './dash.html';
+import content from './content.html';
 import auth from './auth.html';
 import modal from './modal.html';
 import about from './about.html';
@@ -15,7 +15,7 @@ import info from './info.html';
 import hours from './hours.html';
 
 let templates = {};
-templates.dash = dash;
+templates.content = content;
 templates.auth = auth;
 templates.modal = modal;
 templates.about = about;

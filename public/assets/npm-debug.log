@@ -1,0 +1,156 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'shimbro', '-g' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.37
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'shimbro', null ]
+6 verbose cache add name=undefined spec="shimbro" args=["shimbro",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'shimbro',
+7 verbose parsed url   path: 'shimbro',
+7 verbose parsed url   href: 'shimbro' }
+8 silly lockFile 7c01ecf0-shimbro shimbro
+9 verbose lock shimbro /home/jango/.npm/7c01ecf0-shimbro.lock
+10 silly lockFile 7c01ecf0-shimbro shimbro
+11 silly lockFile 7c01ecf0-shimbro shimbro
+12 verbose addNamed [ 'shimbro', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 57adb438-shimbro shimbro@
+15 verbose lock shimbro@ /home/jango/.npm/57adb438-shimbro.lock
+16 silly addNameRange { name: 'shimbro', range: '*', hasData: false }
+17 verbose request where is /shimbro
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id 45a3384339eab306
+20 verbose url raw /shimbro
+21 verbose url resolving [ 'https://registry.npmjs.org/', './shimbro' ]
+22 verbose url resolved https://registry.npmjs.org/shimbro
+23 verbose request where is https://registry.npmjs.org/shimbro
+24 info trying registry request attempt 1 at 19:10:03
+25 http GET https://registry.npmjs.org/shimbro
+26 http 200 https://registry.npmjs.org/shimbro
+27 silly registry.get cb [ 200,
+27 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 silly registry.get     etag: '"1L96U0R4UD9E98KQDY0EDH3CU"',
+27 silly registry.get     'content-type': 'application/json',
+27 silly registry.get     'cache-control': 'max-age=60',
+27 silly registry.get     'content-length': '15874',
+27 silly registry.get     'accept-ranges': 'bytes',
+27 silly registry.get     date: 'Tue, 01 Sep 2015 23:10:00 GMT',
+27 silly registry.get     via: '1.1 varnish',
+27 silly registry.get     age: '0',
+27 silly registry.get     connection: 'keep-alive',
+27 silly registry.get     'x-served-by': 'cache-jfk1021-JFK',
+27 silly registry.get     'x-cache': 'MISS',
+27 silly registry.get     'x-cache-hits': '0',
+27 silly registry.get     'x-timer': 'S1441149000.051852,VS0,VE36',
+27 silly registry.get     vary: 'Accept' } ]
+28 silly addNameRange number 2 { name: 'shimbro', range: '*', hasData: true }
+29 silly addNameRange versions [ 'shimbro',
+29 silly addNameRange   [ '0.0.0',
+29 silly addNameRange     '0.0.1',
+29 silly addNameRange     '0.0.2',
+29 silly addNameRange     '0.0.3',
+29 silly addNameRange     '0.0.4',
+29 silly addNameRange     '0.0.5',
+29 silly addNameRange     '0.0.6',
+29 silly addNameRange     '0.0.7',
+29 silly addNameRange     '0.0.8',
+29 silly addNameRange     '0.0.9',
+29 silly addNameRange     '0.0.10',
+29 silly addNameRange     '0.0.11' ] ]
+30 verbose addNamed [ 'shimbro', '0.0.11' ]
+31 verbose addNamed [ '0.0.11', '0.0.11' ]
+32 silly lockFile fb9368ea-shimbro-0-0-11 shimbro@0.0.11
+33 verbose lock shimbro@0.0.11 /home/jango/.npm/fb9368ea-shimbro-0-0-11.lock
+34 silly lockFile d027841c-s-org-shimbro-shimbro-0-0-11-tgz https://registry.npmjs.org/shimbro/-/shimbro-0.0.11.tgz
+35 verbose lock https://registry.npmjs.org/shimbro/-/shimbro-0.0.11.tgz /home/jango/.npm/d027841c-s-org-shimbro-shimbro-0-0-11-tgz.lock
+36 verbose addRemoteTarball [ 'https://registry.npmjs.org/shimbro/-/shimbro-0.0.11.tgz',
+36 verbose addRemoteTarball   '4b279d6eb1719a184ec8be2d10ab5ea88d21e596' ]
+37 info retry fetch attempt 1 at 19:10:03
+38 verbose fetch to= /tmp/npm-30968-HfjWuzeV/registry.npmjs.org/shimbro/-/shimbro-0.0.11.tgz
+39 http GET https://registry.npmjs.org/shimbro/-/shimbro-0.0.11.tgz
+40 http 200 https://registry.npmjs.org/shimbro/-/shimbro-0.0.11.tgz
+41 silly lockFile d027841c-s-org-shimbro-shimbro-0-0-11-tgz https://registry.npmjs.org/shimbro/-/shimbro-0.0.11.tgz
+42 silly lockFile d027841c-s-org-shimbro-shimbro-0-0-11-tgz https://registry.npmjs.org/shimbro/-/shimbro-0.0.11.tgz
+43 silly lockFile fb9368ea-shimbro-0-0-11 shimbro@0.0.11
+44 silly lockFile fb9368ea-shimbro-0-0-11 shimbro@0.0.11
+45 silly lockFile 57adb438-shimbro shimbro@
+46 silly lockFile 57adb438-shimbro shimbro@
+47 silly resolved [ { name: 'shimbro',
+47 silly resolved     version: '0.0.11',
+47 silly resolved     description: 'Tiny CLI tool for managing browserify-shim fields',
+47 silly resolved     main: 'bin/shimbro',
+47 silly resolved     scripts:
+47 silly resolved      { start: 'node ./bin/shimbro',
+47 silly resolved        test: 'echo "Error: no test specified" && exit 1' },
+47 silly resolved     bin: { shimbro: './bin/shimbro' },
+47 silly resolved     author: { name: 'Matt DesLauriers' },
+47 silly resolved     preferGlobal: true,
+47 silly resolved     dependencies:
+47 silly resolved      { optimist: '^0.6.1',
+47 silly resolved        underscore: '^1.6.0',
+47 silly resolved        inquirer: '^0.4.1',
+47 silly resolved        chalk: '^0.4.0',
+47 silly resolved        minimatch: '^0.2.14',
+47 silly resolved        wiredep: '^1.4.4' },
+47 silly resolved     repository: { type: 'git', url: 'https://github.com/mattdesl/shimbro' },
+47 silly resolved     license: 'BSD-2-Clause',
+47 silly resolved     bugs: { url: 'https://github.com/mattdesl/shimbro/issues' },
+47 silly resolved     homepage: 'https://github.com/mattdesl/shimbro',
+47 silly resolved     _id: 'shimbro@0.0.11',
+47 silly resolved     dist:
+47 silly resolved      { shasum: '4b279d6eb1719a184ec8be2d10ab5ea88d21e596',
+47 silly resolved        tarball: 'http://registry.npmjs.org/shimbro/-/shimbro-0.0.11.tgz' },
+47 silly resolved     _from: 'shimbro@',
+47 silly resolved     _npmVersion: '1.4.3',
+47 silly resolved     _npmUser: { name: 'mattdesl', email: 'dave.des@gmail.com' },
+47 silly resolved     maintainers: [ [Object] ],
+47 silly resolved     directories: {},
+47 silly resolved     _shasum: '4b279d6eb1719a184ec8be2d10ab5ea88d21e596',
+47 silly resolved     _resolved: 'https://registry.npmjs.org/shimbro/-/shimbro-0.0.11.tgz' } ]
+48 info install shimbro@0.0.11 into /usr/lib
+49 info installOne shimbro@0.0.11
+50 verbose lib/node_modules/shimbro unbuild
+51 verbose tar unpack /home/jango/.npm/shimbro/0.0.11/package.tgz
+52 silly lockFile 889b1e74-tar-usr-lib-node-modules-shimbro tar:///usr/lib/node_modules/shimbro
+53 verbose lock tar:///usr/lib/node_modules/shimbro /home/jango/.npm/889b1e74-tar-usr-lib-node-modules-shimbro.lock
+54 silly lockFile 06eed4ef-o-npm-shimbro-0-0-11-package-tgz tar:///home/jango/.npm/shimbro/0.0.11/package.tgz
+55 verbose lock tar:///home/jango/.npm/shimbro/0.0.11/package.tgz /home/jango/.npm/06eed4ef-o-npm-shimbro-0-0-11-package-tgz.lock
+56 silly gunzTarPerm modes [ '775', '664' ]
+57 error Error: EACCES, mkdir '/usr/lib/node_modules/shimbro'
+57 error  { [Error: EACCES, mkdir '/usr/lib/node_modules/shimbro']
+57 error   errno: 3,
+57 error   code: 'EACCES',
+57 error   path: '/usr/lib/node_modules/shimbro',
+57 error   fstream_type: 'Directory',
+57 error   fstream_path: '/usr/lib/node_modules/shimbro',
+57 error   fstream_class: 'DirWriter',
+57 error   fstream_stack:
+57 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+57 error      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+57 error      'Object.oncomplete (fs.js:108:15)' ] }
+58 error Please try running this command again as root/Administrator.
+59 error System Linux 3.16.0-44-generic
+60 error command "/usr/bin/node" "/usr/bin/npm" "install" "shimbro" "-g"
+61 error cwd /var/www/restaurant-cms/public/assets
+62 error node -v v0.10.37
+63 error npm -v 1.4.28
+64 error path /usr/lib/node_modules/shimbro
+65 error fstream_path /usr/lib/node_modules/shimbro
+66 error fstream_type Directory
+67 error fstream_class DirWriter
+68 error code EACCES
+69 error errno 3
+70 error stack Error: EACCES, mkdir '/usr/lib/node_modules/shimbro'
+71 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+71 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+71 error fstream_stack Object.oncomplete (fs.js:108:15)
+72 verbose exit [ 3, true ]

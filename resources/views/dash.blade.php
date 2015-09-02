@@ -14,7 +14,6 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="/build/dash.css" />
         <script type="text/javascript" src="/build/dash-vendor.js"></script>
-        <script type="text/javascript" src="/build/dash.js"></script>
 
     </head>
     <body>
@@ -38,9 +37,9 @@
                     <a class="mdl-navigation__link" href="">Hours</a>
                 </nav>
             </div>
-            <main id="app" class="mdl-layout__content">
-
-            </main>
+            <main id="app" class="mdl-layout__content"></main>
         </div>
+
+        <script type="text/javascript" src="/build/dash.js"></script>
     </body>
 </html>
