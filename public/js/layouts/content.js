@@ -6,7 +6,6 @@ class Content extends Marionette.LayoutView {
     constructor(options) {
         super();
         this.options = options || {};
-        this.app = options.app;
         this.template = Marionette.TemplateCache.get('content');
     }
 

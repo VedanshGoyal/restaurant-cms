@@ -3,13 +3,12 @@ import Backbone from 'backbone';
 class AuthModel extends Backbone.Model {
     constructor(options) {
         super();
-        this.options = options;
-        this.app = options.app;
-        this.app.authData = this.loadFromLS();
+        this.options = options || {};
+        this.authData = this.loadFromLS();
     }
 
     isAuthed() {
-        let tokenData = this.app.authData;
+        let tokenData = this.authData;
 
         if (!tokenData) { return false; }
 

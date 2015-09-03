@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Backbone from 'backbone';
 import Marionette from 'backbone.marionette';
+import Radio from 'backbone.radio';
 import AuthLayout from './layouts/auth';
 import ContentLayout from './layouts/content';
 import AuthModel from './models/auth';
@@ -15,16 +16,15 @@ class App extends Marionette.Application {
         this.$appEl = $('#app');
         this.authData = {};
 
-        this.auth = new AuthModel({app: this});
-        this.authLayout = new AuthLayout({app: this});
-        this.contentLayout = new ContentLayout({app: this});
+        this.auth = new AuthModel();
+        this.authLayout = new AuthLayout();
+        this.contentLayout = new ContentLayout();
 
         this.initApp();
     }
 
     initApp() {
         let layout = (this.auth.isAuthed()) ? this.contentLayout : this.authLayout;
-
         this.$appEl.html(layout.render().setup().el);
     }
 }
