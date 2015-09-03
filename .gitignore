@@ -2,4 +2,5 @@
 /public/node_modules
 /public/vendor
 /public/build
+/public/build/**
 .env
