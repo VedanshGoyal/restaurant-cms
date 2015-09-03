@@ -1,5 +1,10 @@
 // global application styles
-@import './variables';
-@import './helpers';
-@import './mdl-custom';
-@import './global';
+@import './global/variables';
+@import './global/mdl-custom';
+@import './global/helpers';
+@import './global/global';
+
+// reusable styles
+
+// section styles
+@import './sections/auth';
