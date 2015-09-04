@@ -1,10 +1,9 @@
 // global application styles
 @import './global/variables';
+@import './global/vendor';
 @import './global/mdl-custom';
 @import './global/helpers';
 @import './global/global';
-
-// reusable styles
 
 // section styles
 @import './sections/auth';
