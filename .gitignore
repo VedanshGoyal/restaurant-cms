@@ -1,4 +1,5 @@
 /vendor
+/public/**/*.log
 /public/node_modules
 /public/vendor
 /public/build

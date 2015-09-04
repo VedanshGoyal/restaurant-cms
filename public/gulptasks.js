@@ -1,30 +1,24 @@
 'use strict';
 
 var _ = require('underscore');
-var fs = require('fs');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var gutil = require('gulp-util');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var rename = require('gulp-rename');
-var bowerResolve = require('bower-resolve');
-var npmResolve = require('resolve');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
+var vendorManifest = require('./vendor.json');
 var tasks = {};
 
 module.exports = _.extend(tasks, {
 
     packageVendor: function(opts) {
         var bundle = browserify(opts);
+        var vendorIds = getVendorIds(opts.requireOnly);
 
-        getBowerIds(opts.requireOnly).forEach(function (id) {
-            var path = bowerResolve.fastReadSync(id);
-            bundle.require(path, {expose: id});
-        });
-
-        getNPMIds(opts.requireOnly).forEach(function (id) {
-            bundle.require(npmResolve.sync(id), {expose: id});
+        vendorIds.forEach(function(id) {
+            bundle.require(vendorManifest[id], {expose: id});
         });
 
         var stream = bundle.bundle().on('error', gutil.log).pipe(source(opts.buildFile));
@@ -33,13 +27,10 @@ module.exports = _.extend(tasks, {
 
     packageApp: function(opts) {
         var bundle = browserify(opts.source, opts);
+        var vendorIds = getVendorIds(opts.requireOnly);
 
-        getBowerIds().forEach(function (lib) {
-            bundle.external(lib);
-        });
-
-        getNPMIds().forEach(function (lib) {
-            bundle.external(lib);
+        vendorIds.forEach(function(id) {
+            bundle.external(id);
         });
 
         var stream = bundle.bundle().on('error', gutil.log).pipe(source(opts.buildFile));
@@ -48,13 +39,10 @@ module.exports = _.extend(tasks, {
 
     packageTests: function(opts) {
         var bundle = browserify(opts.source, opts);
+        var vendorIds = getVendorIds(opts.requireOnly);
 
-        getBowerIds().forEach(function (lib) {
-            bundle.external(lib);
-        });
-
-        getNPMIds().forEach(function (lib) {
-            bundle.external(lib);
+        vendorIds.forEach(function(id) {
+            bundle.external(id);
         });
 
         var stream = bundle.bundle().on('error', gutil.log).pipe(source(opts.buildFile));
@@ -73,7 +61,7 @@ module.exports = _.extend(tasks, {
     runTests: function(opts) {
         return gulp.src(opts.runnerFile)
             .pipe(mochaPhantomJS(opts))
-            .on('error', function() { this.end(); });
+            .on('error', gutil.log);
 
     },
 
@@ -87,28 +75,7 @@ module.exports = _.extend(tasks, {
 
 });
 
-function getBowerIds(requireOnly) {
-    var manifest = {};
-
-    try {
-        manifest = require('./bower.json');
-    } catch (e) {
-        gutil.log(gutil.colors.bgYellow('No bower.json file found:', e));
-    }
-
-    var packageKeys = _.keys(manifest.dependencies);
-    return _.intersection(packageKeys, requireOnly || packageKeys);
-}
-
-function getNPMIds(requireOnly) {
-    var manifest = {};
-
-    try {
-        manifest = require('./package.json');
-    } catch (e) {
-        gutil.log(gutil.colors.bgYellow('No package.json file found:', e));
-    }
-
-    var packageKeys = _.keys(manifest.dependencies);
+function getVendorIds(requireOnly) {
+    var packageKeys = _.keys(vendorManifest);
     return _.intersection(packageKeys, requireOnly || packageKeys);
 }

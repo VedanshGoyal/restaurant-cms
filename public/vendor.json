@@ -1,0 +1,14 @@
+{
+    "backbone": "./vendor/backbone/backbone.js",
+    "backbone.modal": "./vendor/backbone-modal/backbone.marionette.modals.js",
+    "backbone.babysitter": "./vendor/backbone.babysitter/lib/backbone.babysitter.js",
+    "backbone.marionette": "./vendor/backbone.marionette/lib/backbone.marionette.js",
+    "backbone.radio": "./vendor/backbone.radio/build/backbone.radio.js",
+    "backbone.tango": "./vendor/backbone.tango/dist/js/backbone.tango.js",
+    "backbone.validation": "./vendor/backbone.validation/dist/backbone-validation-amd.js",
+    "backbone.wreqr": "./vendor/backbone.wreqr/lib/backbone.wreqr.js",
+    "jquery": "./vendor/jquery/dist/jquery.js",
+    "underscore": "./vendor/lodash/lodash.js",
+    "material-design-lite": "./vendor/material-design-lite/material.js",
+    "snabbt": "./vendor/snabbt.js/snabbt.js"
+}
