@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('underscore');
+var _ = require('lodash');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var gutil = require('gulp-util');

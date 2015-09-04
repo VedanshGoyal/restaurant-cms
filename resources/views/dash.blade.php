@@ -37,7 +37,8 @@
                     <a class="mdl-navigation__link" href="">Hours</a>
                 </nav>
             </div>
-            <main id="app" class="mdl-layout__content"></main>
+            <main id="app" class="mdl-layout__content">
+            </main>
         </div>
 
         <script type="text/javascript" src="/build/dash.js"></script>

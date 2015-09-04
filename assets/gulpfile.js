@@ -10,7 +10,7 @@ gulp.task('vendor:frontpage', function () {
     var opts = {
         debug: true,
         buildFile: 'frontpage-vendor.js',
-        buildPath: './build',
+        buildPath: '../public/build',
         requireOnly: ['material-design-lite'],
     };
 
@@ -22,7 +22,7 @@ gulp.task('app:frontpage', function() {
         debug: true,
         source: './js/frontpage.js',
         buildFile: 'frontpage.js',
-        buildPath: './build',
+        buildPath: '../public/build',
     };
 
     tasks.packageApp(opts);
@@ -32,7 +32,7 @@ gulp.task('sass:frontpage', function() {
     var opts = {
         source: './sass/frontpage.scss',
         buildFile: 'frontpage.css',
-        buildPath: './build',
+        buildPath: '../public/build',
     };
 
     tasks.packageSass(opts);
