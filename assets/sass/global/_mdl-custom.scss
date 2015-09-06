@@ -11,7 +11,9 @@
 }
 .mdl-card__image {
     margin: 0 auto;
-    color: #fff; }
+    color: #fff;
+    min-height: 200px;
+}
 .mdl-card__image .mdl-card__title {
     background-color: transparent;
 }

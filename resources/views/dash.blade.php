@@ -28,79 +28,21 @@
         <script type="text/javascript" src="/build/dash-vendor.js"></script>
     </head>
     <body>
-        <div class="dash-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-
-            <header class="dash-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
-                    <span class="mdl-layout-title">Home</span>
                 </div>
             </header>
-
-            <div class="dash-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-
-                <header class="dash-drawer-header">
-                    <div class="dash-avatar-dropdown">
-                        <span>user@example.com</span>
-                        <div class="mdl-layout-spacer"></div>
-                        <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                            <i class="material-icons" role="presentation">arrow_drop_down</i>
-                            <span class="visuallyhidden">Accounts</span>
-                        </button>
-                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-                            <li class="mdl-menu__item">hello@example.com</li>
-                        </ul>
-                    </div>
-                </header>
-
-                <nav class="dash-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Title</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="">Link</a>
                 </nav>
             </div>
-            <main class="mdl-layout__content mdl-color--grey-100">
-                <div class="mdl-grid dash-content">
-
-                    <div class="mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
-                        <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">Welcome</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Mauris sagittis pellentesque lacus eleifend lacinia...
-                        </div>
-                    </div>
-
-                    <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-                        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-                            <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text">Welcome</h2>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Mauris sagittis pellentesque lacus eleifend lacinia...
-                            </div>
-                            <div class="mdl-card__actions mdl-card--border">
-                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                    Get Started
-                                </a>
-                            </div>
-                        </div>
-
-                         <div class="dash-separator mdl-cell--1-col"></div>
-
-                        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
-                            <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text">Welcome</h2>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Mauris sagittis pellentesque lacus eleifend lacinia...
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <main class="mdl-layout__content">
+                <div class="page-content"><!-- Your content goes here --></div>
             </main>
         </div>
-
-    <script type="text/javascript" src="/build/dash.js"></script>
-</body>
+        <script type="text/javascript" src="/build/dash.js"></script>
+    </body>
 </html>
