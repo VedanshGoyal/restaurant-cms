@@ -42,7 +42,7 @@ gulp.task('vendor:dash', function () {
     var opts = {
         debug: true,
         buildFile: 'dash-vendor.js',
-        buildPath: './build',
+        buildPath: '../public/build',
     };
 
     tasks.packageVendor(opts);
@@ -53,7 +53,7 @@ gulp.task('app:dash', function() {
         debug: true,
         source: './js/dash.js',
         buildFile: 'dash.js',
-        buildPath: './build',
+        buildPath: '../public/build',
     };
 
     tasks.packageApp(opts);
@@ -63,18 +63,23 @@ gulp.task('sass:dash', function() {
     var opts = {
         source: './sass/dash.scss',
         buildFile: 'dash.css',
-        buildPath: './build',
+        buildPath: '../public/build',
     };
 
     tasks.packageSass(opts);
 });
 
-gulp.task('watch:frontpage', function () {
+gulp.task('watch:frontpage', function() {
     tasks.setWatcher({watchPath: './js/frontpage.js', task: 'app:frontpage'});
     tasks.setWatcher({watchPath: './sass/**/*.scss', task: 'sass:frontpage'});
 });
 
-gulp.task('watch:dash', function () {
+gulp.task('watch:dash', function() {
     tasks.setWatcher({watchPath: ['./js/**/*.js', './js/templates/*.html'], task: 'app:dash'});
     tasks.setWatcher({watchPath: './sass/**/*.scss', task: 'sass:dash'});
+});
+
+gulp.task('watch:all', function() {
+    gulp.start('watch:frontpage');
+    gulp.start('watch:dash');
 });
