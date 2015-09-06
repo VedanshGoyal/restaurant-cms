@@ -24,17 +24,11 @@
                     <div class="mdl-layout-spacer"></div>
                     <nav class="mdl-navigation mdl-layout--large-screen-only">
                         <a class="mdl-navigation__link" href="">Link</a>
-                        <a class="mdl-navigation__link" href="">Link</a>
-                        <a class="mdl-navigation__link" href="">Link</a>
-                        <a class="mdl-navigation__link" href="">Link</a>
                     </nav>
                 </div>
             </header>
             <div class="mdl-layout__drawer">
                 <nav class="mdl-navigation">
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
                     <a class="mdl-navigation__link" href="">Link</a>
                 </nav>
             </div>
@@ -44,13 +38,13 @@
                     <div class="mdl-cell mdl-cell__info mdl-cell--12-col">
                         555-555-5555 | 55 Jewett St, Providence RI 02908
                     </div>
-                </section><!-- .info-section -->
+                </section>
 
                 <section class="mdl-grid title-section mdl-shadow--4dp">
                     <div class="mdl-cell mdl-cell--12-col text-center">
                         <h1>Restaurant CMS</h1>
                     </div>
-                </section><!-- .title-section -->
+                </section>
 
                 <section class="section--center mdl-grid mdl-grid--no-spacing about-section">
                     <div class="mdl-card mdl-cell mdl-cell--12-col text-center mdl-shadow--4dp">
@@ -62,7 +56,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Mauris sagittis pellentesque lacus eleifend lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia.</p>
                         </div>
                     </div>
-                </section><!-- .about-section -->
+                </section>
 
                 <section class="section--center mdl-grid mdl-grid--no-spacing">
                     <div class="mdl-card mdl-cell mdl-cell--12-col text-center mdl-shadow--4dp menu-section">
@@ -72,49 +66,50 @@
                         <div class="mdl-card__supporting-text">
                             <h5>Menu Section</h5>
                             <div class="mdl-grid">
-                                <div class="section__text mdl-cell mdl-cell--6-col">
+                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
                                     <h6>Menu Item</h6>
                                     <p>Descript of the menu item</p>
                                     <div class="section__prices">5.50</div>
                                 </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col">
+                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
                                     <h6>Menu Item</h6>
                                     <div class="section__prices">5.50</div>
                                 </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col">
+                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
                                     <h6>Menu Item</h6>
                                     <div class="section__prices">5.50</div>
                                 </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col">
+                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
                                     <h6>Menu Item</h6>
                                     <p>Descript of the menu item</p>
                                     <div class="section__prices">5.50</div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="mdl-card__supporting-text">
                             <h5>Menu Section</h5>
                             <div class="mdl-grid">
-                                <div class="section__text mdl-cell mdl-cell--6-col">
+                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
                                     <h6>Menu Item</h6>
                                     <p>Descript of the menu item</p>
                                     <div class="section__prices">
                                         small: 5.50 - large: 5.50
                                     </div>
                                 </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col">
+                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
                                     <h6>Menu Item</h6>
                                     <div class="section__prices">
                                         small: 5.50 - large: 5.50
                                     </div>
                                 </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col">
+                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
                                     <h6>Menu Item</h6>
                                     <div class="section__prices">
                                         small: 5.50 - large: 5.50
                                     </div>
                                 </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col">
+                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
                                     <h6>Menu Item</h6>
                                     <p>Descript of the menu item</p>
                                     <div class="section__prices">
@@ -125,7 +120,7 @@
                         </div>
                     </div>
 
-                </section><!-- .menu-section -->
+                </section>
 
                 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--4dp">
                     <div class="mdl-card mdl-cell mdl-cell--12-col text-center">
@@ -136,23 +131,23 @@
                             <div class="mdl-card mdl-card__image mdl-shadow--4dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone" style="background: url('/imgs/cityscape1.jpg') center / cover;">
                                 <div class="mdl-card__title mdl-card--expand"></div>
                                 <div class="mdl-card__actions">
-                                    <span class="demo-card-image__filename">Image.jpg</span>
+                                    <span>Image.jpg</span>
                                 </div>
                             </div>
                             <div class="mdl-card mdl-card__image mdl-shadow--4dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--hide-phone" style="background: url('/imgs/cityscape1.jpg') center / cover;">
                                 <div class="mdl-card__title mdl-card--expand"></div>
                                 <div class="mdl-card__actions">
-                                    <span class="demo-card-image__filename">Image.jpg</span>
+                                    <span>Image.jpg</span>
                                 </div>
                             </div>
                             <div class="mdl-card mdl-card__image mdl-shadow--4dp mdl-cell--4-col-desktop mdl-cell--hide-phone mdl-cell--hide-tablet" style="background: url('/imgs/cityscape1.jpg') center / cover;">
                                 <div class="mdl-card__title mdl-card--expand"></div>
                                 <div class="mdl-card__actions">
-                                    <span class="demo-card-image__filename">Image.jpg</span>
+                                    <span>Image.jpg</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="mdl-setion mdl-card--border">
+                        <div class="mdl-card__actions mdl-card--border">
                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Backward</a>
                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right-text">Forward</a>
                         </div>
@@ -162,22 +157,25 @@
                     <div class="mdl-mega-footer__top-section mlg-grid text-center">
 
                         <div class="mdl-mega-footer__left-section mdl-cell--6-col">
-                            <h6 class="mdl-mega-footer__heading">Info</h6>
+                            <h6 class="mdl-mega-footer__heading">Restaurant CMS</h6>
                             <ul class="mdl-mega-footer__link-list">
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Partners</a></li>
-                                <li><a href="#">Updates</a></li>
+                                <li>55 Jewett St</li>
+                                <li>Providence RI</li>
+                                <li>555-555-5555</li>
+                                <li>555-555-5555</li>
                             </ul>
                         </div>
 
                         <div class="mdl-mega-footer__left-section mdl-cell--6-col">
-                            <h6 class="mdl-mega-footer__heading">Info</h6>
+                            <h6 class="mdl-mega-footer__heading">Hours</h6>
                             <ul class="mdl-mega-footer__link-list">
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Partners</a></li>
-                                <li><a href="#">Updates</a></li>
+                                <li>Sunday 11:00 - 8:00</li>
+                                <li>Monday 11:00 - 8:00</li>
+                                <li>Tuesday 11:00 - 8:00</li>
+                                <li>Wednesday 11:00 - 8:00</li>
+                                <li>Thursday 11:00 - 8:00</li>
+                                <li>Friday 11:00 - 8:00</li>
+                                <li>Saturday 11:00 - 8:00</li>
                             </ul>
                         </div>
 
