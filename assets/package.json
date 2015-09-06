@@ -30,5 +30,11 @@
     "source-map-support": "^0.3.2",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.3.1"
+  },
+  "dependencies": {
+    "backbone-routing": "^0.2.0",
+    "backbone-service-modals": "^0.2.0",
+    "backbone.service": "^0.5.0",
+    "backbone.syphon": "^0.6.2"
   }
 }
