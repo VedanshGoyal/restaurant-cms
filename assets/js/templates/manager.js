@@ -1,12 +1,15 @@
 import _ from 'underscore';
-import Marionette from 'backbone.marionette';
+import {TemplateCache} from 'backbone.marionette';
+import app from './app.html';
 
-let templates = {};
+let templates = {
+    app: app,
+};
 
-Marionette.TemplateCache.prototype.loadTemplate = function (templateId, options) {
+TemplateCache.prototype.loadTemplate = function(templateId, options) {
     return templates[templateId];    
 };
 
-Marionette.TemplateCache.prototype.compileTemplate = function (rawTemplate, options) {
+TemplateCache.prototype.compileTemplate = function(rawTemplate, options) {
     return _.template(rawTemplate);
 };
