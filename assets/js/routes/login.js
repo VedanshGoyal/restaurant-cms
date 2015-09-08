@@ -9,5 +9,5 @@ export default Route.extend({
     render() {
         this.view = new LoginView();
         this.container.show(this.view);
-    }
+    },
 });
