@@ -15,7 +15,6 @@ export default Router.extend({
 
     initialize(options = {}) {
         this.container = options.container;
-        this.on('enter', this._resetMDL);
     },
 
     login() {
