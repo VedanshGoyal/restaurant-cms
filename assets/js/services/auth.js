@@ -1,5 +1,4 @@
 import Service from 'backbone.service';
-import AuthModel from '../models/auth';
 
 const AuthService = Service.extend({
     requests: {
@@ -7,7 +6,7 @@ const AuthService = Service.extend({
     },
 
     setup(options = {}) {
-        this.model = new AuthModel();
+        this.model = options.model;
     },
 
     isAuthed() {

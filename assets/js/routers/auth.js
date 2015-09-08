@@ -15,30 +15,25 @@ export default Router.extend({
 
     initialize(options = {}) {
         this.container = options.container;
+        this.model = options.model;
     },
 
     login() {
         HeaderService.request('setTitle', 'Login');
 
-        return new LoginRoute({
-            container: this.container,
-        });
+        return new LoginRoute(this._getRouteOptions());
     },
 
     create() {
         HeaderService.request('setTitle', 'Create Account');
 
-        return new CreateRoute({
-            container: this.container,
-        });
+        return new CreateRoute(this._getRouteOptions());
     },
 
     forgot() {
         HeaderService.request('setTitle', 'Forgot Password');
 
-        return new ForgotRoute({
-            container: this.container,
-        });
+        return new ForgotRoute(this._getRouteOptions());
     },
 
     verifyReset(token) {
@@ -47,5 +42,12 @@ export default Router.extend({
 
     verifyCreate(token) {
 
+    },
+
+    _getRouteOptions() {
+        return {
+            container: this.container,
+            model: this.model,
+        };
     },
 });

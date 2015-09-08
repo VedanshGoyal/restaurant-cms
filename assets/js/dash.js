@@ -14,6 +14,8 @@ import HeaderService from './services/header';
 import IndexRouter from './routers/index';
 import AuthRouter from './routers/auth';
 
+import AuthModel from './models/auth';
+
 const App = Application.extend({
     initialize() {
         this.layout = new AppLayout();
@@ -22,13 +24,14 @@ const App = Application.extend({
 });
 
 const app = new App();
+const authModel = new AuthModel();
 
-AuthService.setup();
+AuthService.setup({model: authModel});
 HeaderService.setup();
 
 app.routers = {
     index: new IndexRouter(),
-    auth: new AuthRouter({container: app.layout.content}),
+    auth: new AuthRouter({container: app.layout.content, model: authModel}),
 };
 
 
