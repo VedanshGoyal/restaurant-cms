@@ -32,6 +32,7 @@
     "watchify": "^3.3.1"
   },
   "dependencies": {
+    "backbone-metal": "^0.6.2",
     "backbone-routing": "^0.2.0",
     "backbone-service-modals": "^0.2.0",
     "backbone.service": "^0.5.0",
