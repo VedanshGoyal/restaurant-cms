@@ -4,6 +4,7 @@ import MDLBehavior from '../behaviors/mdl';
 import FormBehavior from '../behaviors/form';
 import ModelErrorBehavior from '../behaviors/model-error';
 import NotifyService from '../services/notify';
+import LoadingService from '../services/loading';
 
 export default ItemView.extend({
     template: TemplateCache.get('login'),
@@ -22,10 +23,12 @@ export default ItemView.extend({
     },
 
     handleSubmit() {
+        LoadingService.request('show');
         this.model.url = Config.apiRoot + '/login';
         this.model.set(this.form);
 
         this.model.save().done(response => {
+            LoadingService.request('hide');
             NotifyService.request('success', 'Welcome back!');
             let attributesString = JSON.stringify(this.model.attributes);
             window.localStorage.setItem(Config.storageName, attributesString);

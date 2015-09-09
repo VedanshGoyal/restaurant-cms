@@ -11,6 +11,7 @@ import AppLayout from './layouts/app';
 import AuthService from './services/auth';
 import HeaderService from './services/header';
 import NotifyService from './services/notify';
+import LoadingService from './services/loading';
 import IndexRouter from './routers/index';
 import AuthRouter from './routers/auth';
 import AuthModel from './models/auth';
@@ -28,6 +29,7 @@ const authModel = new AuthModel();
 AuthService.setup({model: authModel});
 HeaderService.setup();
 NotifyService.setup();
+LoadingService.setup();
 
 app.routers = {
     index: new IndexRouter(),
