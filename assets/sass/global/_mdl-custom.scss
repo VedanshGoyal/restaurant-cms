@@ -21,6 +21,11 @@
     background: unquote("rgb(#{$color-primary})");
     color: #fff;
 }
+.mdl-card__actions {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+}
 
 .mdl-cell__info {
     padding :10px 0;
