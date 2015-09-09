@@ -14,26 +14,32 @@ const Notify = Service.extend({
         this.tango = new Tango();
     },
 
-    error(messages = {}) {
+    error(messages) {
         this._notify('error', messages);
     },
 
-    notfiySuccess(messages = {}) {
+    success(messages) {
         this._notify('success', messages);
     },
 
-    notifyInfo(messages = {}) {
+    info(messages) {
         this._notify('info', messages);
     },
 
-    notifyWarning(messags = {}) {
+    warning(messags) {
         this._notify('warning', messages);
     },
 
-    _notify(type = 'error', messages = {}) {
-        _.each(messages, message => {
-            this.tango[type](_.first(message));
-        });
+    _notify(type = 'error', messages) {
+
+        if (_.isObject(messages) || _.isArray(messages)) {
+            _.each(messages, message => {
+                message = _.isArray(message) ? _.first(message) : message;
+                this.tango[type](message);
+            });
+        } else {
+            this.tango[type](messages);
+        }
     },
 });
 
