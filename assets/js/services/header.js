@@ -1,9 +1,10 @@
 import _ from 'underscore';
 import $ from 'jquery';
+import {TemplateCache} from 'backbone.marionette';
 import Service from 'backbone.service';
 
 const HeaderService = Service.extend({
-    template: _.template('<span class="mdl-layout-title"><%- title %></span>'),
+    template: TemplateCache.get('header'),
     requests: {
         setTitle: 'setTitle',
         clearTitle: 'clearTitle',
