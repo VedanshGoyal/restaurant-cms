@@ -1,3 +1,4 @@
 export default {
-    apiStorageKey: 'api-session',
+    apiRoot: '/api-V1',
+    storageName: 'api-session',
 };
