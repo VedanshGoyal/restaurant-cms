@@ -30,6 +30,7 @@ export default ItemView.extend({
         this.model.save().done(response => {
             LoadingService.request('hide');
             NotifyService.request('success', 'Welcome back!');
+
             let attributesString = JSON.stringify(this.model.attributes);
             window.localStorage.setItem(Config.storageName, attributesString);
             window.location.hash = ' ';
