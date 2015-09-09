@@ -1,12 +1,28 @@
+import _ from 'underscore';
 import {Model} from 'backbone';
 import Config from '../config';
 
 export default Model.extend({
-    initialize(options = {}) {
-        this._loadFromStorage();
+    defaults: {
+        token: null,
+        expiresIn: null,
     },
 
-    _loadFromStorage() {
-        let tokenData = localStorage.getItem(Config.authStorageKey);
+    initialize(options = {}) {
+        this.on('sync', this.clearPassword);
+        this.loadFromStorage();
+    },
+
+    clearPassword() {
+        this.unset('password', {silent: true});
+    },
+
+    loadFromStorage() {
+        let storedData = JSON.parse(localStorage.getItem(Config.storageName));
+
+        if (_.isObject(storedData)) {
+            console.log('setting from storage');
+            this.set(storedData);
+        }
     }
 });
