@@ -10,10 +10,9 @@ import './templates/manager';
 import AppLayout from './layouts/app';
 import AuthService from './services/auth';
 import HeaderService from './services/header';
-
+import NotifyService from './services/notify';
 import IndexRouter from './routers/index';
 import AuthRouter from './routers/auth';
-
 import AuthModel from './models/auth';
 
 const App = Application.extend({
@@ -28,6 +27,7 @@ const authModel = new AuthModel();
 
 AuthService.setup({model: authModel});
 HeaderService.setup();
+NotifyService.setup();
 
 app.routers = {
     index: new IndexRouter(),
