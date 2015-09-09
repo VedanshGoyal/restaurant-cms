@@ -10,6 +10,10 @@ const AuthService = Service.extend({
     },
 
     isAuthed() {
+        if (this.model.hasValidSession()) {
+            return true;
+        }
+
         return false;
     }
 });

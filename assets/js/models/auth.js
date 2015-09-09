@@ -21,8 +21,11 @@ export default Model.extend({
         let storedData = JSON.parse(localStorage.getItem(Config.storageName));
 
         if (_.isObject(storedData)) {
-            console.log('setting from storage');
             this.set(storedData);
         }
-    }
+    },
+
+    hasValidSession() {
+        return false;
+    },
 });
