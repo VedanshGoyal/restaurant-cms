@@ -84,20 +84,6 @@ class UsersRepoTest extends \TestCase
         $this->assertInstanceOf('Restaurant\Models\User', $user);
     }
 
-    /**
-     * @expectedException Restaurant\Exceptions\RepositoryException
-     */
-    public function testFindByTokenThrowsExceptionWhenNoValidModelFound()
-    {
-        $type = 'reset';
-        $token = 'test-token';
-
-        $this->repoModel->shouldReceive('where')->once()->with('resetToken', $token)->andReturn($this->mockCollection);
-        $this->mockCollection->shouldReceive('first')->once()->andReturn(null);
-
-        $user = $this->repo->findByToken($token, $type);
-    }
-
     public function testFindByEmailFindsAndReturnsUserModel()
     {
         $mockEmail = 'user@example.com';
@@ -108,18 +94,5 @@ class UsersRepoTest extends \TestCase
         $user = $this->repo->findByEmail($mockEmail);
         $this->assertInstanceOf('Restaurant\Models\User', $user);
 
-    }
-
-    /**
-     * @expectedException Restaurant\Exceptions\RepositoryException
-     */
-    public function testFindAndReturnsThrowsExceptionWhenInvalidModel()
-    {
-        $mockEmail = 'user@example.com';
-
-        $this->repoModel->shouldReceive('where')->once()->with('email', $mockEmail)->andReturn($this->mockCollection);
-        $this->mockCollection->shouldReceive('first')->once()->andReturn(null);
-
-        $user = $this->repo->findByEmail($mockEmail);
     }
 }

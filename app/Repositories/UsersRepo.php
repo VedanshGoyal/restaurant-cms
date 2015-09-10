@@ -82,17 +82,6 @@ class UsersRepo
         $tokenType = "{$type}Token";
         $user = $this->model->where($tokenType, $token)->first();
 
-        if (!$this->isValidModel($user)) {
-            $logData =[
-                'repository_model' => print_r($this->model, true),
-                'query_model' => print_r($user, true),
-                'query_token' => sprintf('%s', $token),
-                'query_token_type' => sprintf('%s', $type),
-            ];
-
-            throw new RepositoryException('Failed to find user by token.', $logData);
-        }
-
         return $user;
     }
 
@@ -105,16 +94,6 @@ class UsersRepo
     public function findByEmail($email)
     {
         $user = $this->model->where('email', $email)->first();
-
-        if (!$this->isValidModel($user)) {
-            $logData =[
-                'repository_model' => print_r($this->model, true),
-                'query_model' => print_r($user, true),
-                'query_email' => sprintf('%s', $email),
-            ];
-
-            throw new RepositoryException('Failed to find user by email.', $logData);
-        }
 
         return $user;
     }

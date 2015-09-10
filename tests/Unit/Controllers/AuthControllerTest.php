@@ -45,18 +45,48 @@ class AuthControllerTest extends \TestCase
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
     }
 
+    public function testLoginReturnsErrorMessageOnFailer()
+    {
+        $mockInput = ['test' => 'input'];
+        $mockRequest = $this->getMockRequest('LoginRequest');
+
+        $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
+        $this->mockAuth->shouldReceive('attempt')->once()->with($mockInput)->andReturn(false);
+        $this->mockResponse->shouldReceive('create')->once()
+            ->with(m::type('array'), 400)->andReturn($this->mockResponse);
+
+        $response = $this->controller->login($mockRequest);
+        $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
+    }
+
     public function testRegisterReturnsSuccessResponse()
     {
         $mockInput = ['test' => 'input'];
         $mockUser = m::mock('Restaurant\Models\User')->makePartial();
         $mockRequest = $this->getMockRequest('RegisterRequest');
-        $mockCreateEvent = m::mock('Restaurant\Events\UserCreateEvent', [$mockUser])->makePartial();
+        $mockCreateEvent = m::mock('Restaurant\Events\UserCreateEvent')->makePartial();
 
         $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
         $this->mockUsersRepo->shouldReceive('create')->once()->with($mockInput)->andReturn($mockUser);
         $mockUser->shouldReceive('generateToken')->once()->with('create');
         //$this->mockEvents->shouldReceive('fire')->once()->with($mockCreateEvent);
-        $this->mockResponse->shouldReceive('create')->once()->with(['ok' => true])->andReturn($this->mockResponse);
+        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'))->andReturn($this->mockResponse);
+
+        $response = $this->controller->register($mockRequest);
+        $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
+    }
+
+    public function testRegisterReturnsErrorResponseOnCreateFail()
+    {
+        $mockInput = ['test' => 'input'];
+        $mockRequest = $this->getMockRequest('RegisterRequest');
+        $mockCreateEvent = m::mock('Restaurant\Events\UserCreateEvent')->makePartial();
+
+        $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
+        $this->mockUsersRepo->shouldReceive('create')->once()->with($mockInput)->andReturn(false);
+        //$this->mockEvents->shouldReceive('fire')->once()->with($mockCreateEvent);
+        $this->mockResponse->shouldReceive('create')->once()
+            ->with(m::type('array'), 400)->andReturn($this->mockResponse);
 
         $response = $this->controller->register($mockRequest);
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
@@ -73,27 +103,9 @@ class AuthControllerTest extends \TestCase
         $this->mockUsersRepo->shouldReceive('findByEmail')->once()->with($mockEmail)->andReturn($mockUser);
         $mockUser->shouldReceive('generateToken')->once()->with('reset');
         //$this->mockEvents->shouldReceive('fire')->once()->with($mockResetEvent);
-        $this->mockResponse->shouldReceive('create')->once()->with(['ok' => true])->andReturn($this->mockResponse);
+        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'))->andReturn($this->mockResponse);
 
         $response = $this->controller->resetPassword($mockRequest);
-        $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
-    }
-
-    public function testVerifyNewFindsAuthenticatesAndActivatesUser()
-    {
-        $whitelist = ['token', 'email', 'password'];
-        $mockInput = ['test' => 'input'];
-        $mockToken = 'token';
-        $mockUser = m::mock('Restaurant\Models\User')->makePartial();
-        $mockRequest = $this->getMockRequest('VerifyNewRequest');
-
-        $mockRequest->shouldReceive('only')->once()->with($whitelist)->andReturn($mockInput);
-        $this->mockAuth->shouldReceive('attempt')->once()->with($mockInput)->andReturn($mockToken);
-        $this->mockAuth->shouldReceive('user')->once()->withNoArgs()->andReturn($mockUser);
-        $mockUser->shouldReceive('setActive')->once()->withNoArgs()->andReturn(true);
-        $this->mockResponse->shouldReceive('create')->once()->with(m::type('string'))->andReturn($this->mockResponse);
-
-        $response = $this->controller->verifyNew($mockRequest);
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
     }
 
@@ -130,6 +142,41 @@ class AuthControllerTest extends \TestCase
         $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'))->andReturn($this->mockResponse);
 
         $response = $this->controller->verifyReset($mockRequest);
+        $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
+    }
+
+    public function testResetPasswordReturnsErrorResponseNoUserFound()
+    {
+        $mockEmail = 'email@example.com';
+        $mockUser = m::mock('Restaurant\Models\User')->makePartial();
+        $mockRequest = $this->getMockRequest('ForgotPasswordRequest');
+        $mockResetEvent = m::mock('Restaurant\Events\UserResetEvent')->makePartial();
+
+        $mockRequest->shouldReceive('get')->once()->with('email')->andReturn($mockEmail);
+        $this->mockUsersRepo->shouldReceive('findByEmail')->once()->with($mockEmail)->andReturn(false);
+        //$this->mockEvents->shouldReceive('fire')->once()->with($mockResetEvent);
+        $this->mockResponse->shouldReceive('create')->once()
+            ->with(m::type('array'), 404)->andReturn($this->mockResponse);
+
+        $response = $this->controller->resetPassword($mockRequest);
+        $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
+    }
+
+    public function testVerifyNewFindsAuthenticatesAndActivatesUser()
+    {
+        $whitelist = ['token', 'email', 'password'];
+        $mockInput = ['test' => 'input'];
+        $mockToken = 'token';
+        $mockUser = m::mock('Restaurant\Models\User')->makePartial();
+        $mockRequest = $this->getMockRequest('VerifyNewRequest');
+
+        $mockRequest->shouldReceive('only')->once()->with($whitelist)->andReturn($mockInput);
+        $this->mockAuth->shouldReceive('attempt')->once()->with($mockInput)->andReturn($mockToken);
+        $this->mockAuth->shouldReceive('user')->once()->withNoArgs()->andReturn($mockUser);
+        $mockUser->shouldReceive('setActive')->once()->withNoArgs()->andReturn(true);
+        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'))->andReturn($this->mockResponse);
+
+        $response = $this->controller->verifyNew($mockRequest);
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
     }
 

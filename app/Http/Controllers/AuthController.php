@@ -45,7 +45,7 @@ class AuthController extends Controller
         if (!$token || !is_string($token)) {
             return $this->response->create([
                 'error' => 'The username or password provided was not correct.',
-            ], 401);
+            ], 400);
         }
         
         return $this->response->create(['token' => $token]);
@@ -62,10 +62,16 @@ class AuthController extends Controller
         $input = $request->only($whitelist);
         $user = $this->usersRepo->create($input);
 
+        if (!$user) {
+            return $this->response->create([
+                'error' => 'Failed to create new account.',
+            ], 400);
+        }
+
         $user->generateToken('create');
         $this->events->fire(new UserCreateEvent($user));
 
-        return $this->response->create(['ok' => true]);
+        return $this->response->create(['ok' => 'Account create. Please check email for verification link.']);
     }
 
     /**
@@ -79,10 +85,14 @@ class AuthController extends Controller
         $email = $request->get('email');
         $user = $this->usersRepo->findByEmail($email);
 
+        if (!$user) {
+            return $this->response->create(['error' => 'No matching account found.'], 404);
+        }
+
         $user->generateToken('reset');
         $this->events->fire(new PasswordResetEvent($user));
 
-        return $this->response->create(['ok' => true]);
+        return $this->response->create(['ok' => 'Please check email for password reset link']);
     }
     
     /**
@@ -99,13 +109,13 @@ class AuthController extends Controller
 
         if (!$token || !is_string($token)) {
             return $this->response->create([
-                'error' => 'The email or password provided was not correct.',
+                'error' => 'The email or password provided was incorrect.',
             ], 401);
         }
 
         $this->auth->user()->setActive();
 
-        return $this->response->create('Account activated successfully.');
+        return $this->response->create(['ok' => 'Account successfully activated']);
     }
 
     /**
@@ -120,9 +130,15 @@ class AuthController extends Controller
         $input = $request->only($whitelist);
         $user = $this->usersRepo->findByToken($input['token'], 'reset');
 
+        if (!$user) {
+            return $this->response->create([
+                'error' => 'The token provided was not valid.',
+            ], 404);
+        }
+
         $this->usersRepo->update($user->id, $input);
         $user->clearReset();
 
-        return $this->response->create(['ok' => true]);
+        return $this->response->create(['ok' => 'Password reset successfully.']);
     }
 }
