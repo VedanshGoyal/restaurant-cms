@@ -1,8 +1,9 @@
 import {Router} from 'backbone.routing';
+import HeaderService from '../services/header';
 import LoginRoute from '../routes/login';
 import CreateRoute from '../routes/create';
 import ForgotRoute from '../routes/forgot';
-import HeaderService from '../services/header';
+import ResetRoute from '../routes/reset';
 
 export default Router.extend({
     routes: {
@@ -37,11 +38,14 @@ export default Router.extend({
     },
 
     verifyReset(token) {
+        HeaderService.request('setTitle', 'Reset Password');
+        this.model.set('token', token);
 
+        return new ResetRoute(this._getRouteOptions());
     },
 
     verifyCreate(token) {
-
+        console.log('verify new', token);
     },
 
     _getRouteOptions() {

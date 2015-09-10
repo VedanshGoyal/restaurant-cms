@@ -1,18 +1,16 @@
-<div class="mdl-card__supporting-text">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="password" id="password-input" />
-        <label class="mdl-textfield__label" for="password">New Password</label>
+<form>
+    <div class="mdl-card__supporting-text">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="password" type="password" id="password-input" />
+            <label class="mdl-textfield__label" for="password">Password</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="password_confirmation" type="password" id="password-confirmation-input" />
+            <label class="mdl-textfield__label" for="password_confirmation">Confirm Password</label>
+        </div>
     </div>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="password-confirmation" id="password-confirmation-input" />
-        <label class="mdl-textfield__label" for="password-confirmation">Confirm New Password</label>
+    <div class="mdl-card__actions mdl-card--border">
+        <div class="mdl-layout-spacer"></div>
+        <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
     </div>
-    <div class="text-center">
-        <a href="#login" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Login</a>
-        <span> - </span>
-        <a href="#create" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Create Account</a>
-    </div>
-</div>
-<div class="mdl-card__actions mdl-card--border text-right">
-    <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
-</div>
+</form>

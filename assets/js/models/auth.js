@@ -9,12 +9,13 @@ export default Model.extend({
     },
 
     initialize(options = {}) {
-        this.on('sync', this.clearPassword);
+        this.on('sync', this.clearPasswordAttrs);
         this.loadFromStorage();
     },
 
-    clearPassword() {
+    clearPasswordAttrs() {
         this.unset('password', {silent: true});
+        this.unset('password_confirmation', {silent: true});
     },
 
     loadFromStorage() {

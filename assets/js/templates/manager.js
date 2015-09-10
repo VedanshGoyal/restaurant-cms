@@ -5,6 +5,7 @@ import header from './header.html';
 import login from './login.html';
 import create from './create.html';
 import forgot from './forgot.html';
+import reset from './reset.html';
 
 let templates = {
     app: app,
@@ -12,6 +13,7 @@ let templates = {
     login: login,
     create: create,
     forgot: forgot,
+    reset: reset,
 };
 
 TemplateCache.prototype.loadTemplate = function(templateId, options) {
