@@ -46,7 +46,7 @@ class UserEventListener
     public function onUserCreate(UserCreateEvent $event)
     {
         $user = $event->user;
-        $url = url('/') . '#create-token=' . $user->createToken;
+        $url = url('/dash/') . '#verfiy-new/' . $user->createToken;
 
         $this->mailer->send('emails.verify-new', ['verifyUrl' => $url], function ($mailer) use ($user) {
             $mailer->subject('Verify New Account')->to($user->email);
@@ -62,7 +62,7 @@ class UserEventListener
     public function onPasswordReset(PasswordResetEvent $event)
     {
         $user = $event->user;
-        $url = url('/') . '#reset-token=' . $user->resetToken;
+        $url = url('/dash/') . '#verify-reset/' . $user->resetToken;
 
         $this->mailer->send('emails.verify-reset', ['verifyUrl' => $url], function ($mailer) use ($user) {
             $mailer->subject('Password Reset')->to($user->email);
