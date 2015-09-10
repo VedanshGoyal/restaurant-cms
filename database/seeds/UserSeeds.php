@@ -23,7 +23,7 @@ class UserSeeds extends Seeder
 
         $user = User::create([
             'email' => 'me@nickc.io',
-            'password' => 'password',
+            'password' => Str::random(64),
         ]);
 
         $user->attachRole($admin);
