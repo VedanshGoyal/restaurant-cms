@@ -13,7 +13,13 @@ trait RESTTrait
      */
     public function index()
     {
-        $collection = $this->repository->readAll($this->with);
+        $collection = $this->repository->readAll();
+
+        if (!$collection) {
+            return $this->response->create([
+                'error' => 'Could not find requested resources.',
+            ], 404);
+        }
 
         return $this->response->create($collection);
     }
@@ -28,18 +34,30 @@ trait RESTTrait
         $input = $this->request->only($this->whiteList);
         $model = $this->repository->create($input);
 
+        if (!$model) {
+            return $this->response->create([
+                'error' => 'Failed to create new resource.',
+            ], 400);
+        }
+
         return $this->response->create($model);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
     {
-        $model = $this->repository->readSingle($id, $this->with);
+        $model = $this->repository->readSingle($id);
+
+        if (!$model) {
+            return $this->response->create([
+                'error' => 'Failed to find requested resource.',
+            ], 404);
+        }
 
         return $this->response->create($model);
     }
@@ -47,7 +65,7 @@ trait RESTTrait
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update($id)
@@ -55,18 +73,30 @@ trait RESTTrait
         $input = $this->request->only($this->whiteList);
         $model = $this->repository->update($id, $input);
 
+        if (!$model) {
+            return $this->response->create([
+                'error' => 'Failed to update resource.',
+            ], 400);
+        }
+
         return $this->response->create($model);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
     {
         $isDeleted = $this->repository->delete($id);
+
+        if (!$isDeleted) {
+            return $this->response->create([
+                'error' => 'Failed to delete resource.',
+            ], 400);
+        }
 
         return $this->response->create(['ok' => $isDeleted]);
     }
