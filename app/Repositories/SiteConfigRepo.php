@@ -2,7 +2,6 @@
 
 namespace Restaurant\Repositories;
 
-class SiteConfigRepo
+class SiteConfigRepo extends CRUDRepo
 {
-    use CRUDTrait;
 }

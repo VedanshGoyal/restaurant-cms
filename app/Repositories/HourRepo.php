@@ -2,7 +2,6 @@
 
 namespace Restaurant\Repositories;
 
-class HourRepo
+class HourRepo extends CRUDRepo
 {
-    use CRUDTrait;
 }

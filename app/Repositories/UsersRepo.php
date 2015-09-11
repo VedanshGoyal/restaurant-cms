@@ -6,10 +6,8 @@ use Restaurant\Models\User;
 use Bican\Roles\Models\Role;
 use Restaurant\Exceptions\RepositoryException;
 
-class UsersRepo
+class UsersRepo extends CRUDRepo
 {
-    use CRUDTrait;
-
     /**
      * Initialize new instance
      *

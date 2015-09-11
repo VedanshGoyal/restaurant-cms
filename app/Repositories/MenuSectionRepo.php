@@ -2,7 +2,8 @@
 
 namespace Restaurant\Repositories;
 
-class MenuSectionRepo
+class MenuSectionRepo extends CRUDRepo
 {
-    use CRUDTrait;
+    // @var array - relations to eager load
+    protected $with = ['items'];
 }

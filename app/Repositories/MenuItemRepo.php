@@ -2,7 +2,6 @@
 
 namespace Restaurant\Repositories;
 
-class MenuItemRepo
+class MenuItemRepo extends CRUDRepo
 {
-    use CRUDTrait;
 }

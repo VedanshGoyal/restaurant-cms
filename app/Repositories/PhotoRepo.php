@@ -2,7 +2,6 @@
 
 namespace Restaurant\Repositories;
 
-class PhotoRepo
+class PhotoRepo extends CRUDRepo
 {
-    use CRUDTrait;
 }
