@@ -4,6 +4,7 @@ namespace Restaurant\Http\Middleware;
 
 use Illuminate\Contracts\Validation\UnauthorizedException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Closure;
 
 class CheckRoleMiddleware
@@ -16,7 +17,7 @@ class CheckRoleMiddleware
      * @param  string $role
      * @return mixed
      */
-    public function handle($request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, $role)
     {
         if ($request->user && $request->user->hasRole($role)) {
             return $next($request);
