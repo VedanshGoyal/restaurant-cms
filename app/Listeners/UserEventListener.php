@@ -5,6 +5,7 @@ namespace Restaurant\Listeners;
 use Restaurant\Events\PasswordResetEvent;
 use Restaurant\Events\UserCreateEvent;
 use Illuminate\Events\Dispatcher;
+use Illuminate\Mail\Message;
 use Illuminate\Mail\Mailer;
 
 class UserEventListener
@@ -49,7 +50,7 @@ class UserEventListener
         $user = $event->user;
         $url = url('/dash/') . '#verfiy-new/' . $user->createToken;
 
-        $this->mailer->send('emails.verify-new', ['verifyUrl' => $url], function (Mailer $mailer) use ($user) {
+        $this->mailer->send('emails.verify-new', ['verifyUrl' => $url], function (Message $mailer) use ($user) {
             $mailer->subject('Verify New Account')->to($user->email);
         });
     }
@@ -65,7 +66,7 @@ class UserEventListener
         $user = $event->user;
         $url = url('/dash/') . '#verify-reset/' . $user->resetToken;
 
-        $this->mailer->send('emails.verify-reset', ['verifyUrl' => $url], function (Mailer $mailer) use ($user) {
+        $this->mailer->send('emails.verify-reset', ['verifyUrl' => $url], function (Message $mailer) use ($user) {
             $mailer->subject('Password Reset')->to($user->email);
         });
     }
