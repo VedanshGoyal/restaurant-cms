@@ -26,6 +26,5 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'checkRole' => \Restaurant\Http\Middleware\CheckRoleMiddleware::class,
-        'throttle' => \Restaurant\Http\Middleware\ThrottleMiddleware::class,
     ];
 }
