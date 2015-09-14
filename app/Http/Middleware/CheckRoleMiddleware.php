@@ -2,7 +2,6 @@
 
 namespace Restaurant\Http\Middleware;
 
-use Illuminate\Contracts\Validation\UnauthorizedException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Closure;

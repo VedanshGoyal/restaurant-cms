@@ -2,8 +2,6 @@
 
 namespace Restaurant\Http\Controllers;
 
-use Restaurant\Http\Controllers\Controller;
-
 trait RESTTrait
 {
     /**
