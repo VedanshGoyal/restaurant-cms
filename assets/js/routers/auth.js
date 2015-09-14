@@ -3,7 +3,7 @@ import HeaderService from '../services/header';
 import LoginRoute from '../routes/login';
 import CreateRoute from '../routes/create';
 import ForgotRoute from '../routes/forgot';
-import ResetRoute from '../routes/reset';
+import VerifyResetRoute from '../routes/verify-reset';
 
 export default Router.extend({
     routes: {

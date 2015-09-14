@@ -7,7 +7,7 @@ import NotifyService from '../services/notify';
 import LoadingService from '../services/loading';
 
 export default ItemView.extend({
-    template: TemplateCache.get('reset'),
+    template: TemplateCache.get('verifyReset'),
     tagName: 'div',
     className: 'mdl-card mdl-cell mdl-cell--8-col mdl-shadow--2dp',
 

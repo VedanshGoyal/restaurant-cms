@@ -1,5 +1,5 @@
 import {Route} from 'backbone.routing';
-import ResetView from '../views/reset';
+import VerifyResetView from '../views/verify-reset';
 
 export default Route.extend({
     initialize(options = {}) {
@@ -8,7 +8,7 @@ export default Route.extend({
     },
 
     render() {
-        this.view = new ResetView({model: this.model});
+        this.view = new VerifyResetView({model: this.model});
         this.container.show(this.view);
     },
 });
