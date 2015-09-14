@@ -82,7 +82,7 @@ class AuthController extends Controller
      */
     public function resetPassword(ForgotPasswordRequest $request)
     {
-        $email = $request->get('email');
+        $email = $request->input('email');
         $user = $this->usersRepo->findByEmail($email);
 
         if (!$user) {
@@ -103,17 +103,25 @@ class AuthController extends Controller
      */
     public function verifyNew(VerifyNewRequest $request)
     {
-        $whitelist = ['token', 'email', 'password'];
-        $input = $request->only($whitelist);
+        $token = $request->input('token');
+        $input = $request->only(['email', 'password']);
+        $user = $this->usersRepo->findByToken($token, 'create');
+
+        if ($user->email !== $input['email']) {
+            return $this->response->create([
+                'error' => 'The email provided did not match.',
+            ], 400);
+        }
+
         $token = $this->auth->attempt($input);
 
         if (!$token || !is_string($token)) {
             return $this->response->create([
                 'error' => 'The email or password provided was incorrect.',
-            ], 401);
+            ], 400);
         }
 
-        $this->auth->user()->setActive();
+        $user->setActive();
 
         return $this->response->create(['ok' => 'Account successfully activated']);
     }
