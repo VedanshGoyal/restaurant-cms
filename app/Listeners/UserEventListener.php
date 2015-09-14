@@ -2,9 +2,10 @@
 
 namespace Restaurant\Listeners;
 
-use Illuminate\Mail\Mailer;
-use Restaurant\Events\UserCreateEvent;
 use Restaurant\Events\PasswordResetEvent;
+use Restaurant\Events\UserCreateEvent;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Mail\Mailer;
 
 class UserEventListener
 {
