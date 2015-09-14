@@ -48,7 +48,7 @@ class UserEventListener
     public function onUserCreate(UserCreateEvent $event)
     {
         $user = $event->user;
-        $url = url('/dash/') . '#verfiy-new/' . $user->createToken;
+        $url = url('/dash/') . '#verify-new/' . $user->createToken;
 
         $this->mailer->send('emails.verify-new', ['verifyUrl' => $url], function (Message $mailer) use ($user) {
             $mailer->subject('Verify New Account')->to($user->email);
