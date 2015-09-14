@@ -7,6 +7,7 @@ import Radio from 'backbone.radio';
 import {Application} from 'backbone.marionette';
 
 import './templates/manager';
+import Config from './config';
 import AppLayout from './layouts/app';
 import AuthService from './services/auth';
 import HeaderService from './services/header';
@@ -37,4 +38,4 @@ app.routers = {
 };
 
 
-Backbone.history.start({root: '/dash/'});
+Backbone.history.start({root: Config.urlRoot});
