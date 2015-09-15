@@ -132,7 +132,7 @@ class AuthControllerTest extends \TestCase
         $mockUser->email = 'email';
         $mockRequest = $this->getMockRequest('VerifyNewRequest');
 
-        $mockRequest->shouldReceive('input')->once()->with('token')->andReturn($mockToken);
+        $mockRequest->shouldReceive('input')->once()->with('verify-token')->andReturn($mockToken);
         $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
         $this->mockUsersRepo->shouldReceive('findByToken')->once()->with($mockToken, 'create')
             ->andReturn($mockUser);
@@ -152,7 +152,7 @@ class AuthControllerTest extends \TestCase
         $mockUser->email = 'email1';
         $mockRequest = $this->getMockRequest('VerifyNewRequest');
 
-        $mockRequest->shouldReceive('input')->once()->with('token')->andReturn($mockToken);
+        $mockRequest->shouldreceive('input')->once()->with('verify-token')->andreturn($mockToken);
         $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
         $this->mockUsersRepo->shouldReceive('findByToken')->once()->with($mockToken, 'create')
             ->andReturn($mockUser);
@@ -170,7 +170,7 @@ class AuthControllerTest extends \TestCase
         $mockUser->email = 'email';
         $mockRequest = $this->getMockRequest('VerifyNewRequest');
 
-        $mockRequest->shouldReceive('input')->once()->with('token')->andReturn($mockToken);
+        $mockRequest->shouldreceive('input')->once()->with('verify-token')->andreturn($mockToken);
         $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
         $this->mockUsersRepo->shouldReceive('findByToken')->once()->with($mockToken, 'create')
             ->andReturn($mockUser);
@@ -183,7 +183,7 @@ class AuthControllerTest extends \TestCase
 
     public function testVerifyResetUpdatesPasswordReturnsSuccess()
     {
-        $whitelist = ['token', 'password'];
+        $whitelist = ['verify-token', 'password'];
         $mockInput = ['token' => 'input'];
         $mockUser = m::mock('Restaurant\Models\User')->makePartial();
         $mockUser->id = 1;
@@ -202,13 +202,13 @@ class AuthControllerTest extends \TestCase
 
     public function testVerifyResetReturnsErrorNoUserFound()
     {
-        $whitelist = ['token', 'password'];
+        $whitelist = ['verify-token', 'password'];
         $mockInput = ['token' => 'input'];
         $mockUser = m::mock('Restaurant\Models\User')->makePartial();
         $mockUser->id = 1;
         $mockRequest = $this->getMockRequest('VerifyResetRequest');
 
-        $mockRequest->shouldReceive('only')->once()->with(['token', 'password'])->andReturn($mockInput);
+        $mockRequest->shouldReceive('only')->once()->with($whitelist)->andReturn($mockInput);
         $this->mockUsersRepo->shouldReceive('findByToken')->once()->with(m::type('string'), 'reset')->andReturn(false);
         $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'), 404)
             ->andReturn($this->mockResponse);

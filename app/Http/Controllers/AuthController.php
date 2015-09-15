@@ -103,7 +103,7 @@ class AuthController extends Controller
      */
     public function verifyNew(VerifyNewRequest $request)
     {
-        $token = $request->input('token');
+        $token = $request->input('verify-token');
         $input = $request->only(['email', 'password']);
         $user = $this->usersRepo->findByToken($token, 'create');
 
@@ -123,7 +123,10 @@ class AuthController extends Controller
 
         $user->setActive();
 
-        return $this->response->create(['ok' => 'Account successfully activated']);
+        return $this->response->create([
+            'ok' => 'Account successfully activated',
+            'token' => $token,
+        ]);
     }
 
     /**
@@ -134,7 +137,7 @@ class AuthController extends Controller
      */
     public function verifyReset(VerifyResetRequest $request)
     {
-        $whitelist = ['token', 'password'];
+        $whitelist = ['verify-token', 'password'];
         $input = $request->only($whitelist);
         $user = $this->usersRepo->findByToken($input['token'], 'reset');
 
