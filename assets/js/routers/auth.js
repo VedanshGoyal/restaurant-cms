@@ -1,9 +1,10 @@
 import {Router} from 'backbone.routing';
 import HeaderService from '../services/header';
 import LoginRoute from '../routes/login';
-import CreateRoute from '../routes/create';
+import NewRoute from '../routes/create';
 import ForgotRoute from '../routes/forgot';
 import VerifyResetRoute from '../routes/verify-reset';
+import VerifyNewRoute from '../routes/verify-new';
 
 export default Router.extend({
     routes: {
@@ -11,7 +12,7 @@ export default Router.extend({
         'create': 'create',
         'forgot': 'forgot',
         'verify-reset/:token': 'verifyReset',
-        'verify-create/:token': 'verifyCreate',
+        'verify-new/:token': 'verifyNew',
     },
 
     initialize(options = {}) {
@@ -26,9 +27,9 @@ export default Router.extend({
     },
 
     create() {
-        HeaderService.request('setTitle', 'Create Account');
+        HeaderService.request('setTitle', 'New Account');
 
-        return new CreateRoute(this._getRouteOptions());
+        return new NewRoute(this._getRouteOptions());
     },
 
     forgot() {
@@ -39,13 +40,16 @@ export default Router.extend({
 
     verifyReset(token) {
         HeaderService.request('setTitle', 'Reset Password');
-        this.model.set('token', token);
+        this.model.set('verify-token', token);
 
-        return new ResetRoute(this._getRouteOptions());
+        return new VerifyResetRoute(this._getRouteOptions());
     },
 
-    verifyCreate(token) {
-        console.log('verify new', token);
+    verifyNew(token) {
+        HeaderService.request('setTitle', 'Verify New Account');
+        this.model.set('verify-token', token);
+
+        return new VerifyNewRoute(this._getRouteOptions());
     },
 
     _getRouteOptions() {

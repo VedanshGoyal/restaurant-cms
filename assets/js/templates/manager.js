@@ -6,7 +6,7 @@ import login from './login.html';
 import create from './create.html';
 import forgot from './forgot.html';
 import verifyReset from './verify-reset.html';
-import verifyCreate from './verify-create.html';
+import verifyNew from './verify-new.html';
 
 let templates = {
     app: app,
@@ -15,7 +15,7 @@ let templates = {
     create: create,
     forgot: forgot,
     verifyReset: verifyReset,
-    verifyCreate: verifyCreate,
+    verifyNew: verifyNew,
 };
 
 TemplateCache.prototype.loadTemplate = function(templateId, options) {
