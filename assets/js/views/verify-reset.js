@@ -27,7 +27,7 @@ export default ItemView.extend({
         this.model.url = Config.apiRoot + '/verify-reset';
         this.model.set(this.form).save().done(response => {
             LoadingService.request('hide');
-            NotifyService.request('success', 'Password reset successfully!.');
+            NotifyService.request('success', 'Password reset successfully.');
 
             window.location.hash = 'login';
         });
