@@ -37,8 +37,8 @@ class AuthControllerTest extends \TestCase
 
         $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
         $this->mockAuth->shouldReceive('attempt')->once()->with($mockInput)->andReturn($mockToken);
-        $this->mockResponse->shouldReceive('create')->once()
-            ->with(['token' => $mockToken])->andReturn($this->mockResponse);
+        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'))
+            ->andReturn($this->mockResponse);
 
         $response = $this->controller->login($mockRequest);
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
@@ -84,8 +84,8 @@ class AuthControllerTest extends \TestCase
         $mockRequest->shouldReceive('only')->once()->with(['email', 'password'])->andReturn($mockInput);
         $this->mockUsersRepo->shouldReceive('create')->once()->with($mockInput)->andReturn(false);
         //$this->mockEvents->shouldReceive('fire')->once()->with($mockCreateEvent);
-        $this->mockResponse->shouldReceive('create')->once()
-            ->with(m::type('array'), 400)->andReturn($this->mockResponse);
+        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'), 400)
+            ->andReturn($this->mockResponse);
 
         $response = $this->controller->register($mockRequest);
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
@@ -100,7 +100,7 @@ class AuthControllerTest extends \TestCase
 
         $mockRequest->shouldReceive('input')->once()->with('email')->andReturn($mockEmail);
         $this->mockUsersRepo->shouldReceive('findByEmail')->once()->with($mockEmail)->andReturn($mockUser);
-        $mockUser->shouldReceive('generateToken')->once()->with('reset');
+        $mockUser->shouldReceive('generateToken')->once()->with('reset')->andReturnNull();
         //$this->mockEvents->shouldReceive('fire')->once()->with($mockResetEvent);
         $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'))->andReturn($this->mockResponse);
 

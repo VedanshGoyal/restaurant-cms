@@ -48,7 +48,10 @@ class AuthController extends Controller
             ], 400);
         }
         
-        return $this->response->create(['token' => $token]);
+        return $this->response->create([
+            'token' => $token,
+            'expiresIn' => strtotime('+1 day'),
+        ]);
     }
 
     /**
@@ -126,6 +129,7 @@ class AuthController extends Controller
         return $this->response->create([
             'ok' => 'Account successfully activated',
             'token' => $token,
+            'expiresIn' => strtotime('+1 day'),
         ]);
     }
 
