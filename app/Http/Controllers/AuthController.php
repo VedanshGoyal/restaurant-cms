@@ -143,7 +143,7 @@ class AuthController extends Controller
     {
         $whitelist = ['verify-token', 'password'];
         $input = $request->only($whitelist);
-        $user = $this->usersRepo->findByToken($input['token'], 'reset');
+        $user = $this->usersRepo->findByToken($input['verify-token'], 'reset');
 
         if (!$user) {
             return $this->response->create([
