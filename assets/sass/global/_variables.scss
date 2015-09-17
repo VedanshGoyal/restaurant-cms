@@ -8,3 +8,5 @@ $color-primary: $palette-grey-800;
 $color-primary-dark: $palette-grey-700;
 $color-accent: $palette-amber-A200;
 $text-link-color: unquote("rgb(#{$color-primary-dark})") !default;
+$layout-drawer-navigation-link-active-background: unquote("rgb(#{$palette-grey-300})") !default;
+$layout-drawer-navigation-link-active-color: unquote("rgb(#{$color-primary})") !default;
