@@ -33,7 +33,7 @@ NotifyService.setup();
 LoadingService.setup();
 
 app.routers = {
-    index: new IndexRouter(),
+    index: new IndexRouter({container: app.layout.content}),
     auth: new AuthRouter({container: app.layout.content, model: authModel}),
 };
 
