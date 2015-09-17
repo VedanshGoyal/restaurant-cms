@@ -1,5 +1,5 @@
 import {Route} from 'backbone.routing';
-import ForgotView from '../views/forgot';
+import VerifyNewView from '../../views/auth/verify-new';
 
 export default Route.extend({
     initialize(options = {}) {
@@ -8,7 +8,7 @@ export default Route.extend({
     },
 
     render() {
-        this.view = new ForgotView({model: this.model});
+        this.view = new VerifyNewView({model: this.model});
         this.container.show(this.view);
     },
 });

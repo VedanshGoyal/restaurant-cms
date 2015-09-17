@@ -37,5 +37,4 @@ app.routers = {
     auth: new AuthRouter({container: app.layout.content, model: authModel}),
 };
 
-
 Backbone.history.start({root: Config.urlRoot});

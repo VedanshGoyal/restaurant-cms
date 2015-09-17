@@ -1,10 +1,10 @@
 import {Router} from 'backbone.routing';
 import HeaderService from '../services/header';
-import LoginRoute from '../routes/login';
-import NewRoute from '../routes/create';
-import ForgotRoute from '../routes/forgot';
-import VerifyResetRoute from '../routes/verify-reset';
-import VerifyNewRoute from '../routes/verify-new';
+import LoginRoute from '../routes/auth/login';
+import NewRoute from '../routes/auth/create';
+import ForgotRoute from '../routes/auth/forgot';
+import VerifyResetRoute from '../routes/auth/verify-reset';
+import VerifyNewRoute from '../routes/auth/verify-new';
 
 export default Router.extend({
     routes: {
