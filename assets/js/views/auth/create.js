@@ -1,10 +1,10 @@
 import {ItemView, TemplateCache} from 'backbone.marionette';
-import Config from '../config';
-import MDLBehavior from '../behaviors/mdl';
-import FormBehavior from '../behaviors/form';
-import ModelErrorBehavior from '../behaviors/model-error';
-import LoadingService from '../services/loading';
-import NotifyService from '../services/notify';
+import Config from '../../config';
+import MDLBehavior from '../../behaviors/mdl';
+import FormBehavior from '../../behaviors/form';
+import ModelErrorBehavior from '../../behaviors/model-error';
+import LoadingService from '../../services/loading';
+import NotifyService from '../../services/notify';
 
 export default ItemView.extend({
     template: TemplateCache.get('create'),
