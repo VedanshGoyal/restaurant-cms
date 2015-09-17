@@ -1,4 +1,5 @@
 import {Router} from 'backbone.routing';
+import NavbarService from '../services/navbar';
 import AuthService from '../services/auth';
 import HomeRoute from '../routes/home';
 
@@ -20,6 +21,8 @@ export default Router.extend({
     },
 
     home() {
+        NavbarService.request('setContentActive', 'home');
+
         return new HomeRoute({container: this.container});
     },
 });

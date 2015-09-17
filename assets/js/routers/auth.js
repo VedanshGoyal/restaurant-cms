@@ -1,4 +1,5 @@
 import {Router} from 'backbone.routing';
+import NavbarService from '../services/navbar';
 import HeaderService from '../services/header';
 import LoginRoute from '../routes/auth/login';
 import NewRoute from '../routes/auth/create';
@@ -21,24 +22,28 @@ export default Router.extend({
     },
 
     login() {
+        NavbarService.request('setAuthActive', 'login');
         HeaderService.request('setTitle', 'Login');
 
         return new LoginRoute(this._getRouteOptions());
     },
 
     create() {
+        NavbarService.request('setAuthActive', 'create');
         HeaderService.request('setTitle', 'New Account');
 
         return new NewRoute(this._getRouteOptions());
     },
 
     forgot() {
+        NavbarService.request('setAuthActive', 'forgot');
         HeaderService.request('setTitle', 'Forgot Password');
 
         return new ForgotRoute(this._getRouteOptions());
     },
 
     verifyReset(token) {
+        NavbarService.request('setAuthActive');
         HeaderService.request('setTitle', 'Reset Password');
         this.model.set('verify-token', token);
 
@@ -46,6 +51,7 @@ export default Router.extend({
     },
 
     verifyNew(token) {
+        NavbarService.request('setAuthActive');
         HeaderService.request('setTitle', 'Verify New Account');
         this.model.set('verify-token', token);
 
