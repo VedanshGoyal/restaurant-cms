@@ -1,6 +1,7 @@
 import _ from 'underscore';
 import {TemplateCache} from 'backbone.marionette';
 import app from './app.html';
+import home from './home.html';
 import header from './header.html';
 import login from './login.html';
 import create from './create.html';
@@ -10,6 +11,7 @@ import verifyNew from './verify-new.html';
 
 let templates = {
     app: app,
+    home: home,
     header: header,
     login: login,
     create: create,
