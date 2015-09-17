@@ -30,6 +30,8 @@ export default ItemView.extend({
             NotifyService.request('success', 'Account successfully activated.');
 
             this.model.set('token', response.token);
+            this.model.set('expiresIn', response.expiresIn);
+            this.model.saveToStorage();
             window.location.hash = ' ';
         });
     },
