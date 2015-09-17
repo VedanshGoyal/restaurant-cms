@@ -3,11 +3,11 @@ import {TemplateCache} from 'backbone.marionette';
 import app from './app.html';
 import home from './home.html';
 import header from './header.html';
-import login from './login.html';
-import create from './create.html';
-import forgot from './forgot.html';
-import verifyReset from './verify-reset.html';
-import verifyNew from './verify-new.html';
+import login from './auth/login.html';
+import create from './auth/create.html';
+import forgot from './auth/forgot.html';
+import verifyReset from './auth/verify-reset.html';
+import verifyNew from './auth/verify-new.html';
 
 let templates = {
     app: app,
