@@ -10,7 +10,7 @@ const Notify = Service.extend({
         warning: 'warning',
     },
 
-    setup(options = {}) {
+    start(options = {}) {
         this.tango = new Tango();
     },
 

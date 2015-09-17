@@ -7,7 +7,7 @@ const LoadingService = Service.extend({
         hide: 'hide',
     },
 
-    setup(options = {}) {
+    start(options = {}) {
         this.$el = $('.loading-overlay');
     },
 

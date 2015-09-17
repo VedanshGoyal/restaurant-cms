@@ -10,7 +10,7 @@ const HeaderService = Service.extend({
         clearTitle: 'clearTitle',
     },
 
-    setup(options = {}) {
+    start(options = {}) {
         this.$el = $('.application .header');
     },
 
