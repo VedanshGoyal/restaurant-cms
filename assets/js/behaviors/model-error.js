@@ -9,7 +9,7 @@ export default Behavior.extend({
     },
 
     handleError(model, xhr) {
-        LoadingService.request('hide');
+        LoadingService.hide();
         let status = xhr.status;
         let errors = JSON.parse(xhr.responseText);
 
@@ -18,7 +18,7 @@ export default Behavior.extend({
         }
 
         if (_.isObject(errors)) {
-            NotifyService.request('error', errors);
+            NotifyService.error(errors);
         }
     },
 
