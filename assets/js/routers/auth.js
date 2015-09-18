@@ -1,4 +1,5 @@
 import {Router} from 'backbone.routing';
+import AuthSerivce from '../services/auth';
 import NavbarService from '../services/navbar';
 import HeaderService from '../services/header';
 import Route from '../routes/route';
@@ -17,42 +18,42 @@ export default Router.extend({
         'verify-new/:token': 'verifyNew',
     },
 
-    initialize(options = {}) {
-        this.model = options.model;
+    initialize() {
+        this.model = AuthSerivce.model;
     },
 
     login() {
-        NavbarService.request('setAuthActive', 'login');
-        HeaderService.request('setTitle', 'Login');
+        NavbarService.setAuthActive('login');
+        HeaderService.setTitle('Login');
 
         return new Route(new LoginView({model: this.model}));
     },
 
     create() {
-        NavbarService.request('setAuthActive', 'create');
-        HeaderService.request('setTitle', 'New Account');
+        NavbarService.setAuthActive('create');
+        HeaderService.setTitle('Create New Account');
     
         return new Route(new CreatView({model: this.model}));
     },
 
     forgot() {
-        NavbarService.request('setAuthActive', 'forgot');
-        HeaderService.request('setTitle', 'Forgot Password');
+        NavbarService.setAuthActive('forgot');
+        HeaderService.setTitle('Forgot Password');
 
         return new Route(new ForgotView({model: this.model}));
     },
 
     verifyReset(token) {
-        NavbarService.request('setAuthActive');
-        HeaderService.request('setTitle', 'Reset Password');
+        NavbarService.setAuthActive();
+        HeaderService.setTitle('Reset Password');
         this.model.set('verify-token', token);
 
         return new Route(new VerifyResetView({model: this.model}));
     },
 
     verifyNew(token) {
-        NavbarService.request('setAuthActive');
-        HeaderService.request('setTitle', 'Verify New Account');
+        NavbarService.setAuthActive();
+        HeaderService.setTitle('Verify New Account');
         this.model.set('verify-token', token);
 
         return new Route(new VerifyNewView({model: this.model}));
