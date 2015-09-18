@@ -7,6 +7,6 @@ export default Route.extend({
     },
 
     render() {
-        DisplayService.request('render', this.view);
+        DisplayService.render(this.view);
     },
 });

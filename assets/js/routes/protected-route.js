@@ -1,4 +1,4 @@
-import Route from './route';
+import Route from '../routes/route';
 import AuthService from '../services/auth';
 
 export default Route.extend({
@@ -13,13 +13,11 @@ export default Route.extend({
         }).then(() => {
             this.trigger('fetch before:render', this, ...rest);   
         }).then(() => {
-            AuthService.request('isAuthed').then(isAuthed => {
-                if (isAuthed) {
-                    return this.render(...rest);
-                } else {
-                    window.location.hash = this.redirectHash;
-                }
-            });
+            if (AuthService.isAuthed()) {
+                this.render(...rest);
+            } else {
+                window.location.hash = this.redirectHash;
+            }
         }).then(() => {
             this._isEntering = false;   
             this.trigger('render enter', this, ...rest);
