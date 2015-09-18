@@ -1,16 +1,13 @@
 import {Router} from 'backbone.routing';
 import NavbarService from '../services/navbar';
 import AuthService from '../services/auth';
-import HomeRoute from '../routes/home';
+import ProtectedRoute from '../routes/protected-route';
+import HomeView from '../views/home';
 
 export default Router.extend({
     routes: {
         '': 'index',
         'home': 'home',
-    },
-
-    initialize(options = {}) {
-        this.container = options.container;
     },
 
     index() {
@@ -23,6 +20,6 @@ export default Router.extend({
     home() {
         NavbarService.request('setContentActive', 'home');
 
-        return new HomeRoute({container: this.container});
+        return new ProtectedRoute(new HomeView());
     },
 });
