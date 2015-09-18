@@ -6,7 +6,6 @@ class DisplayService {
     }
 
     render(view) {
-        console.log('rendering view');
         this.container.show(view);
     }
 }

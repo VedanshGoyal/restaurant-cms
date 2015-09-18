@@ -4,7 +4,7 @@ import {TemplateCache} from 'backbone.marionette';
 class HeaderService {
     constructor() {
         this.template = TemplateCache.get('header');
-        this.$el = $('.application').find('.header');
+        this.$el = $('.header');
     }
 
     setTitle(title = 'Welcome') {
