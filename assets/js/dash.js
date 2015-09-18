@@ -10,6 +10,7 @@ import './templates/manager';
 import Config from './config';
 import AppLayout from './layouts/app';
 import AuthService from './services/auth';
+import DisplayService from './services/display';
 import IndexRouter from './routers/index';
 import AuthRouter from './routers/auth';
 import AuthModel from './models/auth';
@@ -25,6 +26,7 @@ const app = new App();
 const authModel = new AuthModel();
 
 AuthService.setup({model: authModel});
+DisplayService.setup({container: app.layout.content});
 
 app.routers = {
     index: new IndexRouter({container: app.layout.content}),
