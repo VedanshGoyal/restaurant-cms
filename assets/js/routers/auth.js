@@ -1,11 +1,12 @@
 import {Router} from 'backbone.routing';
 import NavbarService from '../services/navbar';
 import HeaderService from '../services/header';
-import LoginRoute from '../routes/auth/login';
-import NewRoute from '../routes/auth/create';
-import ForgotRoute from '../routes/auth/forgot';
-import VerifyResetRoute from '../routes/auth/verify-reset';
-import VerifyNewRoute from '../routes/auth/verify-new';
+import Route from '../routes/route';
+import LoginView from '../views/auth/login';
+import CreatView from '../views/auth/create';
+import ForgotView from '../views/auth/forgot';
+import VerifyNewView from '../views/auth/verify-new';
+import VerifyResetView from '../views/auth/verify-reset';
 
 export default Router.extend({
     routes: {
@@ -17,7 +18,6 @@ export default Router.extend({
     },
 
     initialize(options = {}) {
-        this.container = options.container;
         this.model = options.model;
     },
 
@@ -25,21 +25,21 @@ export default Router.extend({
         NavbarService.request('setAuthActive', 'login');
         HeaderService.request('setTitle', 'Login');
 
-        return new LoginRoute(this._getRouteOptions());
+        return new Route(new LoginView({model: this.model}));
     },
 
     create() {
         NavbarService.request('setAuthActive', 'create');
         HeaderService.request('setTitle', 'New Account');
-
-        return new NewRoute(this._getRouteOptions());
+    
+        return new Route(new CreatView({model: this.model}));
     },
 
     forgot() {
         NavbarService.request('setAuthActive', 'forgot');
         HeaderService.request('setTitle', 'Forgot Password');
 
-        return new ForgotRoute(this._getRouteOptions());
+        return new Route(new ForgotView({model: this.model}));
     },
 
     verifyReset(token) {
@@ -47,7 +47,7 @@ export default Router.extend({
         HeaderService.request('setTitle', 'Reset Password');
         this.model.set('verify-token', token);
 
-        return new VerifyResetRoute(this._getRouteOptions());
+        return new Route(new VerifyResetView({model: this.model}));
     },
 
     verifyNew(token) {
@@ -55,13 +55,6 @@ export default Router.extend({
         HeaderService.request('setTitle', 'Verify New Account');
         this.model.set('verify-token', token);
 
-        return new VerifyNewRoute(this._getRouteOptions());
-    },
-
-    _getRouteOptions() {
-        return {
-            container: this.container,
-            model: this.model,
-        };
+        return new Route(new VerifyNewView({model: this.model}));
     },
 });
