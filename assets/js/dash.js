@@ -1,36 +1,17 @@
 import 'material-design-lite';
 import 'babel/polyfill';
-import $ from 'jquery';
-import _ from 'underscore';
-import Backbone from 'backbone';
-import Radio from 'backbone.radio';
-import {Application} from 'backbone.marionette';
-
 import './templates/manager';
+import Backbone from 'backbone';
 import Config from './config';
-import AppLayout from './layouts/app';
-import AuthService from './services/auth';
-import DisplayService from './services/display';
 import IndexRouter from './routers/index';
 import AuthRouter from './routers/auth';
-import AuthModel from './models/auth';
+import InfoRouter from './routers/info';
 
-const App = Application.extend({
-    initialize() {
-        this.layout = new AppLayout();
-        this.layout.render();
-    }
-});
+const App = {};
 
-const app = new App();
-const authModel = new AuthModel();
-
-AuthService.setup({model: authModel});
-DisplayService.setup({container: app.layout.content});
-
-app.routers = {
-    index: new IndexRouter({container: app.layout.content}),
-    auth: new AuthRouter({container: app.layout.content, model: authModel}),
+App.routers = {
+    index: new IndexRouter(),
+    auth: new AuthRouter(),
 };
 
 Backbone.history.start({root: Config.urlRoot});
