@@ -1,17 +1,14 @@
-import Service from 'backbone.service';
+import {Region} from 'backbone.marionette';
 
-const DisplayService = Service.extend({
-    requests: {
-        render: 'render',
-    },
-
-    setup(options = {}) {
-        this.container = options.container;
-    },
+class DisplayService {
+    constructor() {
+        this.container = new (Region.extend({el: '.content'}))();
+    }
 
     render(view) {
+        console.log('rendering view');
         this.container.show(view);
-    },
-});
+    }
+}
 
 export default new DisplayService();

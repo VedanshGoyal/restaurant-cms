@@ -1,13 +1,9 @@
-import Service from 'backbone.service';
+import AuthModel from '../models/auth';
 
-const AuthService = Service.extend({
-    requests: {
-        isAuthed: 'isAuthed',
-    },
-
-    setup(options = {}) {
-        this.model = options.model;
-    },
+class AuthService {
+    constructor() {
+        this.model = new AuthModel();
+    }
 
     isAuthed() {
         if (this.model.hasValidSession()) {
@@ -16,6 +12,13 @@ const AuthService = Service.extend({
 
         return false;
     }
-});
+
+    headers() {
+        let headers = {};   
+        headers.Authorization = `Bearer ${this.model.get('token')}`;
+
+        return headers;
+    }
+}
 
 export default new AuthService();

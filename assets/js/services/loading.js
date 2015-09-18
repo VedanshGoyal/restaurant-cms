@@ -1,23 +1,17 @@
 import $ from 'jquery';
-import Service from 'backbone.service';
 
-const LoadingService = Service.extend({
-    requests: {
-        show: 'show',
-        hide: 'hide',
-    },
-
-    start(options = {}) {
+class LoadingService {
+    constructor() {
         this.$el = $('.loading-overlay');
-    },
+    }
 
     show() {
         this.$el.show(); 
-    },
+    }
 
     hide() {
         this.$el.hide();
-    },
-});
+    }
+}
 
 export default new LoadingService();
