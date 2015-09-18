@@ -25,6 +25,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'token' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'checkRole' => \Restaurant\Http\Middleware\CheckRoleMiddleware::class,
     ];
 }

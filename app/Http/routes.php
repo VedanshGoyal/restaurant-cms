@@ -16,7 +16,7 @@ Route::group(['prefix' => 'api-V1'], function () {
     Route::post('/verify-reset', 'AuthController@verifyReset');
 
     // Admin only routes
-    Route::group(['middleware' => 'checkRole:admin'], function () {
+    Route::group(['middleware' => ['token', 'checkRole:admin']], function () {
 
         Route::resource(
             'site-config',
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'api-V1'], function () {
     });
 
     // Owner only routes
-    Route::group(['middleware' => 'checkRole:owner'], function () {
+    Route::group(['middleware' => ['token', 'checkRole:owner']], function () {
 
         Route::resource(
             'menu-section',
