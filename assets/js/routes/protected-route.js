@@ -1,4 +1,4 @@
-import {Route} from 'backbone.routing';
+import Route from './route';
 import AuthService from '../services/auth';
 
 export default Route.extend({
