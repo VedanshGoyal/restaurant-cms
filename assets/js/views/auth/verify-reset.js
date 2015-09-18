@@ -22,12 +22,12 @@ export default ItemView.extend({
     },
 
     handleSubmit() {
-        LoadingService.request('show');
+        LoadingService.show('show');
 
         this.model.url = Config.apiRoot + '/verify-reset';
         this.model.set(this.form).save().done(response => {
-            LoadingService.request('hide');
-            NotifyService.request('success', 'Password reset successfully.');
+            LoadingService.hide();
+            NotifyService.success('Password reset successfully.');
 
             window.location.hash = 'login';
         });

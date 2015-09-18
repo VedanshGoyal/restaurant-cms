@@ -22,12 +22,12 @@ export default ItemView.extend({
     },
 
     handleSubmit() {
-        LoadingService.request('show');
+        LoadingService.show();
 
         this.model.url = Config.apiRoot + '/reset-password';
         this.model.set(this.form).save().done(response => {
-            LoadingService.request('hide');
-            NotifyService.request('success', 'Please check your email for a password reset link.');
+            LoadingService.hide();
+            NotifyService.success('Please check your email for a password reset link.');
 
             window.location.hash = 'login';
         });

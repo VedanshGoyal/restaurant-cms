@@ -22,12 +22,12 @@ export default ItemView.extend({
     },
 
     handleSubmit() {
-        LoadingService.request('show');
+        LoadingService.show('show');
 
         this.model.url = Config.apiRoot + '/verify-new';
         this.model.set(this.form).save().done(response => {
-            LoadingService.request('hide');
-            NotifyService.request('success', 'Account successfully activated.');
+            LoadingService.hide();
+            NotifyService.success('Account successfully activated.');
 
             this.model.set('token', response.token);
             this.model.set('expiresIn', response.expiresIn);

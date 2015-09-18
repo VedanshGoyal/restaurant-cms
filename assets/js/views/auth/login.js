@@ -23,13 +23,13 @@ export default ItemView.extend({
     },
 
     handleSubmit() {
-        LoadingService.request('show');
+        LoadingService.show();
         this.model.url = Config.apiRoot + '/login';
         this.model.set(this.form);
 
         this.model.save().done(response => {
-            LoadingService.request('hide');
-            NotifyService.request('success', 'Welcome back!');
+            LoadingService.hide();
+            NotifyService.success('Welcome back!');
 
             this.model.saveToStorage();
             window.location.hash = ' ';

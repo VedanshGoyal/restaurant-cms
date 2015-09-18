@@ -22,14 +22,14 @@ export default ItemView.extend({
     },
 
     handleSubmit() {
-        LoadingService.request('show');
+        LoadingService.show();
 
         this.model.url = Config.apiRoot + '/register';
         this.model.set(this.form);
 
         this.model.save().done(response => {
-            LoadingService.request('hide');
-            NotifyService.request('info', 'Account created. Please check email for further instructions.');
+            LoadingService.hide();
+            NotifyService.ino('Account created. Please check email for further instructions.');
 
             window.location.hash = 'login';
         });
