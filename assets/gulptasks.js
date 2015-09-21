@@ -3,6 +3,8 @@
 var _ = require('lodash');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
 var gutil = require('gulp-util');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
@@ -54,6 +56,7 @@ module.exports = _.extend(tasks, {
 
         return stream.pipe(sass({}))
             .on('error', gutil.log)
+            .pipe(postcss([autoprefixer({browsers: ['last 5 versions']})]))
             .pipe(rename(opts.buildFile))
             .pipe(gulp.dest(opts.buildPath));
     },
