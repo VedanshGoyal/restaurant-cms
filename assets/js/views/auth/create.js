@@ -21,6 +21,16 @@ export default ItemView.extend({
         modelError: {behaviorClass: ModelErrorBehavior},
     },
 
+    ui: {
+        password: 'input[name=password]',
+        confirmPass: 'input[name=password_confirmation]',
+
+    },
+
+    modelEvents: {
+        error: 'clearPasswords',
+    },
+
     handleSubmit() {
         LoadingService.show();
 
@@ -33,5 +43,10 @@ export default ItemView.extend({
 
             window.location.hash = 'login';
         });
+    },
+
+    clearPasswords() {
+        this.ui.password.val('');
+        this.ui.confirmPass.val('');
     },
 });

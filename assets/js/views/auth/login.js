@@ -22,6 +22,14 @@ export default ItemView.extend({
         modelError: {behaviorClass: ModelErrorBehavior},
     },
 
+    ui: {
+        password: 'input[name=password]',
+    },
+
+    modelEvents: {
+        error: 'clearPassword',
+    },
+
     handleSubmit() {
         LoadingService.show();
         this.model.url = Config.apiRoot + '/login';
@@ -34,5 +42,9 @@ export default ItemView.extend({
             this.model.saveToStorage();
             window.location.hash = ' ';
         });
+    },
+
+    clearPassword() {
+        this.ui.password.val('');
     },
 });
