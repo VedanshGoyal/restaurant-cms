@@ -13,7 +13,7 @@ class InfoRequest extends Request
         'city' => 'required|between:2,100|basicText',
         'state' => 'required|between:2,100|basicText',
         'zip' => 'required|between:2,15|basicText',
-        'phoneOne' => 'required|betweewn:7,50|basicText',
-        'phoneTwo' => 'betweewn:7,50|basicText',
+        'phoneOne' => 'required|between:7,50|basicText',
+        'phoneTwo' => 'between:7,50|basicText',
     ];
 }
