@@ -41,7 +41,7 @@
                         <a class="mdl-navigation__link" href="#forgot">Reset Password</a>
                     </div>
                     <div class="content-links" style="display:none">
-                        <a class="mdl-navigation__link" href="#home">Home</a>
+                        <a class="mdl-navigation__link" href="#">Home</a>
                         <a class="mdl-navigation__link" href="#info">Info</a>
                         <a class="mdl-navigation__link" href="#about">About</a>
                         <a class="mdl-navigation__link" href="#menu">Menu</a>
