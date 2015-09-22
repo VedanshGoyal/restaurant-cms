@@ -20,6 +20,7 @@ class InfoSeeds extends Seeder
             'street' => '555 street',
             'city' => 'Providence',
             'state' => 'Rhode Island',
+            'zip' => '02908',
             'phoneOne' => '401-555-5555',
             'phoneTwo' => '401-555-5556',
         ]);

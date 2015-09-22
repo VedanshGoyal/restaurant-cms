@@ -19,8 +19,9 @@ class Info extends Migration
             $table->string('street');
             $table->string('city');
             $table->string('state');
+            $table->string('zip');
             $table->string('phoneOne');
-            $table->string('phoneTwo');
+            $table->string('phoneTwo')->nullable();
             $table->timestamps();
         });
     }

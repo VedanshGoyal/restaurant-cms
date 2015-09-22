@@ -10,5 +10,5 @@ class Info extends Model
     protected $table = 'info';
 
     // @var array - mass-assignable properties
-    protected $fillable = ['name', 'street', 'city', 'state', 'phoneOne', 'phoneTwo'];
+    protected $fillable = ['name', 'street', 'city', 'state', 'zip', 'phoneOne', 'phoneTwo'];
 }
