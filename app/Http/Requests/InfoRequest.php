@@ -12,6 +12,7 @@ class InfoRequest extends Request
         'street' => 'required|between:5,300|basicText',
         'city' => 'required|between:2,100|basicText',
         'state' => 'required|between:2,100|basicText',
+        'zip' => 'required|between:2,15|basicText',
         'phoneOne' => 'required|betweewn:7,50|basicText',
         'phoneTwo' => 'betweewn:7,50|basicText',
     ];
