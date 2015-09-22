@@ -12,6 +12,7 @@ const App = {};
 App.routers = {
     index: new IndexRouter(),
     auth: new AuthRouter(),
+    info: new InfoRouter(),
 };
 
 Backbone.history.start({root: Config.urlRoot});
