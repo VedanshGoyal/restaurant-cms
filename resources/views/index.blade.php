@@ -1,6 +1,6 @@
 <!doctype html>
 {{-- // @codingStandardsIgnoreFile --}}
-<html class="no-js" lang="en">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -9,13 +9,11 @@
 
         <title>Restaurant Name</title>
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="/build/frontpage.css" />
         <script type="text/javascript" src="/build/frontpage-vendor.js"></script>
         <script type="text/javascript" src="/build/frontpage.js"></script>
-
     </head>
     <body>
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
