@@ -20,7 +20,7 @@ class InfoController extends Controller
     protected $reponse;
 
     // @var array - white-listed input values
-    protected $whiteList = ['title', 'content'];
+    protected $whiteList = ['name', 'street', 'city', 'state', 'zip', 'phoneOne', 'phoneTwo'];
 
     public function __construct(
         InfoRepo $repository,
