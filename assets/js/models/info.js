@@ -11,8 +11,4 @@ export default Model.extend({
         phoneOne: '',
         phoneTwo: null,
     },
-
-    url() {
-        return `${Config.apiRoot}/info/${this.get('id')}`;
-    },
 });
