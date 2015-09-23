@@ -6,6 +6,7 @@ import Config from './config';
 import IndexRouter from './routers/index';
 import AuthRouter from './routers/auth';
 import InfoRouter from './routers/info';
+import AboutRouter from './routers/about';
 
 const App = {};
 
@@ -13,6 +14,7 @@ App.routers = {
     index: new IndexRouter(),
     auth: new AuthRouter(),
     info: new InfoRouter(),
+    about: new AboutRouter(),
 };
 
 Backbone.history.start({root: Config.urlRoot});
