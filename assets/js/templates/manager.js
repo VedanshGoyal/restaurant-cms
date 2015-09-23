@@ -10,6 +10,8 @@ import verifyReset from './auth/verify-reset.html';
 import verifyNew from './auth/verify-new.html';
 import infoShow from './info/show.html';
 import infoEdit from './info/edit.html';
+import aboutShow from './about/show.html';
+import aboutEdit from './about/edit.html';
 
 const templates = {
     home: home,
@@ -21,6 +23,8 @@ const templates = {
     verifyNew: verifyNew,
     infoShow: infoShow,
     infoEdit: infoEdit,
+    aboutShow: aboutShow,
+    aboutEdit: aboutEdit,
 };
 
 TemplateCache.prototype.loadTemplate = function(templateId, options) {
