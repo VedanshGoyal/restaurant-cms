@@ -1,5 +1,4 @@
 import {ItemView, TemplateCache} from 'backbone.marionette';
-import LoadingService from '../../services/loading';
 import MDLBehavior from '../../behaviors/mdl';
 
 export default ItemView.extend({

@@ -35,7 +35,7 @@ export default ItemView.extend({
             LoadingService.hide();
             NotifyService.success('Info updated successfully.');
 
-            window.location.hash = '#info';
+            window.location.hash = 'info';
         });
     },
 });
