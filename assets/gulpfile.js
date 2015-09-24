@@ -75,7 +75,7 @@ gulp.task('watch:frontpage', function() {
 });
 
 gulp.task('watch:dash', function() {
-    tasks.setWatcher({watchPath: ['./js/**/*.js', './js/templates/*.html'], task: 'app:dash'});
+    tasks.setWatcher({watchPath: ['./js/**/*.js', './js/**/*.html'], task: 'app:dash'});
     tasks.setWatcher({watchPath: './sass/**/*.scss', task: 'sass:dash'});
 });
 
