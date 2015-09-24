@@ -7,6 +7,7 @@ import IndexRouter from './routers/index';
 import AuthRouter from './routers/auth';
 import InfoRouter from './routers/info';
 import AboutRouter from './routers/about';
+import HourRouter from './routers/hour';
 
 const App = {};
 
@@ -15,6 +16,7 @@ App.routers = {
     auth: new AuthRouter(),
     info: new InfoRouter(),
     about: new AboutRouter(),
+    hours: new HourRouter(),
 };
 
 Backbone.history.start({root: Config.urlRoot});
