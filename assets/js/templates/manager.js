@@ -12,6 +12,8 @@ import infoShow from './info/show.html';
 import infoEdit from './info/edit.html';
 import aboutShow from './about/show.html';
 import aboutEdit from './about/edit.html';
+import hourWrapper from './hour/hourWrapper.html';
+import hourSingle from './hour/hourSingle.html';
 
 const templates = {
     home: home,
@@ -25,6 +27,8 @@ const templates = {
     infoEdit: infoEdit,
     aboutShow: aboutShow,
     aboutEdit: aboutEdit,
+    hourWrapper: hourWrapper,
+    hourSingle: hourSingle,
 };
 
 TemplateCache.prototype.loadTemplate = function(templateId, options) {
