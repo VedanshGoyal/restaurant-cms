@@ -2,15 +2,15 @@
 
 namespace Restaurant\Http\Controllers;
 
-use Restaurant\Http\Requests\HoursRequest;
-use Restaurant\Repositories\HoursRepo;
+use Restaurant\Http\Requests\HourRequest;
+use Restaurant\Repositories\HourRepo;
 use Illuminate\Http\JsonResponse;
 
 class HoursController extends Controller
 {
     use RESTTrait;
 
-    // @var Restaurant\Repositories\HoursRepo
+    // @var Restaurant\Repositories\HourRepo
     protected $repository;
 
     // @var Restaurant\Http\HoursRequest
@@ -23,8 +23,8 @@ class HoursController extends Controller
     protected $whiteList = ['day', 'open', 'closed', 'isClosed'];
 
     public function __construct(
-        HoursRepo $repository,
-        HoursRequest $request,
+        HourRepo $repository,
+        HourRequest $request,
         JsonResponse $response
     ) {
         $this->repository = $repository;
