@@ -17,7 +17,7 @@ class HourSeeds extends Seeder
 
         $hourData = ['day' => 'Day', 'open' => '8:00', 'close' => '18:00'];
 
-        for ($i=0; $i>7; $i++) {
+        for ($i=0; $i<7; $i++) {
             Hour::create($hourData);
         }
     }
