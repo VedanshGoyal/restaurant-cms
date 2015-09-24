@@ -7,13 +7,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Restaurant Name</title>
+        <title>{{{ $info->name }}}</title>
 
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="/build/frontpage.css" />
         <script type="text/javascript" src="/build/frontpage-vendor.js"></script>
-        <script type="text/javascript" src="/build/frontpage.js"></script>
     </head>
     <body>
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -34,24 +33,23 @@
 
                 <section class="section--center mdl-grid mdl-grid--no-spacing info-section text-center">
                     <div class="mdl-cell mdl-cell__info mdl-cell--12-col">
-                        555-555-5555 | 55 Jewett St, Providence RI 02908
+                        {{{ $info->phoneOne . ' | ' . $info->street . ', ' . $info->city . ', ' . $info->state . ' ' . $info->zip }}}
                     </div>
                 </section>
 
                 <section class="mdl-grid title-section mdl-shadow--4dp">
                     <div class="mdl-cell mdl-cell--12-col text-center">
-                        <h1>Restaurant CMS</h1>
+                        <h1>{{{ $info->name }}}</h1>
                     </div>
                 </section>
 
                 <section class="section--center mdl-grid mdl-grid--no-spacing about-section">
                     <div class="mdl-card mdl-cell mdl-cell--12-col text-center mdl-shadow--4dp">
                         <div class="mdl-card__title mdl-card--border">
-                            <h2 class="mdl-card__title-text">Welcome</h2>
+                            <h2 class="mdl-card__title-text">{{{ $about->title }}}</h2>
                         </div>
-                        <div class="mdl-card__supporting-text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Mauris sagittis pellentesque lacus eleifend lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Mauris sagittis pellentesque lacus eleifend lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia.</p>
+                        <div class="mdl-card__supporting-text mdl-card--prewrap">
+                            {{{ $about->content }}}
                         </div>
                     </div>
                 </section>
@@ -62,62 +60,28 @@
                             <h2 class="mdl-card__title-text">Menu</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-                            <h5>Menu Section</h5>
+                        @foreach($menuSections as $menuSection)
+                            <h5>{{{ $menuSection->name }}}</h5>
                             <div class="mdl-grid">
+                            @foreach($menuSection->items as $item)
                                 <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
-                                    <h6>Menu Item</h6>
-                                    <p>Descript of the menu item</p>
-                                    <div class="section__prices">5.50</div>
+                                    <h6>{{{ $item->name }}}</h6>
+                                    @if(isset($item->description))
+                                    <p>{{{ $item->description }}}</p>
+                                    @endif
+                                    <div class="section__prices">
+                                        @if($menuSection->itemPrices === 2)
+                                        small: {{{ number_format($item->priceOne, 2)}}} - large: {{{ number_format($item->priceTwo, 2) }}}
+                                        @else
+                                        {{{ number_format($item->priceOne, 2) }}}
+                                        @endif
+                                    </div>
                                 </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
-                                    <h6>Menu Item</h6>
-                                    <div class="section__prices">5.50</div>
-                                </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
-                                    <h6>Menu Item</h6>
-                                    <div class="section__prices">5.50</div>
-                                </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
-                                    <h6>Menu Item</h6>
-                                    <p>Descript of the menu item</p>
-                                    <div class="section__prices">5.50</div>
-                                </div>
+                            @endforeach
                             </div>
-                        </div>
-
-                        <div class="mdl-card__supporting-text">
-                            <h5>Menu Section</h5>
-                            <div class="mdl-grid">
-                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
-                                    <h6>Menu Item</h6>
-                                    <p>Descript of the menu item</p>
-                                    <div class="section__prices">
-                                        small: 5.50 - large: 5.50
-                                    </div>
-                                </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
-                                    <h6>Menu Item</h6>
-                                    <div class="section__prices">
-                                        small: 5.50 - large: 5.50
-                                    </div>
-                                </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
-                                    <h6>Menu Item</h6>
-                                    <div class="section__prices">
-                                        small: 5.50 - large: 5.50
-                                    </div>
-                                </div>
-                                <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-12--col-phone">
-                                    <h6>Menu Item</h6>
-                                    <p>Descript of the menu item</p>
-                                    <div class="section__prices">
-                                        small: 5.50 - large: 5.50
-                                    </div>
-                                </div>
-                            </div>
+                        @endforeach
                         </div>
                     </div>
-
                 </section>
 
                 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--4dp">
@@ -153,33 +117,39 @@
                 </section><!-- .photo-section -->
                 <footer class="mdl-mega-footer">
                     <div class="mdl-mega-footer__top-section mlg-grid text-center">
-
-                        <div class="mdl-mega-footer__left-section mdl-cell--6-col">
+                        <div class="mdl-mega-footer__left-section mdl-cell--6-col mdl-cell--12-tablet">
                             <h6 class="mdl-mega-footer__heading">Restaurant CMS</h6>
                             <ul class="mdl-mega-footer__link-list">
-                                <li>55 Jewett St</li>
-                                <li>Providence RI</li>
-                                <li>555-555-5555</li>
-                                <li>555-555-5555</li>
+                                <li>{{{ $info->name }}}</li>
+                                <li>{{{ $info->street . ', ' . $info->city }}}</li>
+                                <li>{{{ $info->state . ' ' . $info->zip }}}</li>
+                                <li>{{{ $info->phoneOne }}}</li>
+                                @if($info->phoneTwo)
+                                <li>{{{ $info->phoneTwo }}}</li>
+                                @endif
                             </ul>
                         </div>
 
                         <div class="mdl-mega-footer__left-section mdl-cell--6-col">
                             <h6 class="mdl-mega-footer__heading">Hours</h6>
                             <ul class="mdl-mega-footer__link-list">
-                                <li>Sunday 11:00 - 8:00</li>
-                                <li>Monday 11:00 - 8:00</li>
-                                <li>Tuesday 11:00 - 8:00</li>
-                                <li>Wednesday 11:00 - 8:00</li>
-                                <li>Thursday 11:00 - 8:00</li>
-                                <li>Friday 11:00 - 8:00</li>
-                                <li>Saturday 11:00 - 8:00</li>
+                                @foreach($hours as $hour)
+                                <li>{{{ $hour->day }}}: {{{ ($hour->isClosed) ? 'Closed' : $hour->open . ' - ' . $hour->close }}}</li>
+                                @endforeach
                             </ul>
                         </div>
+                    </div>
 
+                    <div class="mdl-mega-footer__bottom-section">
+                        <div class="mdl-logo">Made with &#9829 by NC</div>
+                        <ul class="mdl-mega-footer__link-list">
+                            <li><a href="/dash/#login">Login</a></li>
+                        </ul>
                     </div>
                 </footer>
             </main>
         </div>
+
+        <script type="text/javascript" src="/build/frontpage.js"></script>
     </body>
 </html>
