@@ -26,6 +26,11 @@ export default Router.extend({
         NavbarService.setAuthActive('login');
         HeaderService.setTitle('Login');
 
+        if (AuthSerivce.isAuthed()) {
+            window.location.hash = ' ';
+            return false;
+        }
+
         return new Route(new LoginView({model: this.model}));
     },
 
