@@ -26,6 +26,9 @@
     box-sizing: border-box;
     align-items: center;
 }
+.mdl-card--prewrap {
+    white-space: pre-line;
+}
 
 .mdl-cell__info {
     padding :10px 0;
@@ -42,6 +45,7 @@
 .mdl-textfield {
     width: 100%;
 }
-.mdl-card--prewrap {
-    white-space: pre-line;
+.mdl-nospacing {
+    margin: 0;
+    padding: 0;
 }

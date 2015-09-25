@@ -140,9 +140,9 @@
                         </div>
                     </div>
 
-                    <div class="mdl-mega-footer__bottom-section">
+                    <div class="mdl-mega-footer__bottom-section mdl-nospacing">
                         <div class="mdl-logo">Made with &#9829 by NC</div>
-                        <ul class="mdl-mega-footer__link-list">
+                        <ul class="mdl-mega-footer__link-list mdl-nospacing">
                             <li><a href="/dash/#login">Login</a></li>
                         </ul>
                     </div>

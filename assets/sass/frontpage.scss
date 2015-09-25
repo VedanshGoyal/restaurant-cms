@@ -1,6 +1,5 @@
-// global application styles
 @import './global/variables';
+@import './global/global';
+@import './global/helpers';
 @import './global/vendor';
 @import './global/mdl-custom';
-@import './global/helpers';
-@import './global/global';
