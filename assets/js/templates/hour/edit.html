@@ -3,25 +3,23 @@
         <h2 class="mdl-card__title-text"><%= day %></h2>
     </div>
     <div class="mdl-card__supporting-text mdl-grid">
-        <div class="mdl-cell mdl-cell--4-col">
-            <label class="mdl-menu__label">Open: <%= open %>
-                <button id="open-time-menu" class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">loupe</i>
-                </button>
-            </label>
-        </div>
-        <div class="mdl-cell mdl-cell--4-col">
-            <label class="mdl-menu__label">Close: <%= close %>
-                <button id="close-time-menu" class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">loupe</i>
-                </button>
-            </label>
-        </div>
-        <div class="mdl-cell mdl-cell--4-col">
-            <label class="mdl-checkbox mdl-js-checkbox" for="isClosed-input">
-                <input name="isClosed" type="checkbox" id="isClosed-input" class="mdl-checkbox__input" />
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--middle">
+            <label class="mdl-checkbox mdl-js-checkbox" for="toggle-closed">
+                <input name="closed" type="checkbox" id="toggle-closed" class="mdl-checkbox__input" />
                 <span class="mdl-checkbox__label">Closed</span>
             </label>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="openTime" type="text" id="open-time" />
+                <label class="mdl-textfield__label" for="open-time">Open Time</label>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" name="closeTime" type="text" id="close-time" />
+                <label class="mdl-textfield__label" for="close-time">Close Time</label>
+            </div>
         </div>
     </div>
     <div class="mdl-card__actions mdl-card--border">
