@@ -9,7 +9,7 @@ import EditView from '../views/hours/edit';
 
 export default Router.extend({
     routes: {
-        'hours': 'show',
+        hours: 'show',
         'hour/:id/edit': 'edit',
     },
 
@@ -27,9 +27,9 @@ export default Router.extend({
     edit(id) {
         NavbarService.setContentActive('hours');
         HeaderService.setTitle('Edit Hours');
-        let model = this.collection.get(id) || new HourModel({id: id});
+        const model = this.collection.get(id) || new HourModel({id});
 
-        return new ProtectedRoute(new EditView({model: model}));
+        return new ProtectedRoute(new EditView({model}));
     },
 });
 

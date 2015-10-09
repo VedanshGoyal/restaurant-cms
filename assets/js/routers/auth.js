@@ -11,9 +11,9 @@ import VerifyResetView from '../views/auth/verify-reset';
 
 export default Router.extend({
     routes: {
-        'login': 'login',
-        'create': 'create',
-        'forgot': 'forgot',
+        login: 'login',
+        create: 'create',
+        forgot: 'forgot',
         'verify-reset/:token': 'verifyReset',
         'verify-new/:token': 'verifyNew',
     },
@@ -37,7 +37,7 @@ export default Router.extend({
     create() {
         NavbarService.setAuthActive('create');
         HeaderService.setTitle('Create New Account');
-    
+
         return new Route(new CreatView({model: this.model}));
     },
 

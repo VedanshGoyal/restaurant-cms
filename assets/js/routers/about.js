@@ -8,8 +8,8 @@ import EditView from '../views/about/edit';
 
 export default Router.extend({
     routes: {
-        'about': 'show',
-         'about/edit': 'edit',
+        about: 'show',
+        'about/edit': 'edit',
     },
 
     initialize() {

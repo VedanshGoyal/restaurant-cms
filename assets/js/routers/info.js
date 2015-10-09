@@ -8,7 +8,7 @@ import EditView from '../views/info/edit';
 
 export default Router.extend({
     routes: {
-        'info': 'show',
+        info: 'show',
         'info/edit': 'edit',
     },
 
