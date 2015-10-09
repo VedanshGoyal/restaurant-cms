@@ -8,7 +8,7 @@ export default Model.extend({
         expiresIn: null,
     },
 
-    initialize(options = {}) {
+    initialize() {
         this.on('sync', this.clearTempAttrs);
         this.loadFromStorage();
     },
@@ -20,7 +20,7 @@ export default Model.extend({
     },
 
     loadFromStorage() {
-        let storedData = JSON.parse(localStorage.getItem(Config.storageName));
+        const storedData = JSON.parse(localStorage.getItem(Config.storageName));
 
         if (_.isObject(storedData)) {
             this.set(storedData);
@@ -28,7 +28,8 @@ export default Model.extend({
     },
 
     saveToStorage() {
-        let attrs = this.attributes;
+        const attrs = this.attributes;
+
         localStorage.setItem(Config.storageName, JSON.stringify(attrs));
     },
 
@@ -37,8 +38,8 @@ export default Model.extend({
     },
 
     hasValidSession() {
-        let expiresIn = this.get('expiresIn');
-        let currentTime = new Date().getTime() / 1000;
+        const expiresIn = this.get('expiresIn');
+        const currentTime = new Date().getTime() / 1000;
 
         if (this.has('token') && currentTime < expiresIn) {
             return true;
