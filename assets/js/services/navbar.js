@@ -21,13 +21,17 @@ class NavBarService {
     }
 
     setCurrentLink(href) {
-        let current = $('.mdl-navigation__link--current');
-        let newCurrent = _.filter(this.links, link => {
+        const current = $('.mdl-navigation__link--current');
+        const newCurrent = _.filter(this.links, link => {
             return link.attributes.href.value === `#${href}`;
         });
 
-        if (current) { current.removeClass('mdl-navigation__link--current'); }
-        if (newCurrent) { $(newCurrent).addClass('mdl-navigation__link--current'); }
+        if (current) {
+            current.removeClass('mdl-navigation__link--current');
+        }
+        if (newCurrent) {
+            $(newCurrent).addClass('mdl-navigation__link--current');
+        }
     }
 }
 

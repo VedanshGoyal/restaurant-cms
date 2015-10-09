@@ -14,9 +14,9 @@ class AuthService {
     }
 
     headers() {
-        let headers = {};   
-        headers.Authorization = `Bearer ${this.model.get('token')}`;
+        const headers = {};
 
+        headers.Authorization = `Bearer ${this.model.get('token')}`;
         return headers;
     }
 }

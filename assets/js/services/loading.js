@@ -6,7 +6,7 @@ class LoadingService {
     }
 
     show() {
-        this.$el.show(); 
+        this.$el.show();
     }
 
     hide() {

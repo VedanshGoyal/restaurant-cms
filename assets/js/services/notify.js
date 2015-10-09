@@ -7,26 +7,27 @@ class NotifyService {
     }
 
     error(messages) {
-        this._notify('error', messages);
+        this.notify('error', messages);
     }
 
     success(messages) {
-        this._notify('success', messages);
+        this.notify('success', messages);
     }
 
     info(messages) {
-        this._notify('info', messages);
+        this.notify('info', messages);
     }
 
-    warning(messags) {
-        this._notify('warning', messages);
+    warning(messages) {
+        this.notify('warning', messages);
     }
 
-    _notify(type = 'error', messages) {
+    notify(type = 'error', messages) {
         if (_.isObject(messages) || _.isArray(messages)) {
             _.each(messages, message => {
-                message = _.isArray(message) ? _.first(message) : message;
-                this.tango[type](message);
+                const singleMessage = _.isArray(message) ? _.first(message) : message;
+
+                this.tango[type](singleMessage);
             });
         } else {
             this.tango[type](messages);

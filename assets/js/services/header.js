@@ -8,7 +8,7 @@ class HeaderService {
     }
 
     setTitle(title = 'Welcome') {
-        let content = this.template({title: title});
+        const content = this.template({title});
 
         this.$el.html(content);
     }
