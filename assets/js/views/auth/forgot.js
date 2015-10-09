@@ -24,8 +24,8 @@ export default ItemView.extend({
     handleSubmit() {
         LoadingService.show();
 
-        this.model.url = Config.apiRoot + '/reset-password';
-        this.model.set(this.form).save().done(response => {
+        this.model.url = `${Config.apiRoot}/reset-password`;
+        this.model.set(this.form).save().done(() => {
             LoadingService.hide();
             NotifyService.success('Please check your email for a password reset link.');
 

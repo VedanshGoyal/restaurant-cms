@@ -24,7 +24,7 @@ export default ItemView.extend({
     handleSubmit() {
         LoadingService.show('show');
 
-        this.model.url = Config.apiRoot + '/verify-new';
+        this.model.url = `${Config.apiRoot}/verify-new`;
         this.model.set(this.form).save().done(response => {
             LoadingService.hide();
             NotifyService.success('Account successfully activated.');

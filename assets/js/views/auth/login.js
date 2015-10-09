@@ -31,10 +31,10 @@ export default ItemView.extend({
 
     handleSubmit() {
         LoadingService.show();
-        this.model.url = Config.apiRoot + '/login';
+        this.model.url = `${Config.apiRoot}/login`;
         this.model.set(this.form);
 
-        this.model.save().done(response => {
+        this.model.save().done(() => {
             LoadingService.hide();
             NotifyService.success('Welcome back!');
 

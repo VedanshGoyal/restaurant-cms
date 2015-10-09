@@ -24,7 +24,6 @@ export default ItemView.extend({
     ui: {
         password: 'input[name=password]',
         confirmPass: 'input[name=password_confirmation]',
-
     },
 
     modelEvents: {
@@ -34,10 +33,10 @@ export default ItemView.extend({
     handleSubmit() {
         LoadingService.show();
 
-        this.model.url = Config.apiRoot + '/register';
+        this.model.url = `${Config.apiRoot}/register`;
         this.model.set(this.form);
 
-        this.model.save().done(response => {
+        this.model.save().done(() => {
             LoadingService.hide();
             NotifyService.ino('Account created. Please check email for further instructions.');
 

@@ -7,7 +7,7 @@ const HourView = ItemView.extend({
     templateHelpers() {
         return {
             closedStatus() {
-                return (this.isClosed) ? 'Yes' : 'No';
+                return this.isClosed ? 'Yes' : 'No';
             },
         };
     },

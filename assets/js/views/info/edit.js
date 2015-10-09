@@ -6,7 +6,7 @@ import FormBehavior from '../../behaviors/form';
 import ModelErrorBehavior from '../../behaviors/model-error';
 
 export default ItemView.extend({
-    template: TemplateCache.get('infoEdit'),    
+    template: TemplateCache.get('infoEdit'),
     className: 'mdl-card mdl-cell mdl-cell--8-col mdl-shadow--2dp',
     tagName: 'div',
 

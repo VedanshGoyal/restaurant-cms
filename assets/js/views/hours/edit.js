@@ -1,6 +1,4 @@
 import {ItemView, TemplateCache} from 'backbone.marionette';
-import LoadingService from '../../services/loading';
-import NotifyService from '../../services/notify';
 import MDLBehavior from '../../behaviors/mdl';
 import FormBehavior from '../../behaviors/form';
 import ModelErrorBehavior from '../../behaviors/model-error';
