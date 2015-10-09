@@ -1,5 +1,6 @@
 .mdl-card {
     min-height: 0;
+    overflow: visible;
 }
 .mdl-card__supporting-text {
     width: 90%;
@@ -29,11 +30,9 @@
 .mdl-card--prewrap {
     white-space: pre-line;
 }
-
 .mdl-cell__info {
     padding :10px 0;
 }
-
 .mdl-mega-footer__heading {
     font-size: 18px;
     padding: 0;
@@ -41,7 +40,6 @@
 .section--center {
     max-width: 860px;
 }
-
 .mdl-textfield {
     width: 100%;
 }
