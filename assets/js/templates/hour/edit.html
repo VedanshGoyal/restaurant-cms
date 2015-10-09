@@ -1,0 +1,32 @@
+<form>
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text"><%= day %></h2>
+    </div>
+    <div class="mdl-card__supporting-text mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col">
+            <label class="mdl-menu__label">Open: <%= open %>
+                <button id="open-time-menu" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">loupe</i>
+                </button>
+            </label>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col">
+            <label class="mdl-menu__label">Close: <%= close %>
+                <button id="close-time-menu" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">loupe</i>
+                </button>
+            </label>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col">
+            <label class="mdl-checkbox mdl-js-checkbox" for="isClosed-input">
+                <input name="isClosed" type="checkbox" id="isClosed-input" class="mdl-checkbox__input" />
+                <span class="mdl-checkbox__label">Closed</span>
+            </label>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a href="#hours" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Cancel</a>
+        <div class="mdl-layout-spacer"></div>
+        <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
+    </div>
+</form>
