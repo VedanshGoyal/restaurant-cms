@@ -21,4 +21,26 @@ class MenuItem extends Model
     {
         return $this->belongsToOne('Restaurant\Models\MenuSection');
     }
+
+    /**
+     * Mutator to set tags as serialized string
+     *
+     * @param array $value
+     * @return void
+     */
+    public function setTagsAttrbiute(array $value = [])
+    {
+        $this->attributes['tags'] = serialize($value);
+    }
+
+    /**
+     * Accessor to get tags from serialized string
+     *
+     * @param string $value
+     * @return array
+     */
+    public function getTagsAttribute($value)
+    {
+        return unserialize($value);
+    }
 }
