@@ -38,7 +38,7 @@ export default ItemView.extend({
 
         this.model.save().done(() => {
             LoadingService.hide();
-            NotifyService.ino('Account created. Please check email for further instructions.');
+            NotifyService.info('Account created. Please check email for further instructions.');
 
             window.location.hash = 'login';
         });
