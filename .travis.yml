@@ -12,7 +12,7 @@ install:
 
 before_script:
     - psql -c 'create database restaurant;' -U postgres
-    - php artisan migrate
+    - php artisan migrate --force
 
 script:
     - vendor/bin/phpunit
