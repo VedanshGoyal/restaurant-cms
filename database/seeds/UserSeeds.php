@@ -28,8 +28,10 @@ class UserSeeds extends Seeder
 
         $user->attachRole($admin);
         $user->attachRole($owner);
-        $user->setActive();
-        $user->generateToken('reset');
+        $user->update([
+            'verified' => 1,
+            'resetToken' => Str::random(64),
+        ]);
         event(new PasswordResetEvent($user));
     }
 }
