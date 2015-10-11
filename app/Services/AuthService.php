@@ -108,7 +108,8 @@ class AuthService
         $user = $this->usersRepo->findByToken($token, 'reset');
 
         if ($user && $user instanceof User) {
-            $this->usersRepo->update($user->id, ['resetToken' => null]);
+            $input['resetToken'] = null;
+            $this->usersRepo->update($user->id, $input);
             $this->response['message'] = 'Password reset successfully';
 
             return true;

@@ -3,7 +3,6 @@
 namespace Restaurant\Repositories;
 
 use Restaurant\Models\User;
-use Restaurant\Exceptions\RepositoryException;
 
 class UsersRepo extends CRUDRepo
 {
