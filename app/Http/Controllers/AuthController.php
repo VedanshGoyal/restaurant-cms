@@ -2,35 +2,22 @@
 
 namespace Restaurant\Http\Controllers;
 
-use Restaurant\Http\Requests\ForgotPasswordRequest;
+use Restaurant\Http\Requests\ResetPasswordRequest;
 use Restaurant\Http\Requests\RegisterRequest;
 use Restaurant\Http\Requests\LoginRequest;
 use Restaurant\Http\Requests\VerifyNewRequest;
 use Restaurant\Http\Requests\VerifyResetRequest;
-use Restaurant\Events\UserCreateEvent;
-use Restaurant\Events\PasswordResetEvent;
-use Restaurant\Repositories\UsersRepo;
-use Restaurant\Repositories\RolesRepo;
+use Restaurant\Services\AuthService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Events\Dispatcher;
-use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
 {
-    public function __construct(
-        UsersRepo $usersRepo,
-        RolesRepo $rolesRepo,
-        JsonResponse $response,
-        JWTAuth $auth,
-        Dispatcher $events
-    ) {
-        $this->usersRepo = $usersRepo;
-        $this->rolesRepo = $rolesRepo;
+    public function __construct(AuthService $authService, JsonResponse $response)
+    {
+        $this->authService = $authService;
         $this->response = $response;
-        $this->auth = $auth;
-        $this->events = $events;
     }
-
+    
     /**
      * Attempt to login a user
      *
@@ -40,18 +27,12 @@ class AuthController extends Controller
     {
         $whitelist = ['email', 'password'];
         $input = $request->only($whitelist);
-        $token = $this->auth->attempt($input);
 
-        if (!$token || !is_string($token)) {
-            return $this->response->create([
-                'error' => 'The username or password provided was not correct.',
-            ], 400);
+        if ($this->authService->login($input)) {
+            return $this->response->create($this->authService->response);
         }
         
-        return $this->response->create([
-            'token' => $token,
-            'expiresIn' => strtotime('+1 day'),
-        ]);
+        return $this->response->create($this->authService->response, 400);
     }
 
     /**
@@ -63,18 +44,12 @@ class AuthController extends Controller
     {
         $whitelist = ['email', 'password'];
         $input = $request->only($whitelist);
-        $user = $this->usersRepo->create($input);
 
-        if (!$user) {
-            return $this->response->create([
-                'error' => 'Failed to create new account.',
-            ], 400);
+        if ($this->authService->register($input)) {
+            return $this->response->create($this->authService->response);
         }
 
-        $user->generateToken('create');
-        $this->events->fire(new UserCreateEvent($user));
-
-        return $this->response->create(['ok' => 'Account create. Please check email for verification link.']);
+        return $this->response->create($this->authService->response, 400);
     }
 
     /**
@@ -83,19 +58,15 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
-    public function resetPassword(ForgotPasswordRequest $request)
+    public function resetPassword(ResetPasswordRequest $request)
     {
-        $email = $request->input('email');
-        $user = $this->usersRepo->findByEmail($email);
+        $input = $request->only('email');
 
-        if (!$user) {
-            return $this->response->create(['error' => 'No matching account found.'], 404);
+        if ($this->authService->resetPassword($input)) {
+            return $this->response->create($this->authService->response);
         }
 
-        $user->generateToken('reset');
-        $this->events->fire(new PasswordResetEvent($user));
-
-        return $this->response->create(['ok' => 'Please check email for password reset link']);
+        return $this->response->create($this->authService->response, 400);
     }
     
     /**
@@ -108,29 +79,12 @@ class AuthController extends Controller
     {
         $token = $request->input('verify-token');
         $input = $request->only(['email', 'password']);
-        $user = $this->usersRepo->findByToken($token, 'create');
 
-        if ($user->email !== $input['email']) {
-            return $this->response->create([
-                'error' => 'The email provided did not match.',
-            ], 400);
+        if ($this->authService->verifyNew($token, $input)) {
+            return $this->response->create($this->authService->response);
         }
 
-        $token = $this->auth->attempt($input);
-
-        if (!$token || !is_string($token)) {
-            return $this->response->create([
-                'error' => 'The email or password provided was incorrect.',
-            ], 400);
-        }
-
-        $user->setActive();
-
-        return $this->response->create([
-            'ok' => 'Account successfully activated',
-            'token' => $token,
-            'expiresIn' => strtotime('+1 day'),
-        ]);
+        return $this->response->create($this->authService->response, 400);
     }
 
     /**
@@ -141,19 +95,13 @@ class AuthController extends Controller
      */
     public function verifyReset(VerifyResetRequest $request)
     {
-        $whitelist = ['verify-token', 'password'];
-        $input = $request->only($whitelist);
-        $user = $this->usersRepo->findByToken($input['verify-token'], 'reset');
+        $token = $request->input('verify-token');
+        $input = $request->only('password');
 
-        if (!$user) {
-            return $this->response->create([
-                'error' => 'The token provided was not valid.',
-            ], 404);
+        if ($this->authService->verifyReset($token, $input)) {
+            return $this->response->create($this->authService->response);
         }
 
-        $this->usersRepo->update($user->id, $input);
-        $user->clearReset();
-
-        return $this->response->create(['ok' => 'Password reset successfully.']);
+        return $this->response->create($this->authService->response, 400);
     }
 }
