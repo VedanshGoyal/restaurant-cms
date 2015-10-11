@@ -15,6 +15,14 @@ class AuthService
     // array - response object to return
     public $response = [];
 
+    /**
+     * Initialize new instance
+     *
+     * @param UsersRepo $usersRepo
+     * @param RolesRepo $rolesRepo
+     * @param JWTAuth $auth
+     * @param Dispatcher $dispatcher
+     */
     public function __construct(
         UsersRepo $usersRepo,
         RolesRepo $rolesRepo,
@@ -27,6 +35,12 @@ class AuthService
         $this->events = $events;
     }
 
+    /**
+     * Attempt login given email and password
+     *
+     * @param array $input
+     * @return boolean
+     */
     public function login(array $input)
     {
         $token = $this->auth->attempt($input);
@@ -43,6 +57,12 @@ class AuthService
         return false;
     }
 
+    /**
+     * Attempt to register new user given email and password
+     *
+     * @param array $input
+     * @return boolean
+     */
     public function register(array $input)
     {
         $input['createToken'] = $this->genRandomString();
@@ -60,6 +80,12 @@ class AuthService
         return false;
     }
 
+    /**
+     * Trigger a reset password event given email
+     *
+     * @param string $email
+     * @return boolean
+     */
     public function resetPassword($email)
     {
         $user = $this->usersRepo->findByEmail($email);
@@ -78,6 +104,13 @@ class AuthService
         return false;
     }
 
+    /**
+     * Verify and authenticate user given verify token, email, and password
+     *
+     * @param string $token
+     * @param array $input
+     * @return boolean
+     */
     public function verifyNew($token, array $input)
     {
         $user = $this->usersRepo->findByToken($token, 'create');
@@ -103,6 +136,13 @@ class AuthService
         return false;
     }
 
+    /**
+     * Verify and update user password given verify token and password
+     *
+     * @param string $token
+     * @param array $input
+     * @return boolean
+     */
     public function verifyReset($token, $input)
     {
         $user = $this->usersRepo->findByToken($token, 'reset');
@@ -120,6 +160,11 @@ class AuthService
         return false;
     }
 
+    /**
+     * Generate a random string
+     *
+     * @return string
+     */
     private function genRandomString()
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
