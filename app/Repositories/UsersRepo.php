@@ -3,7 +3,6 @@
 namespace Restaurant\Repositories;
 
 use Restaurant\Models\User;
-use Bican\Roles\Models\Role;
 use Restaurant\Exceptions\RepositoryException;
 
 class UsersRepo extends CRUDRepo
@@ -16,56 +15,6 @@ class UsersRepo extends CRUDRepo
     public function __construct(User $model)
     {
         $this->model = $model;
-    }
-
-    /**
-     * Add a role relation to user model
-     *
-     * @param integer $userId
-     * @param Role $role
-     * @return User
-     */
-    public function addRole($userId, Role $role)
-    {
-        $user = $this->model->findOrFail($userId);
-
-        if (!$user->attachRole($role)) {
-            $logData =[
-                'repository_model' => print_r($this->model, true),
-                'query_model' => print_r($user, true),
-                'query_id' => sprintf('%d', $userId),
-                'role' => print_r($role, true),
-            ];
-
-            throw new RepositoryException('Failed to attach role to user.', $logData);
-        }
-
-        return $user;
-    }
-
-    /**
-     * Remove a role relation from user model
-     *
-     * @param integer $userId
-     * @param Role $role
-     * @return User
-     */
-    public function removeRole($userId, $role)
-    {
-        $user = $this->model->findOrFail($userId);
-
-        if (!$user->detachRole($role)) {
-            $logData =[
-                'repository_model' => print_r($this->model, true),
-                'query_model' => print_r($user, true),
-                'query_id' => sprintf('%d', $userId),
-                'role' => print_r($role, true),
-            ];
-
-            throw new RepositoryException('Failed to remove role from user.', $logData);
-        }
-
-        return $user;
     }
 
     /**
