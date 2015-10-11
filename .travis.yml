@@ -8,7 +8,15 @@ php:
 sudo: false
 
 install:
-    - travis_retry composer install --no-interaction --prefer-source
+    - pecl install PDO_PGSQL
+    - composer install --no-interaction --prefer-source
+env:
+  global:
+      - DB_CONNECTION=pgsql
+      - DB_USERNAME=postgres
+      - DB_HOST=localhost
+      - DB_DATABASE=restaurant
+      - APP_ENV=test
 
 before_script:
     - psql -c 'create database restaurant;' -U postgres
