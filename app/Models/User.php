@@ -25,7 +25,7 @@ class User extends Model implements HasRoleAndPermissionContract, Authenticatabl
      *
      * @var array
      */
-    protected $fillable = ['email', 'password'];
+    protected $fillable = ['email', 'password', 'resetToken', 'createToken', 'verified'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -33,45 +33,6 @@ class User extends Model implements HasRoleAndPermissionContract, Authenticatabl
      * @var array
      */
     protected $hidden = ['password'];
-
-    /**
-     * Generate a create user token and set it to the correct field
-     *
-     * @param string $field
-     * @return bool
-     */
-    public function generateToken($field)
-    {
-        $fieldName = $field . 'Token';
-        $this->attributes[$fieldName] = Str::random(64);
-
-        return $this->save();
-    }
-
-    /**
-     * User verify email - set account as active
-     *
-     * @return void
-     */
-    public function setActive()
-    {
-        $this->attributes['createToken'] = null;
-        $this->attributes['verified'] = 1;
-
-        return $this->save();
-    }
-
-    /**
-     * Clear the reset token field and when imlemented clear timestamp
-     *
-     * @return void
-     */
-    public function clearReset()
-    {
-        $this->attributes['resetToken'] = null;
-
-        return $this->save();
-    }
 
     /**
      * Mutator to hash password
