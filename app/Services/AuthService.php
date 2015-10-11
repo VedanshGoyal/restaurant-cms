@@ -48,7 +48,7 @@ class AuthService
         $input['createToken'] = $this->genRandomString();
         $user = $this->usersRepo->create($input);
 
-        if ($user) {
+        if ($user && $user instanceof User) {
             $this->events->fire(new UserCreateEvent($user));
             $this->response['message'] = 'Please check email for activation link';
 
@@ -65,7 +65,8 @@ class AuthService
         $user = $this->usersRepo->findByEmail($email);
 
         if ($user && $user instanceof User) {
-            $this->usersRepo->update($user->id, ['resetToken' => $this->genRandomString()]);
+            $user->resetToken = $this->genRandomString();
+            $this->usersRepo->update($user->id, $user->toArray());
             $this->events->fire(new PasswordResetEvent($user));
             $this->response['message'] = 'Please check email for reset link';
 
@@ -90,10 +91,7 @@ class AuthService
         $token = $this->auth->attempt($input);
 
         if ($token || is_string($token)) {
-            $this->usersRepo->update($user->id, [
-                'createToken' => null,
-                'verified' => 1,
-            ]);
+            $this->usersRepo->update($user->id, ['createToken' => null, 'verified' => 1]);
             $this->response['token'] = $token;
             $this->response['expiresIn'] = strtotime('+1 day');
 
@@ -110,8 +108,7 @@ class AuthService
         $user = $this->usersRepo->findByToken($token, 'reset');
 
         if ($user && $user instanceof User) {
-            $input['resetToken'] = null;
-            $this->usersRepo->update($user->id, $input);
+            $this->usersRepo->update($user->id, ['resetToken' => null]);
             $this->response['message'] = 'Password reset successfully';
 
             return true;
