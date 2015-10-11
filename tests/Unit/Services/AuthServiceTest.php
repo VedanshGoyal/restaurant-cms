@@ -63,11 +63,12 @@ class AuthServiceTest extends \TestCase
     public function testResetPasswordSuccessReturnsTrue()
     {
         $mockUser = m::mock('Restaurant\Models\User')->makePartial();
-        $mockUser->id = 1;
         $mockCreateEvent = m::mock('Restaurant\Events\PasswordResetEvent');
+        $mockUser->id = 1;
 
         $this->mockUsersRepo->shouldReceive('findByEmail')->once()->with(m::type('string'))->andReturn($mockUser);
         $this->mockUsersRepo->shouldReceive('update')->once()->with(m::type('integer'), m::type('array'));
+        $mockUser->shouldReceive('toArray')->once()->withNoArgs()->andReturn(['data']);
         $this->mockEvents->shouldReceive('fire')->once()->with(m::type('Restaurant\Events\PasswordResetEvent'));
 
         $this->assertTrue($this->authService->resetPassword('input'));
