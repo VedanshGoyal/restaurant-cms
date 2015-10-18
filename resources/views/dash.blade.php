@@ -5,11 +5,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Management Dashboard</title>
+
         <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold&amp;lang=en" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="/build/dash.css" rel="stylesheet" />
-        <script type="text/javascript" src="/build/dash-vendor.js"></script>
+        <link rel="stylesheet" href="/css/dash.css" type="text/css" media="all" />
     </head>
     <body>
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -41,6 +42,6 @@
                 <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
             </div>
         </div>
-        <script type="text/javascript" src="/build/dash.js"></script>
+        <script type="text/javascript" src="/js/dash.js"></script>
     </body>
 </html>

@@ -11,8 +11,7 @@
 
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="/build/frontpage.css" />
-        <script type="text/javascript" src="/build/frontpage-vendor.js"></script>
+        <link rel="stylesheet" href="/css/main.css" type="text/css" media="all" />
     </head>
     <body>
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -152,6 +151,6 @@
 
             </main>
         </div>
-        <script type="text/javascript" src="/build/frontpage.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
     </body>
 </html>
