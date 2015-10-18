@@ -1,4 +1,4 @@
-import {Route} from 'backbone.routing';
+import {Route} from 'backbone-routing';
 import DisplayService from '../services/display';
 
 export default Route.extend({

@@ -1,4 +1,4 @@
-import {Router} from 'backbone.routing';
+import {Router} from 'backbone-routing';
 import HeaderService from '../services/header';
 import NavbarService from '../services/navbar';
 import ProtectedRoute from '../routes/protected-route';
