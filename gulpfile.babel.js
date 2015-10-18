@@ -44,3 +44,7 @@ gulp.task('watch:dash', () => {
 });
 
 gulp.task('watch:all', ['watch:main', 'watch:dash']);
+
+gulp.task('build:main', ['compile:js:main', 'compile:sass:main']);
+gulp.task('build:dash', ['compile:js:dash', 'compile:sass:dash']);
+gulp.task('build:all', ['build:main', 'build:dash']);
