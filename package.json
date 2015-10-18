@@ -21,17 +21,20 @@
     "backbone-routing": "^0.2.0",
     "backbone.marionette": "^2.4.3",
     "backbone.syphon": "^0.6.2",
+    "backbone.tango": "^0.3.0",
     "jquery": "^2.1.4",
     "material-design-lite": "^1.0.5",
     "underscore": "^1.8.3"
   },
   "browserify": {
-      "transform": ["browserify-shim"]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browser": {
     "material-design-lite": "./node_modules/material-design-lite/material.js"
   },
   "browserify-shim": {
-      "material-design-lite": "material-design-lite"
+    "material-design-lite": "material-design-lite"
   }
 }
