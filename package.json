@@ -1,0 +1,25 @@
+{
+  "name": "restaurant-cms",
+  "version": "0.0.1",
+  "description": "Restaurant CMS built with laravel and backbone.marionette",
+  "author": "Nick C",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hownowbrowncow/restaurant-cms.git"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "gulp": "^3.9.0",
+    "gulp-modern-tasks": "^0.1.3"
+  },
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "backbone-metal": "^0.6.2",
+    "backbone-routing": "^0.2.0",
+    "backbone.marionette": "^2.4.3",
+    "backbone.syphon": "^0.6.2",
+    "jquery": "^2.1.4",
+    "underscore": "^1.8.3"
+  }
+}

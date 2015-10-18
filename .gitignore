@@ -1,7 +1,4 @@
 /vendor
-/assets/**/*.log
-/assets/node_modules
-/assets/vendor
 /public/build
-/public/build/**
+/node_modules
 .env
