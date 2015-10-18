@@ -1,1 +1,1 @@
-import 'material-design-lite';
+import 'mdl';

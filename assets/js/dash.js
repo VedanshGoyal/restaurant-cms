@@ -1,4 +1,4 @@
-import 'material-design-lite';
+import 'mdl';
 import 'babel/polyfill';
 import './templates/manager';
 import Backbone from 'backbone';
