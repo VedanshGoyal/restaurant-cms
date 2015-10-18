@@ -3,7 +3,7 @@ import Tango from 'backbone.tango';
 
 class NotifyService {
     constructor() {
-        this.tango = new Tango();
+        this.tango = new Tango.Notifier();
     }
 
     error(messages) {
