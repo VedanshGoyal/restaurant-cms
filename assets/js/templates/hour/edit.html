@@ -5,19 +5,19 @@
     <div class="mdl-card__supporting-text mdl-grid">
         <div class="mdl-cell mdl-cell--4-col mdl-cell--middle">
             <label class="mdl-checkbox mdl-js-checkbox" for="toggle-closed">
-                <input name="closed" type="checkbox" id="toggle-closed" class="mdl-checkbox__input" />
+                <input name="closed" type="checkbox" id="toggle-closed" class="mdl-checkbox__input" <%= isClosed ? 'checked' : '' %> />
                 <span class="mdl-checkbox__label">Closed</span>
             </label>
         </div>
         <div class="mdl-cell mdl-cell--4-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" name="openTime" type="text" id="open-time" />
+                <input class="mdl-textfield__input" name="open" type="text" id="open-time" value="<%= open %>" />
                 <label class="mdl-textfield__label" for="open-time">Open Time</label>
             </div>
         </div>
         <div class="mdl-cell mdl-cell--4-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" name="closeTime" type="text" id="close-time" />
+                <input class="mdl-textfield__input" name="close" type="text" id="close-time" value="<%= close %>" />
                 <label class="mdl-textfield__label" for="close-time">Close Time</label>
             </div>
         </div>
