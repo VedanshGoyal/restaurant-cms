@@ -1,12 +1,17 @@
-import {Route} from 'backbone-routing';
 import DisplayService from '../services/display';
 
-export default Route.extend({
-    initialize(view) {
+class Route {
+    constructor(view) {
         this.view = view;
-    },
+    }
 
     render() {
         DisplayService.render(this.view);
-    },
-});
+    }
+
+    enter() {
+        this.render();
+    }
+}
+
+export default Route;
