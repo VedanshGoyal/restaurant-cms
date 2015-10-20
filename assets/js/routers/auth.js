@@ -1,4 +1,4 @@
-import {Router} from 'backbone-routing';
+import Router from './router';
 import AuthSerivce from '../services/auth';
 import NavbarService from '../services/navbar';
 import HeaderService from '../services/header';
