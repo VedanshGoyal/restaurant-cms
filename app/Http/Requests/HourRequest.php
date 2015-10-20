@@ -9,8 +9,8 @@ class HourRequest extends Request
     // @var array
     protected $rules = [
         'day' => 'required|between:2,10|alpha',
-        'open' => 'required|size:8|basicText',
-        'close' => 'required|size:8|basicText',
+        'open' => 'required|between:2,10|basicText',
+        'close' => 'required|between:2,10|basicText',
         'isClosed' => 'required|boolean',
     ];
 }
