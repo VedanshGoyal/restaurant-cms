@@ -2,6 +2,7 @@ import 'mdl';
 import 'babel/polyfill';
 import './templates/manager';
 import Backbone from 'backbone';
+import TimePicker from 'material-timepicker';
 import Config from './config';
 import IndexRouter from './routers/index';
 import AuthRouter from './routers/auth';
@@ -16,7 +17,7 @@ App.routers = {
     auth: new AuthRouter(),
     info: new InfoRouter(),
     about: new AboutRouter(),
-    hours: new HourRouter(),
+    hours: new HourRouter(new TimePicker()),
 };
 
 Backbone.history.start({root: Config.urlRoot});

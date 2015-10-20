@@ -13,8 +13,9 @@ export default Router.extend({
         'hour/:id/edit': 'edit',
     },
 
-    initialize() {
+    initialize(timepicker) {
         this.collection = new HoursCollection();
+        this.timepicker = timepicker;
     },
 
     show() {
@@ -27,9 +28,10 @@ export default Router.extend({
     edit(id) {
         NavbarService.setContentActive('hours');
         HeaderService.setTitle('Edit Hours');
+        const timepicker = this.timepicker;
         const model = this.collection.get(id) || new HourModel({id});
 
-        return new ProtectedRoute(new EditView({model}));
+        return new ProtectedRoute(new EditView({model, timepicker}));
     },
 });
 
