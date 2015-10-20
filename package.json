@@ -17,8 +17,6 @@
   },
   "dependencies": {
     "backbone": "^1.2.3",
-    "backbone-metal": "^0.6.2",
-    "backbone-routing": "^0.2.0",
     "backbone.marionette": "^2.4.3",
     "backbone.syphon": "^0.6.2",
     "backbone.tango": "^0.3.0",
