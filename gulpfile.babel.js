@@ -17,12 +17,14 @@ const sassMainOpts = {
     source: './assets/sass/main.scss',
     outFile: 'main.css',
     outPath: './public/css',
+    watch: './assets/sass/**/*.scss',
 };
 
 const sassDashOpts = {
     source: './assets/sass/dash.scss',
     outFile: 'dash.css',
     outPath: './public/css',
+    watch: './assets/sass/**/*.scss',
 };
 
 gulp.task('compile:js:main', () => tasks.compileJS(jsMainOpts));
