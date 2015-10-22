@@ -1,11 +1,7 @@
 import _ from 'underscore';
-import Tango from 'backbone.tango';
+import toastr from 'toastr';
 
 class NotifyService {
-    constructor() {
-        this.tango = new Tango.Notifier();
-    }
-
     error(messages) {
         this.notify('error', messages);
     }
@@ -27,10 +23,10 @@ class NotifyService {
             _.each(messages, message => {
                 const singleMessage = _.isArray(message) ? _.first(message) : message;
 
-                this.tango[type](singleMessage);
+                toastr[type](singleMessage);
             });
         } else {
-            this.tango[type](messages);
+            toastr[type](messages);
         }
     }
 }

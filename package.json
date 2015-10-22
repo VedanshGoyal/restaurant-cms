@@ -19,10 +19,10 @@
     "backbone": "^1.2.3",
     "backbone.marionette": "^2.4.3",
     "backbone.syphon": "^0.6.2",
-    "backbone.tango": "^0.3.0",
     "jquery": "^2.1.4",
     "material-design-lite": "^1.0.5",
     "material-timepicker": "^0.1.1",
+    "toastr": "^2.1.2",
     "underscore": "^1.8.3"
   },
   "browserify": {
