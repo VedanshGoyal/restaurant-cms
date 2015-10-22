@@ -32,6 +32,7 @@
                         <a class="mdl-navigation__link" href="#menu">Menu</a>
                         <a class="mdl-navigation__link" href="#pictures">Pictures</a>
                         <a class="mdl-navigation__link" href="#hours">Hours</a>
+                        <a class="mdl-navigation__link" href="#logout">Logout</a>
                     </div>
                 </nav>
             </div>

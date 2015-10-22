@@ -35,7 +35,8 @@ export default Model.extend({
     },
 
     clearStorage() {
-        this.storage.removeItem(Config.storagename);
+        this.storage.removeItem(Config.storageName);
+        this.clear();
     },
 
     hasValidSession() {

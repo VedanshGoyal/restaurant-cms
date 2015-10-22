@@ -6,11 +6,7 @@ class AuthService {
     }
 
     isAuthed() {
-        if (this.model.hasValidSession()) {
-            return true;
-        }
-
-        return false;
+        return this.model.hasValidSession();
     }
 
     headers() {
@@ -18,6 +14,11 @@ class AuthService {
 
         headers.Authorization = `Bearer ${this.model.get('token')}`;
         return headers;
+    }
+
+    logout() {
+        this.model.clearStorage();
+        window.location.hash = 'login';
     }
 }
 
