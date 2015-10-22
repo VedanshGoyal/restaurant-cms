@@ -10,6 +10,7 @@ export default Model.extend({
 
     initialize() {
         this.on('sync', this.clearTempAttrs);
+        this.storage = window.localStorage;
         this.loadFromStorage();
     },
 
@@ -20,7 +21,7 @@ export default Model.extend({
     },
 
     loadFromStorage() {
-        const storedData = JSON.parse(localStorage.getItem(Config.storageName));
+        const storedData = JSON.parse(this.storage.getItem(Config.storageName));
 
         if (_.isObject(storedData)) {
             this.set(storedData);
@@ -30,11 +31,11 @@ export default Model.extend({
     saveToStorage() {
         const attrs = this.attributes;
 
-        localStorage.setItem(Config.storageName, JSON.stringify(attrs));
+        this.storage.setItem(Config.storageName, JSON.stringify(attrs));
     },
 
     clearStorage() {
-        localStorage.removeItem(Config.storagename);
+        this.storage.removeItem(Config.storagename);
     },
 
     hasValidSession() {
