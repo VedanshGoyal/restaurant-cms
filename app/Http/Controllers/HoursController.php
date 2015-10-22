@@ -20,7 +20,7 @@ class HoursController extends Controller
     protected $reponse;
 
     // @var array - white-listed input values
-    protected $whiteList = ['day', 'open', 'closed', 'isClosed'];
+    protected $whiteList = ['day', 'open', 'close', 'isClosed'];
 
     public function __construct(
         HourRepo $repository,
