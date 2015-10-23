@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import shell from 'gulp-shell';
 import * as tasks from 'gulp-modern-tasks';
 
 const jsMainOpts = {
@@ -50,3 +51,7 @@ gulp.task('watch:all', ['watch:main', 'watch:dash']);
 gulp.task('build:main', ['compile:js:main', 'compile:sass:main']);
 gulp.task('build:dash', ['compile:js:dash', 'compile:sass:dash']);
 gulp.task('build:all', ['build:main', 'build:dash']);
+
+gulp.task('cmd:refreshDB', shell.task(['php artisan migrate:reset && php artisan migrate --seed']));
+gulp.task('cmd:refreshLoader', shell.task(['composer dumpautoload && php artisan optimize']));
+gulp.task('cmd:refresh', ['cmd:refreshLoader', 'cmd:refreshDB']);
