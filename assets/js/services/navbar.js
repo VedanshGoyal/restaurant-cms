@@ -3,9 +3,11 @@ import _ from 'underscore';
 
 class NavBarService {
     constructor() {
-        this.contentLinks = $('.navigation').find('.content-links');
-        this.authLinks = $('.navigation').find('.auth-links');
-        this.links = $('.navigation').find('.mdl-navigation__link');
+        this.drawer = $('div.navigation');
+        this.nav = this.drawer.find('nav.navigation').first();
+        this.contentLinks = this.nav.find('.content-links');
+        this.authLinks = this.nav.find('.auth-links');
+        this.links = this.nav.find('.mdl-navigation__link');
     }
 
     setAuthActive(href) {
@@ -21,10 +23,14 @@ class NavBarService {
     }
 
     setCurrentLink(href) {
-        const current = $('.mdl-navigation__link--current');
+        const current = this.nav.find('.mdl-navigation__link--current').first();
         const newCurrent = _.filter(this.links, link => {
             return link.attributes.href.value === `#${href}`;
         });
+
+        if (this.drawer.hasClass('is-visible')) {
+            $('.mdl-layout__obfuscator').click();
+        }
 
         if (current) {
             current.removeClass('mdl-navigation__link--current');
