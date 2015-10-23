@@ -19,14 +19,20 @@
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer"></div>
                     <nav class="mdl-navigation mdl-layout--large-screen-only">
-                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="#about">About</a>
+                        <a class="mdl-navigation__link" href="#menu">Menu</a>
+                        <a class="mdl-navigation__link" href="#photos">Photos</a>
+                        <a class="mdl-navigation__link" href="#hours">Hours</a>
                     </nav>
                 </div>
             </header>
 
             <div class="mdl-layout__drawer">
                 <nav class="mdl-navigation">
-                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="#about">About</a>
+                    <a class="mdl-navigation__link" href="#menu">Menu</a>
+                    <a class="mdl-navigation__link" href="#photos">Photos</a>
+                    <a class="mdl-navigation__link" href="#hours">Hours</a>
                 </nav>
             </div>
 
@@ -44,7 +50,7 @@
                     </div>
                 </section>
 
-                <section class="section--center mdl-grid">
+                <section class="section--center mdl-grid" id="about">
                     <div class="mdl-card mdl-cell mdl-cell--12-col text-center mdl-shadow--2dp">
                         <div class="mdl-card__title mdl-card--border">
                             <h2 class="mdl-card__title-text">{{{ $about->title }}}</h2>
@@ -55,7 +61,7 @@
                     </div>
                 </section>
 
-                <section class="section--center mdl-grid">
+                <section class="section--center mdl-grid" id="menu">
                     <div class="mdl-card mdl-cell mdl-cell--12-col text-center mdl-shadow--2dp">
                         <div class="mdl-card__title mdl-card--border">
                             <h2 class="mdl-card__title-text">Menu</h2>
@@ -91,7 +97,7 @@
                     </div>
                 </section>
 
-                <section class="section--center mdl-grid">
+                <section class="section--center mdl-grid" id="photos">
                     <div class="mdl-card mdl-cell mdl-cell--12-col text-center mdl-shadow--2dp">
                         <div class="mdl-card__title mdl-card--border">
                             <h2 class="mdl-card__title-text">Photos</h2>
@@ -123,7 +129,7 @@
                     </div>
                 </section><!-- .photo-section -->
 
-                <footer class="mdl-mega-footer">
+                <footer class="mdl-mega-footer" id="hours">
                     <div class="mdl-mega-footer__top-section mlg-grid text-center">
                         <div class="mdl-mega-footer__left-section mdl-cell--6-col mdl-cell--4-col-tablet">
                             <h6 class="mdl-mega-footer__heading">{{{ $info->name }}}</h6>
