@@ -2,6 +2,7 @@ import Router from './router';
 import NavbarService from '../services/navbar';
 import HeaderService from '../services/header';
 import ProtectedRoute from '../routes/protected-route';
+import MenuSectionCollection from '../collections/menuSections';
 
 export default Router.extend({
     navName: 'menu-sections',
@@ -11,6 +12,10 @@ export default Router.extend({
         'menu-section/:id/edit': 'editSection',
         'menu-item/:id': 'showItem',
         'menu-item/:id/edit': 'editItem',
+    },
+
+    initialize() {
+        this.sections = new MenuSectionCollection();
     },
 
     showSections() {
