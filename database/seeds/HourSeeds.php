@@ -15,9 +15,11 @@ class HourSeeds extends Seeder
     {
         DB::table('hours')->delete();
 
-        $hourData = ['day' => 'Day', 'open' => '8:00', 'close' => '18:00'];
+        $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        $hourData = ['open' => '8:00 am', 'close' => '8:00 pm'];
 
         for ($i=0; $i<7; $i++) {
+            $hourData['day'] = $days[$i];
             Hour::create($hourData);
         }
     }
