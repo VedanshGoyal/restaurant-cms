@@ -9,6 +9,7 @@ import AuthRouter from './routers/auth';
 import InfoRouter from './routers/info';
 import AboutRouter from './routers/about';
 import HourRouter from './routers/hour';
+import MenuRouter from './routers/menu';
 
 const App = {};
 
@@ -17,7 +18,8 @@ App.routers = {
     auth: new AuthRouter(),
     info: new InfoRouter(),
     about: new AboutRouter(),
-    hours: new HourRouter(new TimePicker()),
+    hour: new HourRouter(new TimePicker()),
+    menu: new MenuRouter(),
 };
 
 Backbone.history.start({root: Config.urlRoot});

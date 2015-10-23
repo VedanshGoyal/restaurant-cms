@@ -29,7 +29,7 @@
                         <a class="mdl-navigation__link" href="#">Home</a>
                         <a class="mdl-navigation__link" href="#info">Info</a>
                         <a class="mdl-navigation__link" href="#about">About</a>
-                        <a class="mdl-navigation__link" href="#menu">Menu</a>
+                        <a class="mdl-navigation__link" href="#menu-sections">Menu</a>
                         <a class="mdl-navigation__link" href="#pictures">Pictures</a>
                         <a class="mdl-navigation__link" href="#hours">Hours</a>
                         <a class="mdl-navigation__link" href="#logout">Logout</a>
