@@ -18,10 +18,7 @@ export default CompositeView.extend({
     template: TemplateCache.get('sectionTable'),
     className: 'mdl-data-table mdl-js-data-table mdl-cell mdl-cell--8-col mdl-shadow--2dp',
     tagName: 'table',
-
-    ui: {
-        wrapper: 'tbody',
-    },
+    childViewContainer: 'tbody',
 
     collectionEvents: {
         sync: 'render',
@@ -29,9 +26,5 @@ export default CompositeView.extend({
 
     initialize() {
         this.collection.fetch();
-    },
-
-    attachBuffer(view, buffer) {
-        view.ui.wrapper.html(buffer);
     },
 });
