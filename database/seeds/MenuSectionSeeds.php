@@ -24,6 +24,8 @@ class MenuSectionSeeds extends Seeder
             'name' => 'Section Two',
             'itemPrices' => 2,
             'sortId' => 2,
+            'infoTitle' => 'Toppings',
+            'info' => 'Pepperoni, Olives, Peppers, Ham, Chicken, Eggplant, Sausage, Pinapple, Pepperoni, Olives, Peppers, Ham, Chicken, Eggplant, Sausage, Pinapple'
         ]);
     }
 }

@@ -18,6 +18,8 @@ class MenuSections extends Migration
             $table->integer('sortId');
             $table->integer('itemPrices')->default(1);
             $table->string('name');
+            $table->string('infoTitle')->nullable();
+            $table->string('info')->nullable();
             $table->timestamps();
         });
     }
