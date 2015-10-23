@@ -91,19 +91,19 @@
                             <h2 class="mdl-card__title-text">Photos</h2>
                         </div>
                         <div class="mdl-card__supporting-text mdl-grid">
-                            <div class="mdl-card mdl-card__image mdl-shadow--2dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone" style="background: url('/imgs/cityscape1.jpg') center / cover;">
+                            <div class="mdl-card mdl-card__image mdl-shadow--2dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone" style="background: url('/images/cityscape1.jpg') center / cover;">
                                 <div class="mdl-card__title mdl-card--expand"></div>
                                 <div class="mdl-card__actions">
                                     <span>Image.jpg</span>
                                 </div>
                             </div>
-                            <div class="mdl-card mdl-card__image mdl-shadow--2dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--hide-phone" style="background: url('/imgs/cityscape1.jpg') center / cover;">
+                            <div class="mdl-card mdl-card__image mdl-shadow--2dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--hide-phone" style="background: url('/images/cityscape1.jpg') center / cover;">
                                 <div class="mdl-card__title mdl-card--expand"></div>
                                 <div class="mdl-card__actions">
                                     <span>Image.jpg</span>
                                 </div>
                             </div>
-                            <div class="mdl-card mdl-card__image mdl-shadow--2dp mdl-cell--4-col-desktop mdl-cell--hide-phone mdl-cell--hide-tablet" style="background: url('/imgs/cityscape1.jpg') center / cover;">
+                            <div class="mdl-card mdl-card__image mdl-shadow--2dp mdl-cell--4-col-desktop mdl-cell--hide-phone mdl-cell--hide-tablet" style="background: url('/images/cityscape1.jpg') center / cover;">
                                 <div class="mdl-card__title mdl-card--expand"></div>
                                 <div class="mdl-card__actions">
                                     <span>Image.jpg</span>
@@ -111,8 +111,8 @@
                             </div>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Backward</a>
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right-text">Forward</a>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Previous</a>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right-text">Next</a>
                         </div>
                     </div>
                 </section><!-- .photo-section -->
@@ -120,9 +120,8 @@
                 <footer class="mdl-mega-footer">
                     <div class="mdl-mega-footer__top-section mlg-grid text-center">
                         <div class="mdl-mega-footer__left-section mdl-cell--6-col mdl-cell--4-col-tablet">
-                            <h6 class="mdl-mega-footer__heading">Restaurant CMS</h6>
+                            <h6 class="mdl-mega-footer__heading">{{{ $info->name }}}</h6>
                             <ul class="mdl-mega-footer__link-list">
-                                <li>{{{ $info->name }}}</li>
                                 <li>{{{ $info->street . ', ' . $info->city }}}</li>
                                 <li>{{{ $info->state . ' ' . $info->zip }}}</li>
                                 <li>{{{ $info->phoneOne }}}</li>

@@ -26,7 +26,7 @@ class HTMLController extends Controller
     {
         $repoName = 'Restaurant\Repositories\{name}Repo';
         $data = [];
-        $data['hours'] = $this->app[str_replace('{name}', 'Hour', $repoName)]->readAll();
+        $data['hours'] = $this->app[str_replace('{name}', 'Hour', $repoName)]->readAll()->sortBy('id');
         $data['info'] = $this->app[str_replace('{name}', 'Info', $repoName)]->readSingle(1);
         $data['about'] = $this->app[str_replace('{name}', 'About', $repoName)]->readSingle(1);
         $data['menuSections'] = $this->app[str_replace('{name}', 'MenuSection', $repoName)]->readAll();
