@@ -15,6 +15,8 @@ import aboutEdit from './about/edit.html';
 import hourWrapper from './hour/wrapper.html';
 import hourSingle from './hour/single.html';
 import hourEdit from './hour/edit.html';
+import sectionsWrapper from './menu-section/wrapper.html';
+import sectionsWrapperSingle from './menu-section/wrapper-single.html';
 
 const templates = {
     home,
@@ -31,6 +33,8 @@ const templates = {
     hourWrapper,
     hourSingle,
     hourEdit,
+    sectionsWrapper,
+    sectionsWrapperSingle,
 };
 
 TemplateCache.prototype.loadTemplate = function loadTemplateF(templateId) {
