@@ -17,28 +17,30 @@ import hourSingle from './hour/single.html';
 import hourEdit from './hour/edit.html';
 
 const templates = {
-    home: home,
-    header: header,
-    login: login,
-    create: create,
-    forgot: forgot,
-    verifyReset: verifyReset,
-    verifyNew: verifyNew,
-    infoShow: infoShow,
-    infoEdit: infoEdit,
-    aboutShow: aboutShow,
-    aboutEdit: aboutEdit,
-    hourWrapper: hourWrapper,
-    hourSingle: hourSingle,
-    hourEdit: hourEdit,
+    home,
+    header,
+    login,
+    create,
+    forgot,
+    verifyReset,
+    verifyNew,
+    infoShow,
+    infoEdit,
+    aboutShow,
+    aboutEdit,
+    hourWrapper,
+    hourSingle,
+    hourEdit,
 };
 
-TemplateCache.prototype.loadTemplate = function(templateId, options) {
-    if (Config.env === 'local') { TemplateCache.clear(); }
+TemplateCache.prototype.loadTemplate = function loadTemplateF(templateId) {
+    if (Config.env === 'local') {
+        TemplateCache.clear();
+    }
 
-    return templates[templateId];    
+    return templates[templateId];
 };
 
-TemplateCache.prototype.compileTemplate = function(rawTemplate, options) {
+TemplateCache.prototype.compileTemplate = function compileTemplateF(rawTemplate) {
     return _.template(rawTemplate);
 };
