@@ -11,5 +11,7 @@ class MenuSectionRequest extends Request
         'sortId' => 'required|integer|beteween:1,1000',
         'itemPrices' => 'required|integer|between:1,2',
         'name' => 'required|basicText|between:3,150',
+        'infoTitle' => 'basicText|between:3,200',
+        'info' => 'basicText|between:5,2000',
     ];
 }

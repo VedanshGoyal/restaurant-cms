@@ -23,7 +23,7 @@ class MenuSectionsController extends Controller
     protected $with = ['items'];
 
     // @var array - white-listed input values
-    protected $whiteList = ['name', 'sortId', 'itemPrices'];
+    protected $whiteList = ['name', 'sortId', 'itemPrices', 'infoTitle', 'info'];
 
     public function __construct(
         MenuSectionRepo $repository,
