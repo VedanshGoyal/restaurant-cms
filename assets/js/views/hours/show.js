@@ -1,7 +1,7 @@
-import {ItemView, CollectionView, TemplateCache} from 'backbone.marionette';
+import {ItemView, CompositeView, TemplateCache} from 'backbone.marionette';
 
 const HourView = ItemView.extend({
-    template: TemplateCache.get('hourSingle'),
+    template: TemplateCache.get('hourShowTable'),
     tagName: 'tr',
 
     templateHelpers() {
@@ -13,9 +13,9 @@ const HourView = ItemView.extend({
     },
 });
 
-export default CollectionView.extend({
+export default CompositeView.extend({
     childView: HourView,
-    template: TemplateCache.get('hourWrapper'),
+    template: TemplateCache.get('hourTable'),
     className: 'mdl-data-table mdl-js-data-table mdl-cell mdl-cell--8-col mdl-shadow--2dp',
     tagName: 'table',
 

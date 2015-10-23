@@ -1,7 +1,7 @@
-import {ItemView, CollectionView, TemplateCache} from 'backbone.marionette';
+import {ItemView, CompositeView, TemplateCache} from 'backbone.marionette';
 
 const MenuSectionView = ItemView.extend({
-    template: TemplateCache.get('sectionsWrapperSingle'),
+    template: TemplateCache.get('sectionShowTable'),
     tagName: 'tr',
 
     templateHelpers() {
@@ -13,9 +13,9 @@ const MenuSectionView = ItemView.extend({
     },
 });
 
-export default CollectionView.extend({
+export default CompositeView.extend({
     childView: MenuSectionView,
-    template: TemplateCache.get('sectionsWrapper'),
+    template: TemplateCache.get('sectionTable'),
     className: 'mdl-data-table mdl-js-data-table mdl-cell mdl-cell--8-col mdl-shadow--2dp',
     tagName: 'table',
 

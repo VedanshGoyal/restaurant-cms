@@ -12,11 +12,11 @@ import infoShow from './info/show.html';
 import infoEdit from './info/edit.html';
 import aboutShow from './about/show.html';
 import aboutEdit from './about/edit.html';
-import hourWrapper from './hour/wrapper.html';
-import hourSingle from './hour/single.html';
+import hourTable from './hour/table.html';
+import hourShowTable from './hour/show-table.html';
 import hourEdit from './hour/edit.html';
-import sectionsWrapper from './menu-section/wrapper.html';
-import sectionsWrapperSingle from './menu-section/wrapper-single.html';
+import sectionTable from './menu-section/table.html';
+import sectionShowTable from './menu-section/show-table.html';
 
 const templates = {
     home,
@@ -30,11 +30,11 @@ const templates = {
     infoEdit,
     aboutShow,
     aboutEdit,
-    hourWrapper,
-    hourSingle,
+    hourTable,
+    hourShowTable,
     hourEdit,
-    sectionsWrapper,
-    sectionsWrapperSingle,
+    sectionTable,
+    sectionShowTable,
 };
 
 TemplateCache.prototype.loadTemplate = function loadTemplateF(templateId) {
