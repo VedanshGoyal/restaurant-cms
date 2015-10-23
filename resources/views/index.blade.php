@@ -63,13 +63,10 @@
                         <div class="mdl-card__supporting-text">
                         @foreach($menuSections as $menuSection)
                             <h5>{{{ $menuSection->name }}}</h5>
-                            <div class="mdl-grid">
+                            <div class="mdl-grid menu-section">
                             @foreach($menuSection->items as $item)
                                 <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-4--col-phone">
                                     <h6>{{{ $item->name }}}</h6>
-                                    @if(isset($item->description))
-                                    <p>{{{ $item->description }}}</p>
-                                    @endif
                                     <div class="section__prices">
                                         @if($menuSection->itemPrices === 2)
                                         small: {{{ number_format($item->priceOne, 2)}}} - large: {{{ number_format($item->priceTwo, 2) }}}
@@ -77,8 +74,17 @@
                                         {{{ number_format($item->priceOne, 2) }}}
                                         @endif
                                     </div>
+                                    @if(isset($item->description))
+                                    <p>{{{ $item->description }}}</p>
+                                    @endif
                                 </div>
                             @endforeach
+                            @if(isset($menuSection->infoTitle))
+                                <div class="section__info mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet md-cell-8--col-phone">
+                                    <h6>{{{ $menuSection->infoTitle }}}</h6>
+                                    {{{ $menuSection->info }}}
+                                </div>
+                            @endif
                             </div>
                         @endforeach
                         </div>
