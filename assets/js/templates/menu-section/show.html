@@ -1,14 +1,27 @@
 <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text"><%= name %> Items</h2>
+    <h2 class="mdl-card__title-text"><%= name %></h2>
 </div>
-<div class="mdl-card__supporting-text mdl-card--prewrap">
+<div class="mdl-card__supporting-text">
+    <% if (infoTitle && info) { %>
+    <div class="menu__info">
+        <h6><%= infoTitle %></h6>
+        <%= info %>
+    </div>
+    <% } %>
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-data-table--nested">
         <thead>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">Name</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
+</div>
+<div class="mdl-card__actions mdl-card--border">
+    <a href="#menu-sections" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Back</a>
+    <div class="mdl-layout-spacer"></div>
+    <a href="#menu-section/<%= id %>/add-item" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Add Item</a>
+    <a href="#menu-section/<%= id %>/edit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Edit</a>
 </div>

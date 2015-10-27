@@ -18,6 +18,7 @@ import hourEdit from './hour/edit.html';
 import sectionTable from './menu-section/table.html';
 import sectionShowTable from './menu-section/show-table.html';
 import sectionShow from './menu-section/show.html';
+import sectionEdit from './menu-section/edit.html';
 import itemShowTable from './menu-item/show-table.html';
 
 const templates = {
@@ -38,6 +39,7 @@ const templates = {
     sectionTable,
     sectionShowTable,
     sectionShow,
+    sectionEdit,
     itemShowTable,
 };
 
