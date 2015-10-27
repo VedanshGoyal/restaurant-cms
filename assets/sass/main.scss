@@ -4,13 +4,4 @@
 @import './global/vendor';
 @import './global/mdl-custom';
 
-.section__info {
-    margin: 20px auto;
-}
-.menu-section {
-    border-bottom: 1px solid rgba(55,55,55,0.3);
-
-    &:last-of-type {
-        border-bottom: none;
-    }
-}
+@import './sections/menu';
