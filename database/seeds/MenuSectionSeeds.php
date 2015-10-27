@@ -22,7 +22,7 @@ class MenuSectionSeeds extends Seeder
 
         MenuSection::create([
             'name' => 'Section Two',
-            'itemPrices' => 2,
+            'sizes' => 2,
             'sortId' => 2,
             'infoTitle' => 'Toppings',
             'info' => 'Pepperoni, Olives, Peppers, Ham, Chicken, Eggplant, Sausage, Pinapple, Pepperoni, Olives, Peppers, Ham, Chicken, Eggplant, Sausage, Pinapple'

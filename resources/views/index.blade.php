@@ -74,7 +74,7 @@
                                 <div class="section__text mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet md-cell-4--col-phone">
                                     <h6>{{{ $item->name }}}</h6>
                                     <div class="section__prices">
-                                        @if($menuSection->itemPrices === 2)
+                                        @if($menuSection->sizes === 2)
                                         small: {{{ number_format($item->priceOne, 2)}}} - large: {{{ number_format($item->priceTwo, 2) }}}
                                         @else
                                         {{{ number_format($item->priceOne, 2) }}}

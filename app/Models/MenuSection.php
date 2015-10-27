@@ -10,7 +10,7 @@ class MenuSection extends Model
     protected $table = 'menu_sections';
 
     // @var array - mass-assignable properties
-    protected $fillable = ['name', 'itemPrices', 'sortId', 'infoTitle', 'info'];
+    protected $fillable = ['name', 'sizes', 'sortId', 'infoTitle', 'info'];
 
     /**
      * Has many menu item models
