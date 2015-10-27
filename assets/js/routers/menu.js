@@ -5,9 +5,9 @@ import ProtectedRoute from '../routes/protected-route';
 import SectionsCollection from '../collections/menu-sections';
 import SectionModel from '../models/menu-section';
 import ItemsCollection from '../collections/menu-items';
-import ItemModel from '../models/menu-item';
 import ShowSectionsView from'../views/menu-sections/show-all';
 import ShowSectionView from '../views/menu-sections/show';
+import SectionEditView from '../views/menu-sections/edit';
 
 export default Router.extend({
     navName: 'menu-sections',
@@ -15,8 +15,6 @@ export default Router.extend({
         'menu-sections': 'showSections',
         'menu-section/:id': 'showSection',
         'menu-section/:id/edit': 'editSection',
-        'menu-item/:id': 'showItem',
-        'menu-item/:id/edit': 'editItem',
     },
 
     initialize() {
@@ -39,23 +37,11 @@ export default Router.extend({
         return new ProtectedRoute(new ShowSectionView({model, collection}));
     },
 
-    /* eslint-disable */
     editSection(id) {
         NavbarService.setContentActive(this.navName);
         HeaderService.setTitle('Edit Menu Section');
-        const sectionModel = this.sections.get(id) || new SectionModel({id});
-    },
+        const model = this.sections.get(id) || new SectionModel({id});
 
-    showItem(id) {
-        NavbarService.setContentActive(this.navName);
-        HeaderService.setTitle('Menu Section Item');
-        const model = new ItemModel({id});
+        return new ProtectedRoute(new SectionEditView({model}));
     },
-
-    editItem(id) {
-        NavbarService.setContentActive(this.navName);
-        HeaderService.setTitle('Edit Menu Section Item');
-        const model = new ItemModel({id});
-    },
-    /* eslint-enable */
 });

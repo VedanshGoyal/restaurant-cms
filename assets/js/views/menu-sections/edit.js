@@ -6,7 +6,7 @@ import FormBehavior from '../../behaviors/form';
 import ModelErrorBehavior from '../../behaviors/model-error';
 
 export default ItemView.extend({
-    template: TemplateCache.get('aboutEdit'),
+    template: TemplateCache.get('sectionEdit'),
     className: 'mdl-card mdl-cell mdl-cell--8-col mdl-shadow--2dp',
     tagName: 'div',
 
@@ -25,7 +25,7 @@ export default ItemView.extend({
     },
 
     ui: {
-        content: 'textarea',
+        info: 'textarea',
     },
 
     initialize() {
@@ -33,7 +33,7 @@ export default ItemView.extend({
     },
 
     onRender() {
-        this.ui.content.html(this.model.get('content'));
+        this.ui.info.html(this.model.get('info'));
     },
 
     handleSubmit() {
@@ -41,9 +41,9 @@ export default ItemView.extend({
 
         this.model.set(this.form).save().done(() => {
             LoadingService.hide();
-            NotifyService.success('About updated succesfully.');
+            NotifyService.success('Menu Section Updated Successfully');
 
-            window.location.hash = 'about';
+            window.location.hash = `menu-section/${this.model.get('id')}`;
         });
     },
 });
