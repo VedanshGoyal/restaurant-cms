@@ -19,6 +19,8 @@ class NotifyService {
     }
 
     notify(type = 'error', messages) {
+        toastr.remove();
+
         if (_.isObject(messages) || _.isArray(messages)) {
             _.each(messages, message => {
                 const singleMessage = _.isArray(message) ? _.first(message) : message;
