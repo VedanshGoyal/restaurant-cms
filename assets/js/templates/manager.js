@@ -19,6 +19,7 @@ import sectionTable from './menu-section/table.html';
 import sectionShowTable from './menu-section/show-table.html';
 import sectionShow from './menu-section/show.html';
 import sectionEdit from './menu-section/edit.html';
+import sectionCreate from './menu-section/create.html';
 import itemShowTable from './menu-item/show-table.html';
 
 const templates = {
@@ -40,6 +41,7 @@ const templates = {
     sectionShowTable,
     sectionShow,
     sectionEdit,
+    sectionCreate,
     itemShowTable,
 };
 
