@@ -9,6 +9,8 @@ export default Model.extend({
     },
 
     url() {
-        return `${Config.apiRoot}/${this.resourceName}/${this.get('id')}`;
+        return this.isNew()
+            ? `${Config.apiRoot}/${this.resourceName}`
+            : `${Config.apiRoot}/${this.resourceName}/${this.get('id')}`;
     },
 });
