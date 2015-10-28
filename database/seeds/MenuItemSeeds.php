@@ -24,14 +24,14 @@ class MenuItemSeeds extends Seeder
             'sortId' => 1,
             'priceOne' => 9.50,
             'description' => 'Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-            'section_id' => $sectionOne->id,
+            'sectionId' => $sectionOne->id,
         ]);
 
         MenuItem::create([
             'name' => 'Item Two',
             'sortId' => 2,
             'priceOne' => 9.50,
-            'section_id' => $sectionOne->id,
+            'sectionId' => $sectionOne->id,
         ]);
 
         MenuItem::create([
@@ -39,7 +39,7 @@ class MenuItemSeeds extends Seeder
             'sortId' => 1,
             'priceOne' => 9.50,
             'priceTwo' => 15.50,
-            'section_id' => $sectionTwo->id,
+            'sectionId' => $sectionTwo->id,
         ]);
 
         MenuItem::create([
@@ -48,7 +48,7 @@ class MenuItemSeeds extends Seeder
             'priceOne' => 9.50,
             'priceTwo' => 15.50,
             'description' => 'Aenean ultricies mi vitae est. Mauris placerat eleifend leo.',
-            'section_id' => $sectionTwo->id,
+            'sectionId' => $sectionTwo->id,
         ]);
 
     }

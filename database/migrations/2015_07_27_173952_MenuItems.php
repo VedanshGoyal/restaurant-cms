@@ -15,7 +15,7 @@ class MenuItems extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('section_id');
+            $table->integer('sectionId');
             $table->integer('sortId');
             $table->float('priceOne');
             $table->float('priceTwo')->nullable();

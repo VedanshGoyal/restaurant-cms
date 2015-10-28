@@ -19,6 +19,6 @@ class MenuSection extends Model
      */
     public function items()
     {
-        return $this->hasMany('Restaurant\Models\MenuItem', 'section_id');
+        return $this->hasMany('Restaurant\Models\MenuItem', 'sectionId');
     }
 }
