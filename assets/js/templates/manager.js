@@ -21,6 +21,7 @@ import sectionShow from './menu-section/show.html';
 import sectionEdit from './menu-section/edit.html';
 import sectionCreate from './menu-section/create.html';
 import itemShowTable from './menu-item/show-table.html';
+import itemEdit from './menu-item/edit.html';
 
 const templates = {
     home,
@@ -43,6 +44,7 @@ const templates = {
     sectionEdit,
     sectionCreate,
     itemShowTable,
+    itemEdit,
 };
 
 TemplateCache.prototype.loadTemplate = function loadTemplateF(templateId) {
