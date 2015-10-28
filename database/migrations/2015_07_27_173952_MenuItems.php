@@ -20,7 +20,6 @@ class MenuItems extends Migration
             $table->float('priceOne');
             $table->float('priceTwo')->nullable();
             $table->string('name');
-            $table->text('tags')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });
