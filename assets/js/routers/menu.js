@@ -10,6 +10,7 @@ import ShowSectionsView from'../views/menu-sections/show-all';
 import ShowSectionView from '../views/menu-sections/show';
 import SectionEditView from '../views/menu-sections/edit';
 import SectionCreateView from '../views/menu-sections/create';
+import ItemCreateView from '../views/menu-item/create';
 import ItemEditView from '../views/menu-item/edit';
 
 export default Router.extend({
@@ -19,6 +20,7 @@ export default Router.extend({
         'menu-section/add': 'addSection',
         'menu-section/:id': 'showSection',
         'menu-section/:id/edit': 'editSection',
+        'menu-section/:id/add-item': 'addItem',
         'menu-item/:id/edit': 'editItem',
     },
 
@@ -56,6 +58,15 @@ export default Router.extend({
         const model = new SectionModel();
 
         return new ProtectedRoute(new SectionCreateView({model}));
+    },
+
+    addItem(id) {
+        NavbarService.setContentActive(this.navName);
+        HeaderService.setTitle('Add Menu Item');
+        const section = this.sections.get(id) || new SectionModel({id});
+        const model = new ItemModel({sectionId: id});
+
+        return new ProtectedRoute(new ItemCreateView({model, section}));
     },
 
     editItem(id) {
