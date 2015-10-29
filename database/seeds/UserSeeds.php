@@ -20,18 +20,20 @@ class UserSeeds extends Seeder
 
         $admin = Role::find(1);
         $owner = Role::find(2);
-
         $user = User::create([
-            'email' => 'me@nickc.io',
-            'password' => Str::random(64),
+            'email' => env('APP_ADMIN', 'admin@example.com'),
+            'password' => env('APP_ENV') !== 'local' ? Str::random(64) : 'password1',
         ]);
 
         $user->attachRole($admin);
         $user->attachRole($owner);
-        $user->update([
-            'verified' => 1,
-            'resetToken' => Str::random(64),
-        ]);
-        event(new PasswordResetEvent($user));
+
+        if (env('APP_ENV') !== 'local') {
+            $user->update([
+                'verified' => 1,
+                'resetToken' => Str::random(64),
+            ]);
+            event(new PasswordResetEvent($user));
+        }
     }
 }
