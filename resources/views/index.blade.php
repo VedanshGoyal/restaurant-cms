@@ -68,6 +68,7 @@
                         </div>
                         <div class="mdl-card__supporting-text">
                         @foreach($menuSections as $menuSection)
+                            @if(count($menuSection->items))
                             <h5>{{{ $menuSection->name }}}</h5>
                             <div class="mdl-grid menu__section">
                             @foreach($menuSection->items as $item)
@@ -92,6 +93,7 @@
                                 </div>
                             @endif
                             </div>
+                            @endif
                         @endforeach
                         </div>
                     </div>
