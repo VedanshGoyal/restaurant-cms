@@ -2,6 +2,13 @@ import _ from 'underscore';
 import toastr from 'toastr';
 
 class NotifyService {
+    constructor() {
+        toastr.options = Object.assign({}, toastr.options, {
+            progressBar: true,
+            positionClass: 'toast-bottom-right',
+        });
+    }
+
     error(messages) {
         this.notify('error', messages);
     }
