@@ -42,7 +42,7 @@ gulp.task('watch:main', () => {
 
 gulp.task('watch:dash', () => {
     global.watch = true;
-    gulp.watch(sassMainOpts.watch, ['compile:sass:dash']);
+    gulp.watch(sassDashOpts.watch, ['compile:sass:dash']);
     tasks.compileJS(jsDashOpts);
 });
 
