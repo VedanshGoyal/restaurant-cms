@@ -27,7 +27,7 @@ export default ItemView.extend({
     },
 
     onBeforeRender() {
-        this.model.set('priceTwo', this.section.get('sizes') > 1 ? '0' : false);
+        this.model.set('priceTwo', this.section.get('sizes') > 1 ? '0' : null);
     },
 
     handleSubmit() {
