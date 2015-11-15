@@ -14,19 +14,19 @@
         </div>
         <div class="menu__prices">
             Sizes:
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio-one">
+            <label class="mdl-radio mdl-js-radio" for="radio-one">
                 <input type="radio" id="radio-one" class="mdl-radio__button" name="sizes" value="1" <%= sizes === 1 ? 'checked' : '' %> />
                 <span class="mdl-radio__label">One</span>
             </label>
-            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio-two">
+            <label class="mdl-radio mdl-js-radio" for="radio-two">
                 <input type="radio" id="radio-two" class="mdl-radio__button" name="sizes" value="2" <%= sizes === 2 ? 'checked' : '' %> />
                 <span class="mdl-radio__label">Two</span>
             </label>
         </div>
     </div>
     <div class="mdl-card__actions mdl-card--border">
-        <a href="#menu-section/<%= id %>" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Cancel</a>
+        <a href="#menu-section/<%= id %>" class="mdl-button mdl-button--raised">Cancel</a>
         <div class="mdl-layout-spacer"></div>
-        <button type="submit" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Submit</button>
+        <button type="submit" class="mdl-button mdl-button--raised mdl-button--colored">Submit</button>
     </div>
 </form>
