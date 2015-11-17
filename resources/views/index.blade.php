@@ -105,13 +105,11 @@
                         <div class="mdl-card__title mdl-card--border">
                             <h2 class="mdl-card__title-text">Photos</h2>
                         </div>
-                        @foreach($photos as $photo)
                         <div class="mdl-card__supporting-text mdl-grid">
-                            <div class="mdl-card mdl-card__image mdl-shadow--2dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone" style="background: url('{{ $photo->path }}') center / cover;">
-                                <div class="mdl-card__title mdl-card--expand"></div>
-                            </div>
+                            @foreach($photos as $photo)
+                            <div class="mdl-card mdl-card__image mdl-shadow--2dp mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone" style="background: url('{{ $photo->path }}') center / cover;"></div>
+                            @endforeach
                         </div>
-                        @endforeach
                         <div class="mdl-card__actions mdl-card--border">
                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Previous</a>
                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right-text">Next</a>
