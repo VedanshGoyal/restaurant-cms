@@ -15,7 +15,8 @@ class PhotoSeeds extends Seeder
     {
         DB::table('photos')->delete();
 
-        Photo::create(['path' => 'images/test/test-one.png']);
-        Photo::create(['path' => 'images/test/test-two.png']);
+        for ($i = 1; $i <= 4; $i++) {
+            Photo::create(['path' => "/images/uploads/food-{$i}.jpg"]);
+        }
     }
 }
