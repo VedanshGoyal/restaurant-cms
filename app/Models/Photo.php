@@ -10,5 +10,5 @@ class Photo extends Model
     protected $table = 'photos';
 
     // @var array - mass-assignable properties
-    protected $fillable = ['path', 'name'];
+    protected $fillable = ['path'];
 }

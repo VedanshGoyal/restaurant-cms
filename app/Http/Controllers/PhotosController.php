@@ -2,33 +2,44 @@
 
 namespace Restaurant\Http\Controllers;
 
-use Restaurant\Http\Requests\PhotosRequest;
-use Restaurant\Repositories\PhotosRepo;
+use Restaurant\Http\Requests\PhotoRequest;
+use Restaurant\Repositories\PhotoRepo;
+use Restaurant\Services\UploadService;
 use Illuminate\Http\JsonResponse;
 
 class PhotosController extends Controller
 {
     use RESTTrait;
 
-    // @var Restaurant\Repositories\PhotosRepo
+    // @var Restaurant\Repositories\PhotoRepo
     protected $repository;
 
-    // @var Restaurant\Http\PhotosRequest
+    // @var Restaurant\Http\PhotoRequest
     protected $request;
 
     // @var Illuminate\Http\JsonResponse;
     protected $reponse;
 
-    // @var array - white-listed input values
-    protected $whiteList = ['image', 'path'];
+    // @var Restaurant\Services\UploadService
+    protected $uploadService;
 
     public function __construct(
-        PhotosRepo $repository,
-        PhotosRequest $request,
-        JsonResponse $response
+        PhotoRepo $repository,
+        PhotoRequest $request,
+        JsonResponse $response,
+        UploadService $uploadService
     ) {
         $this->repository = $repository;
         $this->request = $request;
         $this->response = $response;
+        $this->uploadService = $uploadService;
+    }
+
+    public function upload()
+    {
+    }
+
+    public function destroy()
+    {
     }
 }
