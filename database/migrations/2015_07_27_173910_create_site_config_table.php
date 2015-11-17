@@ -4,7 +4,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Hours extends Migration
+class CreateSiteConfigTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class Hours extends Migration
      */
     public function up()
     {
-        Schema::create('hours', function (Blueprint $table) {
+        Schema::create('site_config', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('day');
-            $table->string('open');
-            $table->string('close');
-            $table->boolean('isClosed')->default(0);
+            $table->integer('allowReg')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class Hours extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hours');
+        Schema::dropIfExists('site_config');
     }
 }

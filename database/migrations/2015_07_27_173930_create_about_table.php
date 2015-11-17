@@ -4,7 +4,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MenuSections extends Migration
+class CreateAboutTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class MenuSections extends Migration
      */
     public function up()
     {
-        Schema::create('menu_sections', function (Blueprint $table) {
+        Schema::create('about', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sortId');
-            $table->integer('sizes')->default(1);
-            $table->string('name');
-            $table->string('infoTitle')->nullable();
-            $table->string('info')->nullable();
+            $table->string('title');
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class MenuSections extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_sections');
+        Schema::dropIfExists('about');
     }
 }
