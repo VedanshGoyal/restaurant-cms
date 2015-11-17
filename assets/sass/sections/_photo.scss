@@ -1,0 +1,16 @@
+.photo-wrapper div:nth-child(n+4) {
+    display: none !important;
+}
+
+@media(max-width: $grid-desktop-breakpoint) and (min-width: $grid-tablet-breakpoint) {
+
+    .photo-wrapper div:nth-child(n+3) {
+        display: none !important;
+    }
+}
+
+@media(max-width: $grid-tablet-breakpoint) {
+    .photo-wrapper div:nth-child(n+2) {
+        display: none !important;
+    }
+}
