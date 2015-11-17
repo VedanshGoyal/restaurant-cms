@@ -3,9 +3,9 @@
 namespace Tests\Unit\Repositories;
 
 use Mockery as m;
-use Restaurant\Repositories\UsersRepo;
+use Restaurant\Repositories\UserRepo;
 
-class UsersRepoTest extends \TestCase
+class UserRepoTest extends \TestCase
 {
     public function setUp()
     {
@@ -13,7 +13,7 @@ class UsersRepoTest extends \TestCase
         $this->mockUser = m::mock('Restaurant\Models\User')->makePartial();
         $this->mockCollection = $this->getMockCollection();
 
-        $this->repo = new UsersRepo($this->mockModel);
+        $this->repo = new UserRepo($this->mockModel);
     }
 
     public function tearDown()
