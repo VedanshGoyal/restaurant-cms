@@ -23,6 +23,8 @@ import sectionCreate from './menu-section/create.html';
 import itemShowTable from './menu-item/show-table.html';
 import itemEdit from './menu-item/edit.html';
 import itemCreate from './menu-item/create.html';
+import photoWrapper from './photo/wrapper.html';
+import photoShow from './photo/show.html';
 
 const templates = {
     home,
@@ -47,6 +49,8 @@ const templates = {
     itemShowTable,
     itemEdit,
     itemCreate,
+    photoWrapper,
+    photoShow,
 };
 
 TemplateCache.prototype.loadTemplate = function loadTemplateF(templateId) {

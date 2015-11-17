@@ -10,6 +10,7 @@ import InfoRouter from './routers/info';
 import AboutRouter from './routers/about';
 import HourRouter from './routers/hour';
 import MenuRouter from './routers/menu';
+import PhotoRouter from './routers/photo';
 
 const App = {};
 
@@ -20,6 +21,7 @@ App.routers = {
     about: new AboutRouter(),
     hour: new HourRouter(new TimePicker()),
     menu: new MenuRouter(),
+    photo: new PhotoRouter(),
 };
 
 Backbone.history.start({root: Config.urlRoot});
