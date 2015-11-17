@@ -26,8 +26,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->registerSiteConfigRepo();
         $this->registerMenuItemRepo();
         $this->registerPhotoRepo();
-        $this->registerUsersRepo();
-        $this->registerRolesRepo();
+        $this->registerUserRepo();
+        $this->registerRoleRepo();
         $this->registerAboutRepo();
         $this->registerHourRepo();
         $this->registerInfoRepo();
@@ -82,17 +82,17 @@ class RepositoryServiceProvider extends ServiceProvider
         });
     }
 
-    public function registerUsersRepo()
+    public function registerUserRepo()
     {
-        $this->app->singleton('Restaurant\Repositories\UsersRepo', function () {
-            return new \Restaurant\Repositories\UsersRepo(new User());
+        $this->app->singleton('Restaurant\Repositories\UserRepo', function () {
+            return new \Restaurant\Repositories\UserRepo(new User());
         });
     }
 
-    public function registerRolesRepo()
+    public function registerRoleRepo()
     {
-        $this->app->singleton('Restaurant\Repositories\RolesRepo', function () {
-            return new \Restaurant\Repositories\RolesRepo(new Role());
+        $this->app->singleton('Restaurant\Repositories\RoleRepo', function () {
+            return new \Restaurant\Repositories\RoleRepo(new Role());
         });
     }
 }

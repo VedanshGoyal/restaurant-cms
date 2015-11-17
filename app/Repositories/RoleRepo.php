@@ -2,6 +2,6 @@
 
 namespace Restaurant\Repositories;
 
-class RolesRepo extends CRUDRepo
+class RoleRepo extends CRUDRepo
 {
 }

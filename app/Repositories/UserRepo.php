@@ -4,7 +4,7 @@ namespace Restaurant\Repositories;
 
 use Restaurant\Models\User;
 
-class UsersRepo extends CRUDRepo
+class UserRepo extends CRUDRepo
 {
     /**
      * Initialize new instance

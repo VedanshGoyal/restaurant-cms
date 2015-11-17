@@ -2,7 +2,7 @@
 
 namespace Restaurant\Http\Controllers;
 
-use Restaurant\Repositories\UsersRepo;
+use Restaurant\Repositories\UserRepo;
 use Illuminate\Http\JsonResponse;
 
 class UsersController extends Controller
@@ -12,11 +12,11 @@ class UsersController extends Controller
     /**
      * Initialize a new controller instance
      *
-     * @param UsersRepo $repository
+     * @param UserRepo $repository
      * @param JsonReponse $response
      */
     public function __construct(
-        UsersRepo $repository,
+        UserRepo $repository,
         JsonResponse $response
     ) {
         $this->repository = $repository;

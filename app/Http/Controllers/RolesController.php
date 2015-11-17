@@ -2,7 +2,7 @@
 
 namespace Restaurant\Http\Controllers;
 
-use Restaurant\Repositories\RolesRepo;
+use Restaurant\Repositories\RoleRepo;
 use Illuminate\Http\JsonResponse;
 
 class RolesController extends Controller
@@ -16,7 +16,7 @@ class RolesController extends Controller
     protected $reponse;
 
     public function __construct(
-        RolesRepo $repository,
+        RoleRepo $repository,
         JsonResponse $response
     ) {
         $this->repository = $repository;

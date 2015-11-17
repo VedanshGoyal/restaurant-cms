@@ -4,8 +4,8 @@ namespace Restaurant\Services;
 
 use Restaurant\Events\UserCreateEvent;
 use Restaurant\Events\PasswordResetEvent;
-use Restaurant\Repositories\UsersRepo;
-use Restaurant\Repositories\RolesRepo;
+use Restaurant\Repositories\UserRepo;
+use Restaurant\Repositories\RoleRepo;
 use Illuminate\Contracts\Events\Dispatcher;
 use Restaurant\Models\User;
 use Tymon\JWTAuth\JWTAuth;
@@ -18,19 +18,19 @@ class AuthService
     /**
      * Initialize new instance
      *
-     * @param UsersRepo $usersRepo
-     * @param RolesRepo $rolesRepo
+     * @param UserRepo $userRepo
+     * @param RoleRepo $roleRepo
      * @param JWTAuth $auth
      * @param Dispatcher $dispatcher
      */
     public function __construct(
-        UsersRepo $usersRepo,
-        RolesRepo $rolesRepo,
+        UserRepo $userRepo,
+        RoleRepo $roleRepo,
         JWTAuth $auth,
         Dispatcher $events
     ) {
-        $this->usersRepo = $usersRepo;
-        $this->rolesRepo = $rolesRepo;
+        $this->userRepo = $userRepo;
+        $this->roleRepo = $roleRepo;
         $this->auth = $auth;
         $this->events = $events;
     }
@@ -66,7 +66,7 @@ class AuthService
     public function register(array $input)
     {
         $input['createToken'] = $this->genRandomString();
-        $user = $this->usersRepo->create($input);
+        $user = $this->userRepo->create($input);
 
         if ($user && $user instanceof User) {
             $this->events->fire(new UserCreateEvent($user));
@@ -88,11 +88,11 @@ class AuthService
      */
     public function resetPassword($email)
     {
-        $user = $this->usersRepo->findByEmail($email);
+        $user = $this->userRepo->findByEmail($email);
 
         if ($user && $user instanceof User) {
             $user->resetToken = $this->genRandomString();
-            $this->usersRepo->update($user->id, $user->toArray());
+            $this->userRepo->update($user->id, $user->toArray());
             $this->events->fire(new PasswordResetEvent($user));
             $this->response['message'] = 'Please check email for reset link';
 
@@ -113,7 +113,7 @@ class AuthService
      */
     public function verifyNew($token, array $input)
     {
-        $user = $this->usersRepo->findByToken($token, 'create');
+        $user = $this->userRepo->findByToken($token, 'create');
 
         if (!$user || !$user instanceof User || $user->email !== $input['email']) {
             $this->response['error'] = 'Invalid email provided';
@@ -124,7 +124,7 @@ class AuthService
         $token = $this->auth->attempt($input);
 
         if ($token || is_string($token)) {
-            $this->usersRepo->update($user->id, ['createToken' => null, 'verified' => 1]);
+            $this->userRepo->update($user->id, ['createToken' => null, 'verified' => 1]);
             $this->response['token'] = $token;
             $this->response['expiresIn'] = strtotime('+1 day');
 
@@ -145,11 +145,11 @@ class AuthService
      */
     public function verifyReset($token, $input)
     {
-        $user = $this->usersRepo->findByToken($token, 'reset');
+        $user = $this->userRepo->findByToken($token, 'reset');
 
         if ($user && $user instanceof User) {
             $input['resetToken'] = null;
-            $this->usersRepo->update($user->id, $input);
+            $this->userRepo->update($user->id, $input);
             $this->response['message'] = 'Password reset successfully';
 
             return true;
