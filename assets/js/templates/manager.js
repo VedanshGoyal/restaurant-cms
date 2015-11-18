@@ -25,6 +25,7 @@ import itemEdit from './menu-item/edit.html';
 import itemCreate from './menu-item/create.html';
 import photoWrapper from './photo/wrapper.html';
 import photoShow from './photo/show.html';
+import photoCreate from './photo/create.html';
 
 const templates = {
     home,
@@ -51,6 +52,7 @@ const templates = {
     itemCreate,
     photoWrapper,
     photoShow,
+    photoCreate,
 };
 
 TemplateCache.prototype.loadTemplate = function loadTemplateF(templateId) {
