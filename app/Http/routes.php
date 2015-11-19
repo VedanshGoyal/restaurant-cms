@@ -74,7 +74,7 @@ Route::group(['prefix' => 'api-V1'], function () {
         Route::resource(
             'photo',
             'PhotosController',
-            ['only' => ['index', 'destroy']]
+            ['only' => ['index', 'store', 'destroy']]
         );
 
     });
