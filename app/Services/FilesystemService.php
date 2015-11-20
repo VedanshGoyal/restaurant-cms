@@ -32,7 +32,7 @@ class FilesystemService
      * @param Symfony\Component\HttpFoundation\File\UploadedFile $file
      * @return bool
      */
-    public function add(UploadFile $file)
+    public function add(UploadedFile $file)
     {
         $name = rand(111111, 999999);
         $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
