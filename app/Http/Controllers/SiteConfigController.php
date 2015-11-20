@@ -22,6 +22,13 @@ class SiteConfigController extends Controller
     // @var array - white-listed input values
     protected $whiteList = ['allowReg'];
 
+    /**
+     * Initialize new instance
+     *
+     * @param Restaurant\Repositories\SiteConfigRepo $repository
+     * @param Restaurant\Http\Requests\SiteConfigRequest $request
+     * @param Illuminate\Http\JsonRepsone $response
+     */
     public function __construct(
         SiteConfigRepo $repository,
         SiteConfigRequest $request,

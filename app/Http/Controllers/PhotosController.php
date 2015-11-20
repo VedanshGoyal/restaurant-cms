@@ -23,6 +23,14 @@ class PhotosController extends Controller
     // @var Restaurant\Services\FilesystemService
     protected $filesystemService;
 
+    /**
+     * Initialize new instance
+     *
+     * @param Restaurant\Repositories\PhotoRepo $repository
+     * @param Restaurant\Http\Requests\PhotoRequest $request
+     * @param Illuminate\Http\JsonResponse $response
+     * @param Restaurant\Services\FilesystemService $filesystemService
+     */
     public function __construct(
         PhotoRepo $repository,
         PhotoRequest $request,
@@ -35,6 +43,11 @@ class PhotosController extends Controller
         $this->filesystemService = $filesystemService;
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
     public function store()
     {
         if (!$this->request->hasFile('image') || !$this->request->file('image')->isValid()) {
@@ -50,6 +63,13 @@ class PhotosController extends Controller
         return $this->response->create(['ok' => true]);
     }
 
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return Response
+     */
     public function destroy($id)
     {
         if (!$this->filesystemService->remove($id)) {

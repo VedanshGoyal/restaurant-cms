@@ -22,6 +22,13 @@ class MenuItemsController extends Controller
     // @var array - white-listed input values
     protected $whiteList = ['name', 'sortId', 'sectionId', 'description', 'priceOne', 'priceTwo'];
 
+    /**
+     * Initialize new instance
+     *
+     * @param Restaurant\Repositories\MenuItemRepo $repository
+     * @param Restaurant\Http\Requests\MenuItemRequest $request
+     * @param Illuminate\Http\JsonResponse $response
+     */
     public function __construct(
         MenuItemRepo $repository,
         MenuItemRequest $request,

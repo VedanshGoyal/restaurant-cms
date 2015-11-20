@@ -22,6 +22,13 @@ class InfoController extends Controller
     // @var array - white-listed input values
     protected $whiteList = ['name', 'street', 'city', 'state', 'zip', 'phoneOne', 'phoneTwo'];
 
+    /**
+     * Initialize new instance
+     *
+     * @param Restaurant\Repositories\InfoRepo $repository
+     * @param Restaurant\Http\Requests\InfoRequest $request
+     * @param Illuminate\Http\JsonResponse $response
+     */
     public function __construct(
         InfoRepo $repository,
         InfoRequest $request,

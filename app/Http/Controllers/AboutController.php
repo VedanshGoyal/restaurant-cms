@@ -22,6 +22,13 @@ class AboutController extends Controller
     // @var array - white-listed input values
     protected $whiteList = ['title', 'content'];
 
+    /**
+     * Initialize new instance
+     *
+     * @param Restaurant\Repositories\AboutRepo $repository
+     * @param Restaurant\Http\Requests\AboutRequest
+     * @param Illuminate\Http\JsonResponse $response
+     */
     public function __construct(
         AboutRepo $repository,
         AboutRequest $request,

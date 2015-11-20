@@ -3,7 +3,6 @@
 // HTML routes
 Route::get('/', 'HTMLController@home');
 Route::get('/dash', 'HTMLController@dash');
-Route::get('/menu', 'HTMLController@menu');
 
 // API routes
 Route::group(['prefix' => 'api-V1'], function () {

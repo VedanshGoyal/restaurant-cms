@@ -18,6 +18,12 @@ class AuthController extends Controller
     // @var Illuminate\Http\JsonResponse
     protected $response;
 
+    /**
+     * Initialize new instance
+     *
+     * @param Restaurant\Services\AuthService $authService
+     * @param Illuminate\Http\JsonResponse $response
+     */
     public function __construct(AuthService $authService, JsonResponse $response)
     {
         $this->authService = $authService;

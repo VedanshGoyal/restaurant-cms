@@ -12,7 +12,7 @@ class HTMLController extends Controller
     /**
      * Initialize new controller instance
      *
-     * @param Application
+     * @param Illuminate\Foundation\Application
      * @return void
      */
     public function __construct(Application $app)
@@ -47,15 +47,5 @@ class HTMLController extends Controller
     public function dash()
     {
         return view('dash');
-    }
-
-    /**
-     * menu page HTML view
-     *
-     * @return View
-     */
-    public function menu()
-    {
-        return view('menu');
     }
 }

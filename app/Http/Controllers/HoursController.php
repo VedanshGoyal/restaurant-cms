@@ -22,6 +22,13 @@ class HoursController extends Controller
     // @var array - white-listed input values
     protected $whiteList = ['day', 'open', 'close', 'isClosed'];
 
+    /**
+     * Initialize new instance
+     *
+     * @param Restaurant\Repositories\HourRepo $repository
+     * @param Restaurant\Http\Requests\HourRequest $request
+     * @param Illuminate\Http\JsonResponse $response
+     */
     public function __construct(
         HourRepo $repository,
         HourRequest $request,
