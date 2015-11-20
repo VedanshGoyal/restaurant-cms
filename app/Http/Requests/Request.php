@@ -4,7 +4,6 @@ namespace Restaurant\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Str;
 
 abstract class Request extends FormRequest
 {
@@ -31,13 +30,7 @@ abstract class Request extends FormRequest
      */
     public function rules()
     {
-        $method = Str::lower($this->method());
-
-        if ($this->shouldValidate($method)) {
-            return ($this->hasAltRules($method)) ? $this->getAltRuels($method) : $this->rules;
-        }
-
-        return [];
+        return $this->shouldValidate(strtolower($this->method())) ? $this->rules : [];
     }
 
     /**
@@ -70,28 +63,5 @@ abstract class Request extends FormRequest
     protected function shouldValidate($method)
     {
         return in_array($method, $this->validateMethods);
-    }
-
-    /**
-     * Check if class has alternate rules given a key
-     *
-     * @param string $key
-     * @return bool
-     */
-    protected function hasAltRules($key)
-    {
-        return isset($this->altRules) && is_array($this->altRules)
-            && array_key_exists($key, $this->altRules);
-    }
-
-    /**
-     * Return an array of alternate rules merged with the defaults
-     *
-     * @param string $key
-     * @return array
-     */
-    protected function getAltRules($key)
-    {
-        return array_merge($this->rules, $this->altRules[$key]);
     }
 }
