@@ -56,11 +56,11 @@ class PhotosController extends Controller
             ], 400);
         }
 
-        if (!$this->filesystemService->add($this->request->file('image'))) {
-            return $this->response->create(['error' => 'Photo upload failed, please try again'], 500);
+        if ($this->filesystemService->add($this->request->file('image'))) {
+            return $this->response->create(['ok' => true]);
         }
 
-        return $this->response->create(['ok' => true]);
+        return $this->response->create(['error' => 'Photo upload failed, please try again'], 500);
     }
 
 
@@ -72,10 +72,10 @@ class PhotosController extends Controller
      */
     public function destroy($id)
     {
-        if (!$this->filesystemService->remove($id)) {
-            return $this->response->create(['error' => 'Failed to remove photo'], 500);
+        if ($this->filesystemService->remove($id)) {
+            return $this->response->create(['ok' => true]);
         }
 
-        return $this->response->create(['ok' => true]);
+        return $this->response->create(['error' => 'Failed to remove photo'], 500);
     }
 }
