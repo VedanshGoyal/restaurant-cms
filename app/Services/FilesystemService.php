@@ -4,6 +4,7 @@ namespace Restaurant\Services;
 
 use Restaurant\Repositories\PhotoRepo;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FilesystemService
 {
@@ -31,7 +32,7 @@ class FilesystemService
      * @param Symfony\Component\HttpFoundation\File\UploadedFile $file
      * @return bool
      */
-    public function add($file)
+    public function add(UploadFile $file)
     {
         $name = rand(111111, 999999);
         $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
