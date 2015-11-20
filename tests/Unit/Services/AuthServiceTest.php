@@ -12,7 +12,7 @@ class AuthServiceTest extends \TestCase
         $this->mockUserRepo = m::mock('Restaurant\Repositories\UserRepo')->makePartial();
         $this->mockRoleRepo = m::mock('Restaurant\Repositories\RoleRepo')->makePartial();
         $this->mockAuth = m::mock('Tymon\JWTAuth\JWTAuth')->makePartial();
-        $this->mockEvents = m::mock('Illuminate\Contracts\Events\Dispatcher');
+        $this->mockEvents = m::mock('Illuminate\Contracts\Events\Dispatcher')->makePartial();
 
         $this->authService = new AuthService(
             $this->mockUserRepo,
@@ -32,9 +32,7 @@ class AuthServiceTest extends \TestCase
         $this->mockAuth->shouldReceive('attempt')->once()->with(m::type('array'))->andReturn('token');
 
         $this->assertTrue($this->authService->login(['input']));
-        $this->assertEquals('token', $this->authService->response['token']);
-        $this->assertEquals('token', $this->authService->response['token']);
-        $this->assertInternalType('integer', $this->authService->response['expiresIn']);
+        $this->assertEquals('token', $this->authService->getToken());
     }
 
     public function testLoginFailReturnsFalse()
@@ -42,19 +40,17 @@ class AuthServiceTest extends \TestCase
         $this->mockAuth->shouldReceive('attempt')->once()->with(m::type('array'))->andReturn(false);
 
         $this->assertFalse($this->authService->login(['input']));
-        $this->assertInternalType('string', $this->authService->response['error']);
+        $this->assertNull($this->authService->getToken());
     }
 
     public function testRegisterSuccessReturnsTrue()
     {
         $mockUser = m::mock('Restaurant\Models\User')->makePartial();
-        $mockCreateEvent = m::mock('Restaurant\Events\UserCreateEvent');
 
         $this->mockUserRepo->shouldReceive('create')->once()->with(m::type('array'))->andReturn($mockUser);
         $this->mockEvents->shouldReceive('fire')->once()->with(m::type('Restaurant\Events\UserCreateEvent'));
         
         $this->assertTrue($this->authService->register(['input']));
-        $this->assertInternalType('string', $this->authService->response['message']);
     }
 
     public function testRegisterFailReturnsFalse()
@@ -62,13 +58,11 @@ class AuthServiceTest extends \TestCase
         $this->mockUserRepo->shouldReceive('create')->once()->with(m::type('array'))->andReturn(false);
         
         $this->assertFalse($this->authService->register(['input']));
-        $this->assertInternalType('string', $this->authService->response['error']);
     }
 
     public function testResetPasswordSuccessReturnsTrue()
     {
         $mockUser = m::mock('Restaurant\Models\User')->makePartial();
-        $mockCreateEvent = m::mock('Restaurant\Events\PasswordResetEvent');
         $mockUser->id = 1;
 
         $this->mockUserRepo->shouldReceive('findByEmail')->once()->with(m::type('string'))->andReturn($mockUser);
@@ -77,7 +71,6 @@ class AuthServiceTest extends \TestCase
         $this->mockEvents->shouldReceive('fire')->once()->with(m::type('Restaurant\Events\PasswordResetEvent'));
 
         $this->assertTrue($this->authService->resetPassword('input'));
-        $this->assertInternalType('string', $this->authService->response['message']);
     }
 
     public function testResetPasswordFailReturnsFalse()
@@ -85,7 +78,6 @@ class AuthServiceTest extends \TestCase
         $this->mockUserRepo->shouldReceive('findByEmail')->once()->with(m::type('string'))->andReturn(false);
 
         $this->assertFalse($this->authService->resetPassword('input'));
-        $this->assertInternalType('string', $this->authService->response['error']);
     }
 
     public function testVerifyNewSuccessReturnsTrue()
@@ -100,8 +92,7 @@ class AuthServiceTest extends \TestCase
         $this->mockUserRepo->shouldReceive('update')->once()->with(m::type('integer'), m::type('array'));
 
         $this->assertTrue($this->authService->verifyNew('token', ['email' => 'email@input']));
-        $this->assertInternalType('string', $this->authService->response['token']);
-        $this->assertInternalType('integer', $this->authService->response['expiresIn']);
+        $this->assertEquals('token', $this->authService->getToken());
     }
 
     public function testVerifyNewEmailNotMatchReturnsFalse()
@@ -114,7 +105,7 @@ class AuthServiceTest extends \TestCase
             ->andReturn($mockUser);
 
         $this->assertFalse($this->authService->verifyNew('token', ['email' => 'input@email']));
-        $this->assertInternalType('string', $this->authService->response['error']);
+        $this->assertNull($this->authService->getToken());
     }
 
     public function testVerifyNewFailReturnsFalse()
@@ -128,7 +119,6 @@ class AuthServiceTest extends \TestCase
         $this->mockAuth->shouldReceive('attempt')->once()->with(m::type('array'))->andReturn(false);
 
         $this->assertFalse($this->authService->verifyNew('token', ['email' => 'email@input']));
-        $this->assertInternalType('string', $this->authService->response['error']);
     }
 
     public function testVerifyResetSuccessReturnsTrue()
@@ -141,7 +131,6 @@ class AuthServiceTest extends \TestCase
         $this->mockUserRepo->shouldReceive('update')->once()->with(m::type('integer'), m::type('array'));
 
         $this->assertTrue($this->authService->verifyReset('token', ['input']));
-        $this->assertInternalType('string', $this->authService->response['message']);
     }
 
     public function testVerifyResetFailReturnsFalse()
@@ -152,6 +141,5 @@ class AuthServiceTest extends \TestCase
             ->andReturn(false);
 
         $this->assertFalse($this->authService->verifyReset('token', ['input']));
-        $this->assertInternalType('string', $this->authService->response['error']);
     }
 }

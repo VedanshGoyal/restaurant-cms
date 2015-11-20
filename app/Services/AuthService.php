@@ -12,8 +12,8 @@ use Tymon\JWTAuth\JWTAuth;
 
 class AuthService
 {
-    // array - response object to return
-    public $response = [];
+    // @var string - auth token
+    protected $token;
 
     /**
      * Initialize new instance
@@ -46,13 +46,10 @@ class AuthService
         $token = $this->auth->attempt($input);
 
         if ($token || is_string($token)) {
-            $this->response['token'] = $token;
-            $this->response['expiresIn'] = strtotime('+1 day');
+            $this->token = $token;
 
             return true;
         }
-
-        $this->response['error'] = 'The username or password provided was incorrect';
 
         return false;
     }
@@ -70,12 +67,9 @@ class AuthService
 
         if ($user && $user instanceof User) {
             $this->events->fire(new UserCreateEvent($user));
-            $this->response['message'] = 'Please check email for activation link';
 
             return true;
         }
-
-        $this->response['error'] = 'Failed to create new account';
 
         return false;
     }
@@ -94,12 +88,9 @@ class AuthService
             $user->resetToken = $this->genRandomString();
             $this->userRepo->update($user->id, $user->toArray());
             $this->events->fire(new PasswordResetEvent($user));
-            $this->response['message'] = 'Please check email for reset link';
 
             return true;
         }
-
-        $this->response['error'] = 'Failed to reset password';
 
         return false;
     }
@@ -116,8 +107,6 @@ class AuthService
         $user = $this->userRepo->findByToken($token, 'create');
 
         if (!$user || !$user instanceof User || $user->email !== $input['email']) {
-            $this->response['error'] = 'Invalid email provided';
-
             return false;
         }
 
@@ -125,13 +114,10 @@ class AuthService
 
         if ($token || is_string($token)) {
             $this->userRepo->update($user->id, ['createToken' => null, 'verified' => 1]);
-            $this->response['token'] = $token;
-            $this->response['expiresIn'] = strtotime('+1 day');
+            $this->token = $token;
 
             return true;
         }
-
-        $this->response['error'] = 'Account verification failed';
 
         return false;
     }
@@ -150,14 +136,21 @@ class AuthService
         if ($user && $user instanceof User) {
             $input['resetToken'] = null;
             $this->userRepo->update($user->id, $input);
-            $this->response['message'] = 'Password reset successfully';
 
             return true;
         }
 
-        $this->response['error'] = 'Failed to reset password';
-
         return false;
+    }
+
+    /**
+     * Get the protected token value
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 
     /**
