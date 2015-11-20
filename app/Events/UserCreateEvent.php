@@ -7,6 +7,9 @@ use Restaurant\Models\User;
 
 class UserCreateEvent extends Event
 {
+    // @var Restaurant\Models\User
+    public $user;
+
     /**
      * Create a new event instance.
      *

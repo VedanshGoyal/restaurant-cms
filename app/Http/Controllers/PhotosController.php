@@ -18,7 +18,7 @@ class PhotosController extends Controller
     protected $request;
 
     // @var Illuminate\Http\JsonResponse;
-    protected $reponse;
+    protected $response;
 
     // @var Restaurant\Services\FilesystemService
     protected $filesystemService;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Restaurant\Exceptions;
+namespace App\Exceptions;
 
 use Exception;
-use Restuarant\Exceptions\RepositoryException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\JsonResponse;
 
 class Handler extends ExceptionHandler
 {
@@ -17,6 +17,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         HttpException::class,
+        ModelNotFoundException::class,
     ];
 
     /**
@@ -29,10 +30,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
-        if ($e instanceof RepositoryException) {
-            return $this->log->error($e, $e->logData);
-        }
-
         return parent::report($e);
     }
 
@@ -45,10 +42,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if (app()->environment() === 'local') {
-            return parent::render($request, $e);
+        if ($e instanceof ModelNotFoundException) {
+            $e = new NotFoundHttpException($e->getMessage(), $e);
         }
 
-        return new JsonResponse($e->getMessage(), $e->getCode());
+        return parent::render($request, $e);
     }
 }

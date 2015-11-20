@@ -12,6 +12,12 @@ use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
+    // @var Restaurant\Services\AuthService
+    protected $authService;
+
+    // @var Illuminate\Http\JsonResponse
+    protected $response;
+
     public function __construct(AuthService $authService, JsonResponse $response)
     {
         $this->authService = $authService;

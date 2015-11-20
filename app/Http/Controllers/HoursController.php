@@ -17,7 +17,7 @@ class HoursController extends Controller
     protected $request;
 
     // @var Illuminate\Http\JsonResponse;
-    protected $reponse;
+    protected $response;
 
     // @var array - white-listed input values
     protected $whiteList = ['day', 'open', 'close', 'isClosed'];

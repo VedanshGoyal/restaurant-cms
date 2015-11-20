@@ -7,6 +7,9 @@ use Restaurant\Models\User;
 
 class PasswordResetEvent extends Event
 {
+    // @var Restaurant\Models\User
+    public $user;
+
     /**
      * Create a new event instance.
      *

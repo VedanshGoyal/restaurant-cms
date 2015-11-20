@@ -6,6 +6,9 @@ use Illuminate\Foundation\Application;
 
 class HTMLController extends Controller
 {
+    // @var Illuminate\Foundation\Application
+    protected $app;
+
     /**
      * Initialize new controller instance
      *

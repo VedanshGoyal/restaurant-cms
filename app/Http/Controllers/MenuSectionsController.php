@@ -17,7 +17,7 @@ class MenuSectionsController extends Controller
     protected $request;
 
     // @var Illuminate\Http\JsonResponse;
-    protected $reponse;
+    protected $response;
 
     // @var array - relations to query when fetching model data
     protected $with = ['items'];
