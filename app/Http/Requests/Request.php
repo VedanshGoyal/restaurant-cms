@@ -30,7 +30,7 @@ abstract class Request extends FormRequest
      */
     public function rules()
     {
-        return $this->shouldValidate(strtolower($this->method())) ? $this->rules : [];
+        return in_array(strtolower($this->method()), $this->validateMethods) ? $this->rules : [];
     }
 
     /**
@@ -41,7 +41,14 @@ abstract class Request extends FormRequest
      */
     public function response(array $errors)
     {
-        return new JsonResponse($errors, 422);
+        return new JsonResponse([
+            'meta' => [
+                'ok' => false,
+                'message' => 'Input provided was not valid',
+                'errors' => $errors,
+            ],
+            'data' => [],
+        ], 422);
     }
 
     /**
@@ -51,17 +58,12 @@ abstract class Request extends FormRequest
      */
     public function forbiddenResponse()
     {
-        return new JsonResponse('Unauthorized Access', 403);
-    }
-
-    /**
-     * Check if method is one that does not require validation
-     *
-     * @param string $method
-     * @return bool
-     */
-    protected function shouldValidate($method)
-    {
-        return in_array($method, $this->validateMethods);
+        return new JsonResponse([
+            'meta' => [
+                'ok' => false,
+                'message' => 'Requested acccess not allowed',
+            ],
+            'data' => [],
+        ], 403);
     }
 }

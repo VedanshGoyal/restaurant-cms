@@ -15,54 +15,22 @@ class RequestTest extends \TestCase
     {
         m::close();
     }
-    
-    public function testShouldValidateChecksForValueInValidateMethodsArray()
-    {
-        $method = $this->getProtectedMethod('shouldValidate');
 
-        $this->assertFalse($method->invokeArgs($this->request, ['get']));
-        $this->assertTrue($method->invokeArgs($this->request, ['post']));
-        $this->assertFalse($method->invokeArgs($this->request, ['delete']));
-        $this->assertTrue($method->invokeArgs($this->request, ['put']));
-        $this->assertFalse($method->invokeArgs($this->request, ['pew']));
+    public function testRulesReturnsRulesArrayWhenMethodInValidateMethodsArray()
+    {
+        $rules = ['test' => 'rules'];
+
+        $this->request->setMethod('POST');
+        $this->assertEquals($rules, $this->request->rules());
+        $this->request->setMethod('PUT');
+        $this->assertEquals($rules, $this->request->rules());
     }
 
-    public function testHasAltRulesReturnsTrueWhenHasRules()
+    public function testRulesReturnsEmptyArrayWhenMethodNotInValidateMethodsArray()
     {
-        $method = $this->getProtectedMethod('hasAltRules');
-
-        $this->assertTrue($method->invokeArgs($this->request, ['get']));
-        $this->assertTrue($method->invokeArgs($this->request, ['post']));
-        $this->assertTrue($method->invokeArgs($this->request, ['put']));
-        $this->assertTrue($method->invokeArgs($this->request, ['delete']));
-    }
-
-    public function testHasAltRulesReturnsFalseWhenNoRules()
-    {
-        $method = $this->getProtectedMethod('hasAltRules');
-
-        $this->assertFalse($method->invokeArgs($this->request, ['patch']));
-        $this->assertFalse($method->invokeArgs($this->request, ['options']));
-        $this->assertFalse($method->invokeArgs($this->request, ['something']));
-        $this->assertFalse($method->invokeArgs($this->request, ['pewpew']));
-    }
-
-    public function testGetAltRulesReturnsMatching()
-    {
-        $method = $this->getProtectedMethod('getAltRules');
-        $expected = ['test' => 'rules', 'get' => 'rules'];
-        $rules = $method->invokeArgs($this->request, ['get']);
-
-        $this->assertEquals($expected, $rules);
-
-    }
-
-    protected function getProtectedMethod($methodName)
-    {
-        $class = new \ReflectionClass($this->request);
-        $method = $class->getMethod($methodName);
-        $method->setAccessible(true);
-
-        return $method;
+        $this->request->setMethod('GET');
+        $this->assertEquals([], $this->request->rules());
+        $this->request->setMethod('DELETE');
+        $this->assertEquals([], $this->request->rules());
     }
 }
