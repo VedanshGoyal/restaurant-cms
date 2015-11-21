@@ -52,15 +52,19 @@ class PhotosController extends Controller
     {
         if (!$this->request->hasFile('image') || !$this->request->file('image')->isValid()) {
             return $this->response->create([
-                'error' => 'Photo upload failed, please ensure a reliable connection and try again',
+                'meta' => ['message' => 'Upload was not successful'],
             ], 400);
         }
 
         if ($this->filesystemService->add($this->request->file('image'))) {
-            return $this->response->create(['ok' => true]);
+            return $this->response->create([
+                'meta' => ['message' => 'Photo added successfully'],
+            ]);
         }
 
-        return $this->response->create(['error' => 'Photo upload failed, please try again'], 500);
+        return $this->response->create([
+            'meta' => ['message' => 'Upload was not successful'],
+        ], 500);
     }
 
 
@@ -73,9 +77,13 @@ class PhotosController extends Controller
     public function destroy($id)
     {
         if ($this->filesystemService->remove($id)) {
-            return $this->response->create(['ok' => true]);
+            return $this->response->create([
+                'meta' => ['message' => 'Photo removed successfully'],
+            ]);
         }
 
-        return $this->response->create(['error' => 'Failed to remove photo'], 500);
+        return $this->response->create([
+            'meta' => ['message' => 'Failed to remove photo'],
+        ], 500);
     }
 }

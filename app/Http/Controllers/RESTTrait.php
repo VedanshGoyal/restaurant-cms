@@ -15,11 +15,11 @@ trait RESTTrait
 
         if (!$collection) {
             return $this->response->create([
-                'error' => 'Could not find requested resources.',
+                'meta' => ['message' => 'Failed to find requested content'],
             ], 404);
         }
 
-        return $this->response->create($collection);
+        return $this->response->create(['data' => $collection]);
     }
 
     /**
@@ -34,11 +34,11 @@ trait RESTTrait
 
         if (!$model) {
             return $this->response->create([
-                'error' => 'Failed to create new resource.',
-            ], 400);
+                'meta' => ['message' => 'Failed to create new content'],
+            ], 404);
         }
 
-        return $this->response->create($model);
+        return $this->response->create(['data' => $model]);
     }
 
     /**
@@ -53,11 +53,11 @@ trait RESTTrait
 
         if (!$model) {
             return $this->response->create([
-                'error' => 'Failed to find requested resource.',
+                'meta' => ['message' => 'Failed to find requested content'],
             ], 404);
         }
 
-        return $this->response->create($model);
+        return $this->response->create(['data' => $model]);
     }
 
     /**
@@ -73,11 +73,14 @@ trait RESTTrait
 
         if (!$model) {
             return $this->response->create([
-                'error' => 'Failed to update resource.',
-            ], 400);
+                'meta' => ['message' => 'Failed to update content'],
+            ], 500);
         }
 
-        return $this->response->create($model);
+        return $this->response->create([
+            'meta' => ['message' => 'Content successfully updated'],
+            'data' => $model,
+        ]);
     }
 
     /**
@@ -88,14 +91,14 @@ trait RESTTrait
      */
     public function destroy($id)
     {
-        $isDeleted = $this->repository->delete($id);
-
-        if (!$isDeleted) {
+        if (!$this->repository->delete($id)) {
             return $this->response->create([
-                'error' => 'Failed to delete resource.',
-            ], 400);
+                'meta' => ['message' => 'Failed to remove content'],
+            ], 500);
         }
 
-        return $this->response->create(['ok' => $isDeleted]);
+        return $this->response->create([
+            'meta' => ['message' => 'Content removed successfully'],
+        ]);
     }
 }
