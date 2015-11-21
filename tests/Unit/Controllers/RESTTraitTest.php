@@ -27,7 +27,7 @@ class RESTTraitTest extends \TestCase
     public function testIndexReturnsCollection()
     {
         $this->mockRepo->shouldReceive('readAll')->once()->withNoArgs()->andReturn($this->mockCollection);
-        $this->mockResponse->shouldReceive('create')->once()->with($this->mockCollection)
+        $this->mockResponse->shouldReceive('create')->once()->with(['data' => $this->mockCollection])
             ->andReturn($this->mockResponse);
 
         $response = $this->controller->index();
@@ -49,7 +49,8 @@ class RESTTraitTest extends \TestCase
     {
         $this->mockRequest->shouldReceive('only')->once()->with(m::type('array'))->andReturn($this->mockInput);
         $this->mockRepo->shouldReceive('create')->once()->with(m::type('array'))->andReturn($this->mockModel);
-        $this->mockResponse->shouldReceive('create')->once()->with($this->mockModel)->andReturn($this->mockResponse);
+        $this->mockResponse->shouldReceive('create')->once()->with(['data' => $this->mockModel])
+            ->andReturn($this->mockResponse);
 
         $response = $this->controller->store();
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
@@ -59,7 +60,7 @@ class RESTTraitTest extends \TestCase
     {
         $this->mockRequest->shouldReceive('only')->once()->with(m::type('array'))->andReturn($this->mockInput);
         $this->mockRepo->shouldReceive('create')->once()->with(m::type('array'))->andReturn(false);
-        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'), 400)
+        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'), 404)
             ->andReturn($this->mockResponse);
 
         $response = $this->controller->store();
@@ -69,7 +70,8 @@ class RESTTraitTest extends \TestCase
     public function testShowReturnsJSONModel()
     {
         $this->mockRepo->shouldReceive('readSingle')->once()->with(m::type('integer'))->andReturn($this->mockModel);
-        $this->mockResponse->shouldReceive('create')->once()->with($this->mockModel)->andReturn($this->mockResponse);
+        $this->mockResponse->shouldReceive('create')->once()->with(['data' => $this->mockModel])
+            ->andReturn($this->mockResponse);
 
         $response = $this->controller->show(1);
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
@@ -90,7 +92,9 @@ class RESTTraitTest extends \TestCase
         $this->mockRequest->shouldReceive('only')->once()->with(m::type('array'))->andReturn($this->mockInput);
         $this->mockRepo->shouldReceive('update')->once()->with(m::type('integer'), m::type('array'))
             ->andReturn($this->mockModel);
-        $this->mockResponse->shouldReceive('create')->once()->with($this->mockModel)->andReturn($this->mockResponse);
+        $this->mockResponse->shouldReceive('create')->once()
+            ->with(['meta' => ['message' => 'Content successfully updated'], 'data' => $this->mockModel])
+            ->andReturn($this->mockResponse);
 
         $response = $this->controller->update(1);
         $this->assertInstanceOf('Illuminate\Http\JsonResponse', $response);
@@ -101,7 +105,7 @@ class RESTTraitTest extends \TestCase
         $this->mockRequest->shouldReceive('only')->once()->with(m::type('array'))->andReturn($this->mockInput);
         $this->mockRepo->shouldReceive('update')->once()->with(m::type('integer'), m::type('array'))
             ->andReturn(false);
-        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'), 400)
+        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'), 500)
             ->andReturn($this->mockResponse);
 
         $response = $this->controller->update(1);
@@ -120,7 +124,7 @@ class RESTTraitTest extends \TestCase
     public function testDestroyReturnsErrorDeleteFails()
     {
         $this->mockRepo->shouldReceive('delete')->once()->with(m::type('integer'))->andReturn(false);
-        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'), 400)
+        $this->mockResponse->shouldReceive('create')->once()->with(m::type('array'), 500)
             ->andReturn($this->mockResponse);
 
         $response = $this->controller->destroy(1);
