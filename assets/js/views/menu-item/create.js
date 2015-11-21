@@ -1,6 +1,4 @@
 import {ItemView, TemplateCache} from 'backbone.marionette';
-import LoadingService from '../../services/loading';
-import NotifyService from '../../services/notify';
 import MDLBehavior from '../../behaviors/mdl';
 import FormBehavior from '../../behaviors/form';
 import ModelErrorBehavior from '../../behaviors/model-error';
@@ -31,12 +29,7 @@ export default ItemView.extend({
     },
 
     handleSubmit() {
-        LoadingService.show();
-
-        this.model.set(this.form).save().done(() => {
-            LoadingService.hide();
-            NotifyService.success('Menu Item Added Successfully');
-
+        this.model.save(this.form).done(() => {
             window.location.hash = `menu-section/${this.model.get('sectionId')}`;
         });
     },

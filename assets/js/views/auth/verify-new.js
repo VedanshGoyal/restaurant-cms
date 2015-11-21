@@ -3,8 +3,6 @@ import Config from '../../config';
 import MDLBehavior from '../../behaviors/mdl';
 import FormBehavior from '../../behaviors/form';
 import ModelErrorBehavior from '../../behaviors/model-error';
-import NotifyService from '../../services/notify';
-import LoadingService from '../../services/loading';
 
 export default ItemView.extend({
     template: TemplateCache.get('verifyNew'),
@@ -22,15 +20,8 @@ export default ItemView.extend({
     },
 
     handleSubmit() {
-        LoadingService.show('show');
-
         this.model.url = `${Config.apiRoot}/verify-new`;
-        this.model.set(this.form).save().done(response => {
-            LoadingService.hide();
-            NotifyService.success('Account successfully activated.');
-
-            this.model.set('token', response.token);
-            this.model.set('expiresIn', response.expiresIn);
+        this.model.save(this.form).done(() => {
             this.model.saveToStorage();
             window.location.hash = ' ';
         });

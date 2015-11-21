@@ -1,5 +1,4 @@
 import {ItemView, TemplateCache} from 'backbone.marionette';
-import LoadingService from '../../services/loading';
 import NotifyService from '../../services/notify';
 import MDLBehavior from '../../behaviors/mdl';
 import ModelErrorBehavior from '../../behaviors/model-error';
@@ -57,12 +56,8 @@ export default ItemView.extend({
             return;
         }
 
-        LoadingService.show();
         formData.append('image', file);
         this.model.save({}, {data: formData, processData: false, contentType: false}).done(() => {
-            LoadingService.hide();
-            NotifyService.success('Photo successfully added');
-
             window.location.hash = 'photos';
         });
     },

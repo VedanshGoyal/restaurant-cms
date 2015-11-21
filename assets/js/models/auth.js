@@ -1,4 +1,4 @@
-import _ from 'underscore';
+import {isObject, isUndefined} from 'underscore';
 import {Model} from 'backbone';
 import Config from '../config';
 
@@ -23,7 +23,7 @@ export default Model.extend({
     loadFromStorage() {
         const storedData = JSON.parse(this.storage.getItem(Config.storageName));
 
-        if (_.isObject(storedData)) {
+        if (isObject(storedData)) {
             this.set(storedData);
         }
     },
@@ -49,5 +49,9 @@ export default Model.extend({
 
         this.clearStorage();
         return false;
+    },
+
+    parse(response) {
+        return isUndefined(response.data) ? response : response.data;
     },
 });

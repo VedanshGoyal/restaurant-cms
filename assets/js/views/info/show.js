@@ -15,6 +15,6 @@ export default ItemView.extend({
     },
 
     initialize() {
-        this.model.fetch();
+        this.model.fetch({silent: true});
     },
 });

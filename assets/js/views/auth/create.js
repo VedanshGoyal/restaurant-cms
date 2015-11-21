@@ -3,8 +3,6 @@ import Config from '../../config';
 import MDLBehavior from '../../behaviors/mdl';
 import FormBehavior from '../../behaviors/form';
 import ModelErrorBehavior from '../../behaviors/model-error';
-import LoadingService from '../../services/loading';
-import NotifyService from '../../services/notify';
 
 export default ItemView.extend({
     template: TemplateCache.get('create'),
@@ -31,15 +29,8 @@ export default ItemView.extend({
     },
 
     handleSubmit() {
-        LoadingService.show();
-
         this.model.url = `${Config.apiRoot}/register`;
-        this.model.set(this.form);
-
-        this.model.save().done(() => {
-            LoadingService.hide();
-            NotifyService.info('Account created. Please check email for further instructions.');
-
+        this.model.save(this.form).done(() => {
             window.location.hash = 'login';
         });
     },

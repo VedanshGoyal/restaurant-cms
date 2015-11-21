@@ -3,8 +3,6 @@ import Config from '../../config';
 import MDLBehavior from '../../behaviors/mdl';
 import FormBehavior from '../../behaviors/form';
 import ModelErrorBehavior from '../../behaviors/model-error';
-import NotifyService from '../../services/notify';
-import LoadingService from '../../services/loading';
 
 export default ItemView.extend({
     template: TemplateCache.get('verifyReset'),
@@ -22,13 +20,8 @@ export default ItemView.extend({
     },
 
     handleSubmit() {
-        LoadingService.show('show');
-
         this.model.url = `${Config.apiRoot}/verify-reset`;
-        this.model.set(this.form).save().done(() => {
-            LoadingService.hide();
-            NotifyService.success('Password reset successfully.');
-
+        this.model.save(this.form).done(() => {
             window.location.hash = 'login';
         });
     },
