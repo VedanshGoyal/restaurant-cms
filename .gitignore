@@ -1,5 +1,6 @@
 /vendor
 /public/js/*.js
 /public/css/*.css
+/public/images/*
 /node_modules
 .env
