@@ -35,6 +35,7 @@ class NavBarService {
         if (current) {
             current.removeClass('mdl-navigation__link--current');
         }
+
         if (newCurrent) {
             $(newCurrent).addClass('mdl-navigation__link--current');
         }

@@ -8,6 +8,7 @@ import HomeView from '../views/home';
 export default Router.extend({
     routes: {
         '': 'index',
+        home: 'index',
         logout: 'logout',
     },
 
