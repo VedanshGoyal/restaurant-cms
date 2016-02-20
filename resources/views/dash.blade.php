@@ -42,6 +42,14 @@
             <div class="loading-overlay" style="display:none">
                 <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
             </div>
+            <dialog class="mdl-dialog">
+                <h4 class="mdl-dialog__title"></h4>
+                <div class="mdl-dialog__content"></div>
+                <div class="mdl-dialog__actions">
+                    <button type="button" class="mdl-button dialog-cancel">Cancel</button>
+                    <button type="button" class="mdl-button dialog-confirm">Confirm</button>
+                </div>
+            </dialog>
         </div>
         <script type="text/javascript" src="/js/dash.js"></script>
     </body>
