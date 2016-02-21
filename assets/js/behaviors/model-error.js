@@ -1,6 +1,7 @@
 import {each, isUndefined, isEmpty, keys} from 'underscore';
 import {Behavior} from 'backbone.marionette';
 import NotifyService from '../services/notify';
+import LoadingService from '../services/loading';
 
 export default Behavior.extend({
     modelEvents: {
@@ -13,6 +14,7 @@ export default Behavior.extend({
     },
 
     handleError(model, xhr) {
+        LoadingService.hide();
         const status = xhr.status;
         const response = JSON.parse(xhr.responseText);
         const message = response.meta.message || {};
