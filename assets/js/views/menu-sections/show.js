@@ -1,4 +1,5 @@
 import {ItemView, CompositeView, TemplateCache} from 'backbone.marionette';
+import MDLBehavior from '../../behaviors/mdl';
 
 const MenuItemView = ItemView.extend({
     template: TemplateCache.get('itemShowTable'),
@@ -11,6 +12,10 @@ export default CompositeView.extend({
     childViewContainer: 'tbody',
     className: 'mdl-card mdl-cell mdl-cell--8-col mdl-shadow--2dp',
     tagName: 'div',
+
+    behaviors: {
+        mdl: {behaviorClass: MDLBehavior},
+    },
 
     modelEvents: {
         sync: 'render',
