@@ -35,7 +35,7 @@ const PhotoView = ItemView.extend({
             this.destroy();
         }).fail(() => {
             LoadingService.hide();
-            NotifyService.success('Failed to delete image');
+            NotifyService.error('Failed to delete image');
         });
     },
 });
