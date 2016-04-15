@@ -1,5 +1,5 @@
 import 'mdl';
-import 'babel/polyfill';
+import 'babel-polyfill';
 import './templates/manager';
 import Backbone from 'backbone';
 import TimePicker from 'material-timepicker';
