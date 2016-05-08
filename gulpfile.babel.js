@@ -55,3 +55,5 @@ gulp.task('build:all', ['build:main', 'build:dash']);
 gulp.task('cmd:refreshDB', shell.task(['php artisan migrate:reset && php artisan migrate --seed']));
 gulp.task('cmd:refreshLoader', shell.task(['composer dumpautoload && php artisan optimize']));
 gulp.task('cmd:refresh', ['cmd:refreshLoader', 'cmd:refreshDB']);
+
+gulp.task('default', ['build:all']);
