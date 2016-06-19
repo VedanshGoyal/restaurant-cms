@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'America/New_York'),
 
     /*
     |--------------------------------------------------------------------------
@@ -155,6 +155,14 @@ return [
         Restaurant\Providers\AuthServiceProvider::class,
         Restaurant\Providers\EventServiceProvider::class,
         Restaurant\Providers\RouteServiceProvider::class,
+        Restaurant\Providers\RepositoryServiceProvider::class,
+        Restaurant\Providers\ValidationServiceProvider::class,
+
+        /**
+         * Vendor providers
+         */
+        Intervention\Image\ImageServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
     ],
 
