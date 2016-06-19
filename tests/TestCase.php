@@ -1,9 +1,6 @@
 <?php
-// @codingStandardsIgnoreFile
 
-use Mockery as m;
-
-abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
+class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
     /**
      * The base URL to use while testing the application.
@@ -24,15 +21,5 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
         return $app;
-    }
-
-    protected function getMockCollection()
-    {
-        return m::mock('Illuminate\Database\Eloquent\Collection')->makePartial();
-    }
-
-    protected function getMockModel()
-    {
-        return m::mock('Illuminate\Database\Eloquent\Model')->makePartial();
     }
 }
