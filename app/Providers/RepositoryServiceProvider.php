@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 use Restaurant\Models\MenuSection;
 use Restaurant\Models\SiteConfig;
 use Restaurant\Models\MenuItem;
-use Bican\Roles\Models\Role;
 use Restaurant\Models\About;
 use Restaurant\Models\Info;
 use Restaurant\Models\Hour;
@@ -27,7 +26,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->registerMenuItemRepo();
         $this->registerPhotoRepo();
         $this->registerUserRepo();
-        $this->registerRoleRepo();
         $this->registerAboutRepo();
         $this->registerHourRepo();
         $this->registerInfoRepo();
@@ -82,17 +80,10 @@ class RepositoryServiceProvider extends ServiceProvider
         });
     }
 
-    public function registerUserRepo()
+    private function registerUserRepo()
     {
         $this->app->singleton('Restaurant\Repositories\UserRepo', function () {
             return new \Restaurant\Repositories\UserRepo(new User());
-        });
-    }
-
-    public function registerRoleRepo()
-    {
-        $this->app->singleton('Restaurant\Repositories\RoleRepo', function () {
-            return new \Restaurant\Repositories\RoleRepo(new Role());
         });
     }
 }
