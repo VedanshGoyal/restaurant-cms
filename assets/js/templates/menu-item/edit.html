@@ -1,0 +1,32 @@
+<form>
+    <div class="mdl-card__supporting-text">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="name" type="text" id="name-input" value="<%= name %>" />
+            <label class="mdl-textfield__label" for="name">Name</label>
+        </div>
+        <% if (priceTwo) { %>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="priceOne" type="text" id="priceOne-input" value="<%= toFixed(priceOne) %>" />
+            <label class="mdl-textfield__label" for="priceOne">Small Price</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="priceTwo" type="text" id="priceTwo-input" value="<%= toFixed(priceTwo) %>" />
+            <label class="mdl-textfield__label" for="pricetwo">Large Price</label>
+        </div>
+        <% } else { %>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="priceOne" type="text" id="priceOne-input" value="<%= toFixed(priceOne) %>" />
+            <label class="mdl-textfield__label" for="priceOne">Price</label>
+        </div>
+        <% } %>
+        <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" name="description" rows="10" id="description-input"></textarea>
+            <label class="mdl-textfield__label" for="description">Description</label>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a href="#menu-section/<%= sectionId %>" class="mdl-button mdl-button--raised">Cancel</a>
+        <div class="mdl-layout-spacer"></div>
+        <button type="submit" class="mdl-button mdl-button--raised mdl-button--colored">Submit</button>
+    </div>
+</form>
