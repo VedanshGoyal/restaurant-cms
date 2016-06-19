@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Restaurant\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

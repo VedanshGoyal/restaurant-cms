@@ -10,7 +10,7 @@ class MenuSection extends Model
     protected $table = 'menu_sections';
 
     // @var array - mass-assignable properties
-    protected $fillable = ['name', 'sizes', 'sortId', 'infoTitle', 'info'];
+    protected $fillable = ['name', 'sizes', 'sort_id', 'info_title', 'info'];
 
     /**
      * Has many menu item models
@@ -19,6 +19,6 @@ class MenuSection extends Model
      */
     public function items()
     {
-        return $this->hasMany('Restaurant\Models\MenuItem', 'sectionId');
+        return $this->hasMany('Restaurant\Models\MenuItem', 'section_id');
     }
 }

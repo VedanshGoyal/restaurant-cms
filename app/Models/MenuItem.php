@@ -10,7 +10,7 @@ class MenuItem extends Model
     protected $table = 'menu_items';
 
     // @var array - mass-assignable properties
-    protected $fillable = ['name', 'priceOne', 'priceTwo', 'sortId', 'description', 'sectionId'];
+    protected $fillable = ['name', 'price_one', 'price_two', 'sort_id', 'description', 'section_id'];
 
     /**
      * Belongs to one menu section

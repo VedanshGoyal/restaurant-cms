@@ -10,5 +10,5 @@ class SiteConfig extends Model
     protected $table = 'site_config';
 
     // @var array - mass-assignable properties
-    protected $fillable = ['allowReg'];
+    protected $fillable = ['allow_reg'];
 }

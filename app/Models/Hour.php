@@ -10,5 +10,5 @@ class Hour extends Model
     protected $table = 'hours';
 
     // @var array - mass-assignable properties
-    protected $fillable = ['day', 'open', 'close', 'isClosed'];
+    protected $fillable = ['day', 'open', 'close', 'is_closed'];
 }
