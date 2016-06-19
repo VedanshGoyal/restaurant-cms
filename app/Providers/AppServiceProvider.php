@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Restaurant\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
