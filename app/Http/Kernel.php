@@ -26,9 +26,11 @@ class Kernel extends HttpKernel
         'web' => [
             \Restaurant\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            /*
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Restaurant\Http\Middleware\VerifyCsrfToken::class,
+            */
         ],
 
         'api' => [
@@ -44,10 +46,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        /*
         'auth' => \Restaurant\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \Restaurant\Http\Middleware\RedirectIfAuthenticated::class,
+        */
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'token' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
     ];
