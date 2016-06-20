@@ -8,7 +8,7 @@ export default Model.extend({
         city: '',
         state: '',
         zip: '',
-        phoneOne: '',
-        phoneTwo: null,
+        'phone_one': '',
+        'phone_two': null,
     },
 });

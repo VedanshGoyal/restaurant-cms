@@ -30,7 +30,7 @@ export default ItemView.extend({
 
     handleSubmit() {
         this.model.save(this.form).done(() => {
-            window.location.hash = `menu-section/${this.model.get('sectionId')}`;
+            window.location.hash = `menu-section/${this.model.get('section_id')}`;
         });
     },
 });

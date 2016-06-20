@@ -6,6 +6,6 @@ export default Model.extend({
         day: '',
         open: '',
         close: '',
-        isClosed: false,
+        'is_closed': false,
     },
 });

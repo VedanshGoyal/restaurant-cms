@@ -4,5 +4,5 @@ import MenuItemModel from '../models/menu-item';
 export default Collection.extend({
     resourceName: 'menu-item',
     model: MenuItemModel,
-    comparator: 'sortId',
+    comparator: 'sort_id',
 });

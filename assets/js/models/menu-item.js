@@ -3,11 +3,11 @@ import Model from './model';
 export default Model.extend({
     resourceName: 'menu-item',
     defaults: {
-        sectionId: 0,
-        sortId: 0,
+        'section_id': 0,
+        'sort_id': 0,
         name: '',
         description: '',
-        priceOne: '',
-        priceTwo: null,
+        'price_one': '',
+        'price_two': null,
     },
 });
