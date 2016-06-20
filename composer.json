@@ -23,7 +23,8 @@
             "database"
         ],
         "psr-4": {
-            "Restaurant\\": "app/"
+            "Restaurant\\": "app/",
+            "Tests\\": "tests/"
         }
     },
     "autoload-dev": {
