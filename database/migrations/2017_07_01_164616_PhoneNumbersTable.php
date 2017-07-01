@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 // @codingStandardsIgnoreStart
-class PhotosTable extends Migration
+class PhoneNumbersTable extends Migration
 // @codingStandardsIgnoreEnd
 {
     /**
@@ -15,10 +15,10 @@ class PhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('photos', function (Blueprint $table) {
+        Schema::create('phone_numbers', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('sort_id');
-            $table->string('path');
+            $table->unsignedInteger('info_id');
+            $table->string('phone_number');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class PhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('phone_numbers');
     }
 }

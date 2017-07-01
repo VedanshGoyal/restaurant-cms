@@ -17,7 +17,7 @@ class SiteConfigTable extends Migration
     {
         Schema::create('site_config', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('allow_reg')->default(0);
+            $table->boolean('allow_reg')->default(0);
             $table->timestamps();
         });
     }

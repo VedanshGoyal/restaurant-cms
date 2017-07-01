@@ -17,8 +17,8 @@ class MenuItemsTable extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('section_id');
-            $table->integer('sort_id');
+            $table->unsignedInteger('section_id');
+            $table->unsignedInteger('sort_id');
             $table->string('name');
             $table->text('description')->nullable();
             $table->timestamps();
