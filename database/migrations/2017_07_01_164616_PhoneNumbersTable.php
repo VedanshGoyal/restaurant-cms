@@ -18,6 +18,7 @@ class PhoneNumbersTable extends Migration
         Schema::create('phone_numbers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('info_id');
+            $table->foreign('info_id')->references('id')->on('info')->onDelete('cascade');
             $table->string('phone_number');
             $table->timestamps();
         });

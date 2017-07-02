@@ -18,6 +18,7 @@ class MenuItemsTable extends Migration
         Schema::create('menu_items', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('section_id');
+            $table->foreign('section_id')->references('id')->on('menu_sections')->onDelete('cascade');
             $table->unsignedInteger('sort_id');
             $table->string('name');
             $table->text('description')->nullable();

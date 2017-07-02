@@ -17,8 +17,10 @@ class ItemPricesTable extends Migration
     {
         Schema::create('item_prices', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('menu_item_id');
-            $table->unsignedInteger('section_size_id');
+            $table->unsignedInteger('item_id');
+            $table->foreign('item_id')->references('id')->on('menu_items')->onDelete('cascade');
+            $table->unsignedInteger('size_id');
+            $table->foreign('size_id')->references('id')->on('section_sizes')->onDelete('cascade');
             $table->string('price');
             $table->timestamps();
         });

@@ -18,6 +18,7 @@ class SectionSizesTable extends Migration
         Schema::create('section_sizes', function ($table) {
             $table->increments('id');
             $table->unsignedInteger('section_id');
+            $table->foreign('section_id')->references('id')->on('menu_sections')->onDelete('cascade');
             $table->unsignedInteger('sort_id');
             $table->string('label');
             $table->timestamps();
