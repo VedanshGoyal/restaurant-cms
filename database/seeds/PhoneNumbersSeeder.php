@@ -23,6 +23,8 @@ class PhoneNumbersSeeder extends Seeder
             ['info_id' => $info->id, 'phone_number' => '555-555-5556'],
         ];
 
-        PhoneNumber::insert($numbers);
+        foreach ($numbers as $number) {
+            PhoneNumber::create($number);
+        }
     }
 }

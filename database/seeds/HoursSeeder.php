@@ -61,6 +61,8 @@ class HoursSeeder extends Seeder
             ],
         ];
 
-        Hour::insert($hours);
+        foreach ($hours as $hour) {
+            Hour::create($hour);
+        }
     }
 }

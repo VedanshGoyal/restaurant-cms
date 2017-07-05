@@ -19,9 +19,7 @@ class PhotosSeeder extends Seeder
         $photos = [];
 
         for ($i = 0; $i < 5; $i++) {
-            $photos[$i] = ['sort_id' => $i + 1, 'path' => 'http://lorempixel.com/700/450/'];
+            Photo::create(['sort_id' => $i + 1, 'path' => 'http://lorempixel.com/700/450/']);
         }
-
-        Photo::insert($photos);
     }
 }
