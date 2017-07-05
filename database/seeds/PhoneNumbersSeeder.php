@@ -19,8 +19,8 @@ class PhoneNumbersSeeder extends Seeder
 
         $info = Info::first();
         $numbers = [
-            ['info_id' => $info->id, 'phone_number' => '555-555-5555'],
-            ['info_id' => $info->id, 'phone_number' => '555-555-5556'],
+            ['infoId' => $info->id, 'phone_number' => '555-555-5555'],
+            ['infoId' => $info->id, 'phone_number' => '555-555-5556'],
         ];
 
         foreach ($numbers as $number) {

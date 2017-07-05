@@ -20,8 +20,8 @@ class ItemPricesSeeder extends Seeder
         $sections = MenuSection::all();
 
         $sections->each(function ($section) {
-            $section->items->each(function ($item) {
-                $section->sizes->each(function ($size) {
+            $section->items->each(function ($item) use ($section) {
+                $section->sizes->each(function ($size) use ($item) {
                     ItemPrice::create([
                         'itemId' => $item->id,
                         'sizeId' => $size->id,

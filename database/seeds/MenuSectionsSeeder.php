@@ -19,7 +19,7 @@ class MenuSectionsSeeder extends Seeder
         for ($i = 0; $i < 7; $i++) {
             MenuSection::create([
                 'name' => 'Menu Section',
-                'sort_id' => $i + 1,
+                'sortId' => $i + 1,
             ]);
         }
     }

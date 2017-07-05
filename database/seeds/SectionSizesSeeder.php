@@ -24,8 +24,8 @@ class SectionSizesSeeder extends Seeder
 
             for ($i = 0; $i < $count; $i++) {
                 SectionSize::create([
-                    'section_id' => $section->id,
-                    'sort_id' => $i + 1,
+                    'sectionId' => $section->id,
+                    'sortId' => $i + 1,
                     'label' => 'label',
                 ]);
             }
