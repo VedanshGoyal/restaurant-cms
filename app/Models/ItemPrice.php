@@ -37,7 +37,7 @@ class ItemPrice extends Model
      */
     public function menuItem()
     {
-        return $this->belongsTo(RestaurantCMS\Models\MenuItem::class);
+        return $this->belongsTo(\RestaurantCMS\Models\MenuItem::class);
     }
 
     /**
@@ -47,6 +47,6 @@ class ItemPrice extends Model
      */
     public function sectionSize()
     {
-        return $this->belongsTo(RestaurantCMS\Models\SectionSize::class);
+        return $this->belongsTo(\RestaurantCMS\Models\SectionSize::class);
     }
 }

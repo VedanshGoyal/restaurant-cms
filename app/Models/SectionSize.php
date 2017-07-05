@@ -1,6 +1,6 @@
 <?php
 
-namespace RestaurantCMS;
+namespace RestaurantCMS\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Sofa\Eloquence\Eloquence;
@@ -19,7 +19,7 @@ class SectionSize extends Model
     // @var array - Property name mapskk
     protected $maps = [
         'sectionId' => 'section_id',
-        'sort_id' => 'sort_id',
+        'sortId' => 'sort_id',
     ];
 
     // @var array<string> - Fields to be hidden when doing array/json serialization
@@ -35,6 +35,6 @@ class SectionSize extends Model
      */
     public function section()
     {
-        return $this->belongsTo(RestaurantCMS\Models\MenuSection::class);
+        return $this->belongsTo(\RestaurantCMS\Models\MenuSection::class);
     }
 }

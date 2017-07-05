@@ -36,7 +36,7 @@ class MenuItem extends Model
      */
     public function prices()
     {
-        return $this->hasMany(RestaurantCMS\Models\ItemPrice::class);
+        return $this->hasMany(\RestaurantCMS\Models\ItemPrice::class, 'item_id');
     }
 
     /**
@@ -46,6 +46,6 @@ class MenuItem extends Model
      */
     public function section()
     {
-        return $this->belongsTo(RestaurantCMS\Models\MenuSection::class);
+        return $this->belongsTo(\RestaurantCMS\Models\MenuSection::class);
     }
 }

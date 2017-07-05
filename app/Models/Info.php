@@ -22,6 +22,6 @@ class Info extends Model
      */
     public function phoneNumbers()
     {
-        return $this->hasMany(RestaurantCMS\Models\PhoneNumber::class);
+        return $this->hasMany(\RestaurantCMS\Models\PhoneNumber::class);
     }
 }

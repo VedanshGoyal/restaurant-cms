@@ -36,7 +36,7 @@ class MenuSection extends Model
      */
     public function items()
     {
-        return $this->hasMany(RestaurantCMS\Models\MenuItem::class, 'section_id');
+        return $this->hasMany(\RestaurantCMS\Models\MenuItem::class, 'section_id');
     }
 
     /**
@@ -46,6 +46,6 @@ class MenuSection extends Model
      */
     public function sizes()
     {
-        return $this->hasMany(RestaurantCMS\Models\SectionSize::class, 'section_id');
+        return $this->hasMany(\RestaurantCMS\Models\SectionSize::class, 'section_id');
     }
 }

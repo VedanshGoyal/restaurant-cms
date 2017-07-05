@@ -35,6 +35,6 @@ class PhoneNumber extends Model
      */
     public function info()
     {
-        return $this->belongsTo(RestaurantCMS\Models\Info::class);
+        return $this->belongsTo(\RestaurantCMS\Models\Info::class);
     }
 }
