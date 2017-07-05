@@ -14,20 +14,21 @@ class MenuItem extends Model
     protected $table = 'menu_items';
 
     // @var array<string> - Mass-assignable fields
-    protected $fillable = ['sectionId', 'name', 'description'];
+    protected $fillable = ['sectionId', 'sortId', 'name', 'description'];
 
     // @var array - Property name maps
     protected $maps = [
+        'sortId' => 'sort_id',
         'sectionId' => 'section_id',
         'createdAt' => 'created_at',
         'updatedAt' => 'updated_at',
     ];
 
     // @var array<string> - Fields to be hidden when doing array/json serialization
-    protected $hidden = ['section_id', 'created_at', 'updated_at'];
+    protected $hidden = ['section_id', 'sort_id', 'created_at', 'updated_at'];
 
     // @var array<string> - Fields to be added when doing array/json serialization
-    protected $appends = ['sectionId', 'createdAt', 'updatedAt'];
+    protected $appends = ['sectionId', 'sortId', 'createdAt', 'updatedAt'];
 
     /**
      * Has-many ItemPrice
